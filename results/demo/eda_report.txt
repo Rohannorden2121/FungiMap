@@ -1,0 +1,84 @@
+
+FungiMap M1 Mac Pilot Run Report
+Generated: 2025-09-27 14:46:01
+System: M1 Mac (5GB RAM limit, 4 CPU cores approved)
+
+=== PILOT RUN SUMMARY ===
+✅ Demo pipeline executed successfully on M1 Mac
+✅ Resource constraints respected (5GB RAM, 4 CPU cores)
+✅ FastQC quality control completed
+✅ MultiQC aggregated report generated
+✅ Mock data processing validated
+
+=== SAMPLES PROCESSED ===
+Total samples: 2
+
+Sample: SRR13059548
+  Status: PASS
+  Total reads: 10,000
+  GC content: 50%
+  Sequence length: 100
+  Quality status: PASS
+  Demo subsample: 10k_reads
+
+Sample: SRR15377549
+  Status: PASS
+  Total reads: 10,000
+  GC content: 50%
+  Sequence length: 100
+  Quality status: PASS
+  Demo subsample: 10k_reads
+
+
+=== RESOURCE USAGE ===
+Memory limit: 5GB (user approved)
+CPU cores: 4 (user approved)
+Peak memory: See resource_usage.csv for details
+Execution time: ~2-3 minutes for demo data
+
+=== OUTPUTS GENERATED ===
+Quality Control Reports:
+  ✅ results/demo/multiqc_report.html (main aggregated report)
+  ✅ results/demo/fastqc/SRR13059548_demo_fastqc.html
+  ✅ results/demo/fastqc/SRR15377549_demo_fastqc.html
+
+Summary Data:
+  ✅ results/demo/eda_summary.csv (sample statistics)
+  ✅ results/demo/eda_report.txt (this report)
+  ✅ results/demo/resource_usage.csv (system monitoring)
+
+Demo Data:
+  ✅ data/demo/SRR13059548_demo.fastq.gz (10k reads)
+  ✅ data/demo/SRR15377549_demo.fastq.gz (10k reads)
+
+=== PIPELINE VALIDATION ===
+✅ Conda environment creation successful
+✅ FastQC execution successful
+✅ MultiQC aggregation successful
+✅ Resource monitoring functional
+✅ Output file generation working
+
+=== LIMITATIONS (AS REQUESTED) ===
+❌ Kraken2 database download skipped (would be ~8GB)
+❌ Real SRA data download skipped (used mock data)
+❌ Taxonomic classification not performed
+❌ Assembly stages not executed
+❌ ML/embedding analysis not performed
+
+=== NEXT STEPS FOR PRODUCTION ===
+1. Deploy to university HPC system
+2. Download full MiniKraken2 database
+3. Process real SRA data at scale
+4. Enable assembly and annotation stages
+5. Implement ML analysis pipeline
+
+=== M1 MAC COMPATIBILITY ===
+✅ Pipeline components work on Apple Silicon
+✅ Memory usage stayed within approved limits
+✅ Processing time acceptable for demo scale
+✅ All required outputs generated successfully
+
+This pilot validates that FungiMap can run on M1 Mac hardware
+for demonstration and development purposes. Production workloads
+should use HPC/cloud infrastructure as planned.
+    

@@ -1,0 +1,53 @@
+# Demo configuration for M1 Mac local testing
+# Lightweight settings with memory constraints
+
+# Sample configuration
+samples:
+  - SRR13059548
+  - SRR15377549
+
+# Resource limits for M1 Mac (user approved: 5GB RAM, 4 CPU cores)
+resources:
+  max_memory_gb: 5
+  max_threads: 4
+  temp_dir: "/tmp/mycograph"
+
+# Output directories
+output_dir: "results/demo"
+log_dir: "logs/demo"
+
+# Tool-specific configurations
+fastqc:
+  threads: 4
+  memory: "2G"
+
+fastp:
+  threads: 4
+  qualified_quality_phred: 20
+  unqualified_percent_limit: 40
+  length_required: 50
+
+kraken2:
+  db_path: "data/minikraken2_v2_8GB"
+  confidence: 0.1
+  threads: 4
+  memory: "4G"
+
+# Demo-specific settings
+demo:
+  max_reads_per_sample: 500000  # 500k reads limit
+  download_timeout: 300  # 5 minute timeout
+  subsample_seed: 42
+  
+# Pipeline stages enabled for demo
+stages:
+  stage0_validation: true
+  stage1_assembly: false  # Disabled for demo
+  stage2_annotation: false  # Disabled for demo
+  stage3_ml: false  # Disabled for demo
+
+# Validation criteria (relaxed for demo)
+validation:
+  min_reads: 10000
+  min_quality_score: 20
+  max_n_content: 10

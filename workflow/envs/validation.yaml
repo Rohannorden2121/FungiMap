@@ -1,0 +1,15 @@
+name: validation
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  - pandas
+  - numpy
+  - dask
+  - boto3
+  - smart_open
+  - pip
+  - pip:
+    - smart-open[s3]

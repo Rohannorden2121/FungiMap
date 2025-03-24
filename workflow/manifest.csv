@@ -1,0 +1,3 @@
+accession,command,use_type,isolation_source,collection_date
+SRR13059548,"mkdir -p data/raw && cd data/raw && prefetch SRR13059548 && fasterq-dump --split-files SRR13059548 -O . && cat SRR13059548_*.fastq > SRR13059548.fastq && gzip SRR13059548.fastq && rm -f SRR13059548_*.fastq && rm -rf SRR13059548",pilot,soil_sample,2020-09-15
+SRR15377549,"mkdir -p data/raw && cd data/raw && prefetch SRR15377549 && fasterq-dump --split-files SRR15377549 -O . && cat SRR15377549_*.fastq > SRR15377549.fastq && gzip SRR15377549.fastq && rm -f SRR15377549_*.fastq && rm -rf SRR15377549",pilot,forest_soil,2021-03-20

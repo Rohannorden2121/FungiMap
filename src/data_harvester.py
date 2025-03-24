@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Enhanced Data Harvesting Script for MycoGraph-XL
+Enhanced Data Harvesting Script for FungiMap
 Handles querying and initial processing of metagenome datasets from SRA/ENA/MGnify.
 """
 
@@ -14,7 +14,6 @@ import pandas as pd
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
-from pysradb import SRAweb
 from tqdm import tqdm
 
 # Configure logging
@@ -32,7 +31,7 @@ class DataHarvester:
     def __init__(self, config_path: Path):
         """Initialize with enhanced error handling and validation."""
         self.config = self._load_config(config_path)
-        self.db = SRAweb()
+        self.sra_api = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
         self.mgnify_api = "https://www.ebi.ac.uk/metagenomics/api/v1"
         self.manifest = []
         self.candidates = []
@@ -59,7 +58,7 @@ class DataHarvester:
                 raise ValueError(f"Missing required configuration section: {section}")
     
     def query_sra(self, max_results: Optional[int] = None) -> pd.DataFrame:
-        """Query SRA with enhanced filtering and metadata extraction."""
+        """Query SRA with enhanced filtering and metadata extraction using eutils."""
         try:
             # Build query
             query_terms = self.config['databases']['sra']['query_terms']
@@ -67,20 +66,60 @@ class DataHarvester:
             query += ' AND ("metagenome"[Source] OR "metatranscriptome"[Source])'
             
             logger.info(f"Querying SRA with: {query}")
-            results = self.db.search(query)
             
-            if max_results:
-                results = results.head(max_results)
+            # Use eutils to query
+            params = {
+                'db': 'sra',
+                'term': query,
+                'retmax': max_results or 100,
+                'retmode': 'json'
+            }
+            
+            response = requests.get(
+                f"{self.sra_api}/esearch.fcgi",
+                params=params,
+                timeout=30
+            )
+            response.raise_for_status()
+            data = response.json()
+            
+            # Get details for each ID
+            ids = data['esearchresult']['idlist']
+            results = []
+            
+            for id_batch in [ids[i:i+50] for i in range(0, len(ids), 50)]:
+                details_params = {
+                    'db': 'sra',
+                    'id': ','.join(id_batch),
+                    'retmode': 'json'
+                }
+                details = requests.get(
+                    f"{self.sra_api}/esummary.fcgi",
+                    params=details_params,
+                    timeout=30
+                ).json()
+                
+                for entry in details['result'].values():
+                    if isinstance(entry, dict):
+                        results.append({
+                            'run_accession': entry.get('accession', ''),
+                            'spots': entry.get('spots', 0),
+                            'bases': entry.get('bases', 0),
+                            'size_MB': entry.get('size_MB', 0),
+                            'sample_attribute': entry.get('attributes', '')
+                        })
+            
+            results_df = pd.DataFrame(results)
             
             # Log query
             self.manifest.append({
                 'timestamp': datetime.now().isoformat(),
                 'database': 'SRA',
                 'query': query,
-                'results_count': len(results)
+                'results_count': len(results_df)
             })
             
-            return results
+            return results_df
             
         except Exception as e:
             logger.error(f"Error querying SRA: {str(e)}")

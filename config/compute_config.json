@@ -1,0 +1,109 @@
+{
+    "execution_strategy": {
+        "local": {
+            "max_memory_gb": 6,
+            "max_threads": 4,
+            "allowed_tasks": ["qc", "kraken_classification", "data_validation"],
+            "temp_directory": "/tmp/mycograph_local"
+        },
+        "cloud": {
+            "provider": "aws",
+            "region": "us-west-2",
+            "instance_types": {
+                "compute_optimized": {
+                    "small": "c6g.xlarge",
+                    "medium": "c6g.2xlarge",
+                    "large": "c6g.4xlarge"
+                },
+                "memory_optimized": {
+                    "small": "r6g.xlarge",
+                    "medium": "r6g.2xlarge",
+                    "large": "r6g.4xlarge"
+                },
+                "gpu": {
+                    "small": "g4dn.xlarge",
+                    "medium": "g4dn.2xlarge",
+                    "large": "g4dn.4xlarge"
+                }
+            },
+            "storage": {
+                "scratch": "gp3",
+                "persistent": "gp3"
+            }
+        },
+        "hpc": {
+            "scheduler": "slurm",
+            "partitions": {
+                "compute": {
+                    "max_time": "48:00:00",
+                    "max_memory": "128G"
+                },
+                "gpu": {
+                    "max_time": "24:00:00",
+                    "max_memory": "64G",
+                    "gpus": "1"
+                }
+            }
+        }
+    },
+    "task_requirements": {
+        "assembly": {
+            "preferred_env": "cloud",
+            "min_memory": "32G",
+            "min_cores": 8,
+            "estimated_time": "12:00:00",
+            "storage_per_sample": "50G"
+        },
+        "gene_prediction": {
+            "preferred_env": "cloud",
+            "min_memory": "16G",
+            "min_cores": 4,
+            "estimated_time": "8:00:00",
+            "storage_per_sample": "20G"
+        },
+        "clustering": {
+            "preferred_env": "cloud",
+            "min_memory": "64G",
+            "min_cores": 16,
+            "estimated_time": "24:00:00",
+            "storage_requirement": "100G"
+        },
+        "embedding_generation": {
+            "preferred_env": "cloud",
+            "instance_type": "gpu",
+            "min_memory": "32G",
+            "min_cores": 8,
+            "gpu_memory": "16G",
+            "estimated_time": "16:00:00"
+        }
+    },
+    "cost_control": {
+        "budget_limit_usd": 1000,
+        "spot_instances": true,
+        "spot_price_max": "on-demand",
+        "auto_shutdown_idle": true
+    },
+    "data_management": {
+        "primary_storage": "s3://mycograph-data",
+        "cache_strategy": {
+            "local_cache_size": "10G",
+            "cloud_cache_size": "1000G",
+            "cache_policy": "least-recently-used"
+        },
+        "backup_strategy": {
+            "frequency": "daily",
+            "retention_days": 30
+        }
+    },
+    "monitoring": {
+        "metrics_collection": {
+            "interval_seconds": 60,
+            "resource_metrics": ["cpu", "memory", "disk", "network", "gpu"],
+            "cost_metrics": true
+        },
+        "alerting": {
+            "cost_threshold": 100,
+            "resource_threshold": 90
+        }
+    }
+}

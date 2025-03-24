@@ -1,0 +1,39 @@
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+*$py.class
+.pytest_cache
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Data and results
+data/*
+!data/.gitkeep
+results/*
+!results/.gitkeep
+
+# Snakemake
+.snakemake/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

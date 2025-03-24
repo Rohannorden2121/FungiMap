@@ -1,0 +1,14 @@
+name: annotation
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - prodigal=2.6.3
+  - augustus=3.4.0
+  - hmmer=3.3.2
+  - interproscan=5.60-92.0
+  - python=3.9
+  - biopython=1.81
+  - pandas=2.0.3
+  - blast=2.14.0

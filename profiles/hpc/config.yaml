@@ -1,0 +1,28 @@
+# HPC Cluster Profile Configuration
+# Based on HPC_CLOUD_PLAN.md recommendations
+
+cluster: "sbatch --job-name={rule} --partition=compute --nodes={cluster.nodes} --ntasks-per-node={cluster.ntasks} --cpus-per-task={cluster.cpus} --mem={cluster.memory} --time={cluster.time} --output=logs/cluster/%j.out --error=logs/cluster/%j.err"
+
+default-resources: 
+  - nodes=1
+  - ntasks=1
+  - cpus=4
+  - memory="8GB"
+  - time="2:00:00"
+
+cluster-config: "profiles/hpc/cluster_config.yaml"
+
+jobs: 50
+latency-wait: 60
+restart-times: 2
+max-jobs-per-second: 10
+max-status-checks-per-second: 1
+
+use-conda: true
+conda-frontend: "mamba"
+
+printshellcmds: true
+reason: true
+show-failed-logs: true
+
+keep-going: true

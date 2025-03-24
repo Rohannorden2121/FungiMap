@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Resource estimation and sample selection for MycoGraph-XL pilot
+Resource estimation and sample selection for FungiMap pilot
 """
 import pandas as pd
 import subprocess

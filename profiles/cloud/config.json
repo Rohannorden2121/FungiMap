@@ -1,0 +1,42 @@
+{
+    "use-conda": true,
+    "conda-frontend": "mamba",
+    "cores": 96,
+    "resources": {
+        "mem_mb": 128000
+    },
+    "latency-wait": 120,
+    "keep-going": true,
+    "restart-times": 3,
+    "printshellcmds": true,
+    "scheduler": "greedy",
+    "cluster": {
+        "__default__": {
+            "time": "12:00:00",
+            "mem": "16G",
+            "cores": 8,
+            "partition": "compute"
+        },
+        "validate_samples": {
+            "mem": "4G",
+            "cores": 1,
+            "partition": "quick"
+        },
+        "kraken2": {
+            "mem": "64G",
+            "cores": 32,
+            "partition": "compute-highmem"
+        }
+    },
+    "cluster-config": {
+        "mkdir": {
+            "command": "mkdir -p $(dirname {cluster.output})"
+        }
+    },
+    "jobscript": "#!/bin/bash\n{exec_job}",
+    "default-resources": [
+        "disk_mb=100000",
+        "mem_mb=16000",
+        "tmpdir=/scratch"
+    ]
+}

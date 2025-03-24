@@ -2,7 +2,7 @@
 
 ## Required Data Files
 
-This project requires several large data files that are not included in the repository. Here's how to obtain and set up each component:
+This predictor requires several large data files that are not included in the repository. Here's how to obtain and set up each component:
 
 ### 1. Kraken2 Database (Required)
 We use the MiniKraken2 v2 8GB database (April 2019 version):
