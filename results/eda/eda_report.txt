@@ -1,0 +1,56 @@
+# MycoGraph-XL EDA Quality Control Report
+======================
+Generated: Tue Sep 23 22:21:02 EDT 2025
+
+Sample Quality Assessment
+-------------
+Total samples analyzed: 3
+Samples passing QC: 1
+Samples excluded: 2 (1 test sample, 1 quality issue)ph-XL EDA Report
+======================
+Generated: Tue Sep 23 22:21:02 EDT 2025
+
+Sample Summary
+-------------
+Total samples processed:        2
+
+Quality Issues Identified
+--------------
+1. SRR15377549 (EXCLUDED)
+   - Read Statistics:
+     - Total reads: 23,398,688
+     - Average read length: 35.7 bp
+     - Quality issue: Extremely short reads
+   - Classification Results:
+     - Only 0.05% reads classified
+     - 0.04% human contamination (80% of classified reads)
+   - Recommendation: Exclude due to short read length and poor classification
+
+2. SRR13059548 (PASSED)
+   - Read Statistics:
+     - Total reads: 662,315
+     - Average read length: 242.4 bp
+     - Quality: Good
+   - Classification Results:
+     - 97.97% reads classified
+     - Primary classification: Salmonella enterica (86.46%)
+   - Recommendation: Include in analysis
+
+3. test_sample (EXCLUDED)
+   - Duplicate of SRR15377549
+   - Excluded from analysis
+
+Quality Control Files
+--------------
+- Detailed QC metrics: /results/eda/sample_qc_summary.csv
+- FastQC reports: /results/eda/fastqc/*.html
+- MultiQC report: /results/eda/multiqc_report_1.html
+- Kraken2 classifications: /results/eda/kraken2/*_report.txt
+
+Taxonomic Analysis
+-----------------
+Kraken2 reports available in: /Users/rohannorden/My Code/mycology-project/results/eda/kraken2
+
+Sample Details:
+- SRR15377549:  23398688 reads, 0.00% fungal content
+- SRR13059548:   662315 reads, 0.00% fungal content

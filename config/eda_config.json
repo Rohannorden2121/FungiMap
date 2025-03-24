@@ -1,0 +1,59 @@
+{
+    "data_selection": {
+        "min_fungal_reads_percent": 0.5,
+        "min_raw_read_pairs": 5000000,
+        "min_metadata_completeness": 70,
+        "subsample_size": 500000
+    },
+    "databases": {
+        "sra": {
+            "api_url": "https://www.ncbi.nlm.nih.gov/sra",
+            "query_terms": [
+                "soil fungi",
+                "fungal metagenome",
+                "mycobiome",
+                "forest fungi",
+                "marine fungi"
+            ]
+        },
+        "mgnify": {
+            "api_url": "https://www.ebi.ac.uk/metagenomics/api/v1",
+            "filters": {
+                "experiment_type": "metagenomic",
+                "biome": ["soil", "forest", "marine"]
+            }
+        }
+    },
+    "qc_parameters": {
+        "kraken2": {
+            "confidence": 0.05,
+            "min_hit_groups": 2
+        },
+        "eukrep": {
+            "min_length": 1000
+        },
+        "megahit": {
+            "min_contig": 1000,
+            "memory": "8G"
+        }
+    },
+    "output_formats": {
+        "candidate_accession_list": [
+            "accession",
+            "habitat",
+            "raw_read_pairs",
+            "estimated_download_size",
+            "metadata_url",
+            "metadata_completeness",
+            "percent_fungal_reads"
+        ],
+        "manifest_draft": [
+            "file_url",
+            "database",
+            "version",
+            "checksum",
+            "download_date",
+            "intended_use"
+        ]
+    }
+}

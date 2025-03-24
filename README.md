@@ -36,6 +36,11 @@ mycology-project/
    ```bash
    conda activate mycograph-xl
    ```
+4. Set up required data files:
+   - See [Data Setup Guide](docs/DATA_SETUP.md) for detailed instructions on downloading:
+     - Kraken2 database (required, ~8GB)
+     - Sample sequence data (optional, ~1GB)
+     - Directory structure setup
 
 ## Outputs
 The EDA phase will generate:

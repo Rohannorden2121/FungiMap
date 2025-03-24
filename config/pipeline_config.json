@@ -1,0 +1,18 @@
+{
+    "sra_toolkit": {
+        "cache_dir": "/Users/rohannorden/My Code/mycology-project/data/sra-cache",
+        "subsample_size": 500000,
+        "threads": 6,
+        "fasterq_dump_options": {
+            "split-files": true,
+            "split-spot": true,
+            "skip-technical": true
+        }
+    },
+    "kraken2": {
+        "db_path": "/Users/rohannorden/My Code/mycology-project/data/kraken2-db/minikraken2_v2_8GB",
+        "threads": 6,
+        "confidence": 0.05,
+        "minimum_hit_groups": 2
+    }
+}

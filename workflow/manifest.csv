@@ -1,6 +1,0 @@
-accession,db_source,release_date,checksum,download_date,use_type,command,environment
-SRR13059548,ENA,2020-08-22,SHA256:pending,2025-09-25,metagenome,"curl -L -o {output} https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR130/048/SRR13059548/SRR13059548.fastq.gz",mycology-xl-0.1.0
-ERR5555555,ENA,2024-03-15,SHA256:pending,2025-09-25,metagenome_pilot,pending,mycology-xl-0.1.0
-ERR5555556,ENA,2024-03-15,SHA256:pending,2025-09-25,metagenome_pilot,pending,mycology-xl-0.1.0
-ERR5555557,ENA,2024-03-15,SHA256:pending,2025-09-25,metatranscriptome_pilot,pending,mycology-xl-0.1.0
-GCA_000000001,NCBI,2024-01-01,SHA256:pending,2025-09-25,reference_genome,pending,mycology-xl-0.1.0

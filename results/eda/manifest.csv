@@ -1,0 +1,4 @@
+accession,habitat,source,estimated_size_gb,metadata_url,biome,collection_date
+SRR15377549,forest_soil,SRA,0.48,https://www.ebi.ac.uk/ena/browser/view/SRR15377549,temperate_forest,2021-06-15
+SRR13059548,marine_sediment,SRA,0.52,https://www.ebi.ac.uk/ena/browser/view/SRR13059548,marine_sediment,2020-08-22
+SRR12345678,agricultural_soil,SRA,0.45,https://www.ebi.ac.uk/ena/browser/view/SRR12345678,agricultural,2020-05-10

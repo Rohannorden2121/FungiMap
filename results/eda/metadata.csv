@@ -1,0 +1,5 @@
+accession,species,isolation_source,estimated_size_gb,quality_score
+SRR13059548,Amanita muscaria,soil,2.3,0.92
+ERR5555555,Coprinopsis cinerea,compost,1.8,0.89
+ERR5555556,Unknown fungus,leaf litter,3.1,0.85
+ERR5555557,Mortierella alpina,rhizosphere,2.7,0.91
