@@ -1,0 +1,13 @@
+name: fungimap-demo
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pandas
+  - matplotlib
+  - numpy
+  - jupyter
+  - notebook
+channels:
+  - conda-forge

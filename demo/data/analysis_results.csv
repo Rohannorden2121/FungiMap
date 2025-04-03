@@ -1,0 +1,4 @@
+sample_id,total_reads,classified_reads,fungal_reads,classification_rate,dominant_phylum,dominant_genus,shannon_diversity,predicted_function
+SRR_DEMO_001,5000,4250,3180,85.0,Ascomycota,Trichoderma,2.34,plant_pathogen_resistance
+SRR_DEMO_002,4800,3840,2304,80.0,Basidiomycota,Cryptococcus,1.87,marine_carbon_cycling
+SRR_DEMO_003,5200,4420,3536,85.0,Ascomycota,Fusarium,2.12,soil_nutrient_cycling

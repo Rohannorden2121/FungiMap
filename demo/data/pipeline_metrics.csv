@@ -1,0 +1,4 @@
+sample_id,peak_memory_gb,runtime_minutes,cpu_cores_used,total_cost_usd,qc_status,classification_confidence
+SRR_DEMO_001,2.1,3.2,4,0.12,PASS,0.89
+SRR_DEMO_002,1.9,2.8,4,0.10,PASS,0.85
+SRR_DEMO_003,2.3,3.5,4,0.13,PASS,0.91

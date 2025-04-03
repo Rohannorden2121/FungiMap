@@ -1,0 +1,8 @@
+taxonomy_id,taxonomy_name,sample_001_abundance,sample_002_abundance,sample_003_abundance,functional_prediction
+1,Fungi,63.6,48.0,68.0,diverse_ecological_roles
+4751,Ascomycota,45.2,12.8,52.3,plant_pathogen_decomposer
+5204,Basidiomycota,18.4,35.2,15.7,wood_decomposer_symbiont
+451864,Trichoderma,23.1,2.1,8.4,biocontrol_agent
+5507,Cryptococcus,1.2,28.6,0.8,marine_yeast_pathogen
+5518,Fusarium,15.6,1.4,31.2,plant_pathogen_mycotoxin
+451865,Penicillium,6.5,3.2,12.7,antibiotic_producer
