@@ -28,7 +28,7 @@ FungiMap is an open-source, scalable pipeline for analyzing fungal communities i
 
 **Version**: v0.1-demo
 
-**Publication Date**: September 2025
+**Publication Date**: September 28, 2025
 
 ## Technical Metadata
 
