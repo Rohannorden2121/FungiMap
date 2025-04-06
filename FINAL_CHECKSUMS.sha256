@@ -14,3 +14,16 @@ d6ce9d3183e2042a93a9f74faf13d16ba6a221f558431bffc360ea4cd7a682f5  ZENODO_DEPOSIT
 === Demo Data ===
 0b211cc2f4621657a57146e18f812a71b891461789f25a603ee550749ffa58af  data/demo/SRR13059548_demo.fastq.gz
 c9bd96a8b2d09e55d3b8e04ae4038b3982794e41835c5b1871e2d63d5f5b2050  data/demo/SRR15377549_demo.fastq.gz
+=== DEMO CHECKSUMS ===
+
+=== DEMO CHECKSUMS ===
+531655527f9c6a60a7c41a5412ed0d037305974d0a3b7b0861f35356bac2746a  demo//environment-demo.yml
+b3660661b54d287798e7d763723cd56a017008f250448fa8817690bc3efe573a  demo//notebook.ipynb
+5500ee3335dd8d3d7f43cd8f0f72151f7ec8bd8a91e712913f7e91133fa52216  demo//view_results.py
+3a26d04cce56e8d14ed592f8e50bb0683e0da7cdf92415843821224d8be88b60  demo//README.md
+2ddb15e0ac5f0a11c8531720878bd1e424ad3f442c4068b3c38810b4a7b26ad6  demo//MODEL_TEST.md
+9e4113f7c064514c60f941cb6962eb0e63efb49f9614728fb1c67215cec78a2f  demo//data/sample_metadata.csv
+c1c5b9d9dfd94065910a7e9fac08cd4e1931f034da1e2409c4297619916fb36c  demo//data/pipeline_metrics.csv
+189aa7cd9a4b2316fa8c2ac1e1106ac58028b0c724fd4e22c468bb417a1b8649  demo//data/analysis_results.csv
+ec7f33c7708dd264d01caedbdd62e0bd6379ca40b19dc235994113f6e7fd8e60  demo//data/taxonomic_profile.csv
+689cc92ea9ec4fd8b4f72fa0587f5ae0f49dac9fc8c0423a9d46e0307bd4e13a  docs/index.html
