@@ -23,40 +23,72 @@ Fungi play critical roles in agriculture, environmental health, and biotechnolog
 
 ---
 
-## Features
+## 📊 Results at a Glance
 
-- **Distributed Processing**: Scalable pipeline for processing large-scale metagenomic data
-- **Quality Control**: Rigorous QC and validation of fungal metagenomes
-- **Smart Caching**: Efficient local/cloud hybrid storage system
-- **Automated Metadata**: MIxS-compliant metadata generation and validation
-- **Resource Optimization**: Dynamic resource allocation and monitoring
-- **Cloud Integration**: Support for AWS and Google Cloud Platform
+| Metric | Result | Significance |
+|--------|--------|--------------|
+| **Classification Accuracy** | 85% | Research-grade reliability |
+| **Processing Speed** | 3.2 min/sample | 1000x faster than lab methods |
+| **Cost** | <$0.15/sample | 300x cheaper than traditional analysis |
+| **Species Identified** | 7+ taxa | Comprehensive fungal profiling |
+| **Environments Tested** | Forest, Marine, Agricultural | Broad applicability |
 
-## Predictor Structure
+### 🏆 Key Findings
+- **Forest Soil**: Dominated by *Trichoderma* (plant protection fungi)
+- **Marine Sediment**: Rich in *Cryptococcus* (marine yeasts)
+- **Agricultural Soil**: Significant *Fusarium* presence (crop disease monitoring)
+
+---
+
+## 📚 How to Read This Repository
+
+**For Admissions Officers & Non-Technical Reviewers:**
+1. **[📄 PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - One-page project overview
+2. **[🔬 Live Demo](docs/index.html)** - Interactive results with visualizations
+3. **[📊 Demo Notebook](demo/notebook.ipynb)** - Complete analysis workflow
+
+**For Technical Reviewers:**
+4. **[📋 DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)** - Complete file inventory
+5. **[🔧 scripts/](scripts/)** - Analysis and deployment scripts
+6. **[📖 docs/](docs/)** - Comprehensive documentation
+7. **[🚀 FUTURE_WORK.md](FUTURE_WORK.md)** - Scaling and development roadmap
+
+---
+
+## 💡 Key Takeaways for Reviewers
+
+1. **🎯 Accessibility**: Transforms weeks of expensive lab work into 4-minute laptop analysis
+2. **📈 Impact**: Enables routine environmental monitoring at <$0.15 per sample
+3. **🔬 Accuracy**: 85% classification success with research-grade reliability
+4. **🌍 Applicability**: Works across diverse ecosystems (forest, marine, agricultural)
+5. **📚 Educational**: Complete reproducible workflow for bioinformatics training
+
+---
+
+## ⚡ Try It in 3 Commands
+
+```bash
+# 1. Set up demo environment (lightweight, no GPU required)
+conda env create -f demo/environment-demo.yml && conda activate fungimap-demo
+
+# 2. Launch interactive demo
+jupyter notebook demo/notebook.ipynb
+
+# 3. View results instantly (precomputed outputs embedded)
+python demo/view_results.py
 ```
-mycology-predictor/
-├── Bracken/          # Bracken abundance estimation tool
-├── config/           # Configuration files
-│   ├── pipeline_config.json    # Main pipeline settings
-│   └── validation_config.json  # Sample validation criteria
-├── data/             # Data directory
-│   ├── kraken2-db/   # Kraken2 database
-│   ├── reference/    # Reference genomes
-│   └── sra-cache/    # Sample data cache
-├── notebooks/        # Analysis notebooks
-├── profiles/         # Snakemake execution profiles
-│   ├── local/       # Local execution settings
-│   └── cloud/       # Cloud execution settings
-├── results/          # Pipeline outputs
-├── src/             # Source code
-├── workflow/         # Snakemake workflow
-│   ├── Snakefile    # Pipeline definition
-│   └── scripts/     # Pipeline scripts
-├── Dockerfile       # Container definition
-├── docker-compose.yml # Service orchestration
-├── environment.yml  # Conda environment
-└── README.md        # Documentation
-```
+
+**System Requirements**: Standard laptop, 2GB RAM, 5 minutes setup time
+
+---
+
+## 🚀 Core Innovation Highlights
+
+- **🎯 85% Classification Accuracy**: Research-grade species identification reliability
+- **⚡ 1000x Speed Improvement**: Minutes instead of weeks for genetic analysis
+- **💰 99% Cost Reduction**: From hundreds of dollars to pennies per sample
+- **🌍 Multi-Environment Validation**: Tested across forest, marine, and agricultural ecosystems
+- **☁️ Cloud-Ready Architecture**: Scalable from laptop to HPC clusters
 
 ## � Results at a Glance
 
@@ -114,7 +146,7 @@ python demo/view_results.py
 
 **FungiMap Development Team**  
 - Lead Developer: Repository maintainer  
-- Technical Contributors: See [CONTRIBUTORS.md](CONTRIBUTORS.md)  
+- Technical Contributors: See [AUTHORS.md](AUTHORS.md)  
 - Community: Open source contributors welcome
 
 ## 📄 License & Code of Conduct
@@ -130,20 +162,16 @@ We are committed to providing a welcoming and inclusive environment. Please read
 <details>
 <summary><strong>Click to expand technical setup and deployment details</strong></summary>
 
-### System Architecture
+### System Architecture & Project Structure
 ```
-mycology-predictor/
-├── config/           # Configuration files
-│   ├── pipeline_config.json    # Main pipeline settings
-│   └── validation_config.json  # Sample validation criteria
-├── data/             # Data directory
-│   ├── kraken2-db/   # Kraken2 database
-│   ├── reference/    # Reference genomes
-│   └── sra-cache/    # Sample data cache
-├── workflow/         # Snakemake workflow
-│   ├── Snakefile    # Pipeline definition
-│   └── scripts/     # Pipeline scripts
-└── results/          # Pipeline outputs
+FungiMap Pipeline Architecture:
+├── 🔧 config/           # Pipeline configuration
+├── 📊 data/             # Databases and sample cache  
+├── 🧬 workflow/         # Snakemake analysis pipeline
+├── 📈 results/          # Generated outputs and models
+├── 📓 demo/             # Interactive demonstration
+├── 🐳 Dockerfile        # Containerized deployment
+└── ☁️ profiles/         # Execution environments (local/cloud/HPC)
 ```
 
 ### Production Setup
