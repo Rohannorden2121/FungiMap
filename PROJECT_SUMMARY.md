@@ -1,33 +1,33 @@
 # FungiMap: Automated Fungal Species Identification from Environmental DNA
 
 ## Project Goal
-FungiMap uses artificial intelligence to rapidly identify fungal species in environmental samples (soil, water, sediment) from raw DNA sequencing data. Instead of weeks of expensive laboratory work, researchers can now get accurate species identification in minutes using a laptop computer.
+FungiMap identifies fungal species in environmental samples using DNA sequencing data. Traditional laboratory identification takes weeks and costs hundreds of dollars per sample. This software processes the same data in minutes on standard computer hardware.
 
-## Key Methods (Non-Technical)
-- **Smart Pattern Recognition**: The system compares DNA sequences to a comprehensive database of known fungal species
-- **Quality Control Pipeline**: Automated validation ensures reliable results and flags low-quality samples
-- **Resource Optimization**: Designed to run efficiently on modest hardware (standard laptop or university computing cluster)
-- **Multi-Environment Testing**: Validated across forest, marine, and agricultural ecosystems
+## Methods
+- **Sequence matching**: DNA sequences are compared against a curated database of fungal species
+- **Quality control**: Automated validation filters low-quality data and flags potential issues
+- **Efficient processing**: Optimized algorithms run on laptop computers or computing clusters
+- **Cross-environment validation**: Tested on forest, marine, and agricultural samples
 
-## Headline Results
-- **85% classification accuracy** across diverse environmental samples
-- **3-minute processing time** per sample (1000x faster than traditional methods)
-- **<$0.15 cost per sample** (compared to $50-200 for laboratory analysis)
-- **Identified 7+ fungal species** including plant pathogens, beneficial microbes, and marine yeasts
-- **100% quality control pass rate** ensuring reproducible results
+## Results
+- 85% classification accuracy across diverse environmental samples
+- 3-minute processing time per sample (1000x faster than morphological identification)
+- $0.15 cost per sample (compared to $50-200 for laboratory analysis)
+- Successfully identified 7+ fungal species including pathogens and beneficial microbes
+- Consistent results across multiple ecosystem types
 
-## Scientific Impact & Applications
-This technology democratizes advanced fungal analysis, making it accessible to:
-- **Agricultural monitoring**: Early detection of crop diseases and beneficial soil microbes
-- **Environmental science**: Biodiversity assessment and ecosystem health monitoring  
-- **Marine biology**: Understanding fungal roles in ocean carbon cycling
-- **Education**: Hands-on bioinformatics training for students and researchers
+## Applications
+This approach makes fungal identification accessible for:
+- **Agricultural research**: Disease detection and soil microbiome analysis
+- **Environmental monitoring**: Biodiversity assessment and ecosystem health studies
+- **Marine research**: Fungal diversity in ocean environments
+- **Education**: Training in computational biology methods
 
-## Next Steps
-Production deployment on high-performance computing (HPC) clusters will enable large-scale studies with 100+ samples. Cloud deployment guides and cost estimates are included for institutional adoption.
+## Technical Implementation
+The pipeline uses established bioinformatics tools (Kraken2, Bracken) with optimized parameters for fungal identification. Complete workflows are implemented in Snakemake with Docker containerization for reproducibility.
 
-## Impact Statement
-FungiMap transforms fungal ecology research by making sophisticated genetic analysis as accessible as running a smartphone app, potentially accelerating discoveries in agriculture, environmental monitoring, and biotechnology.
+## Impact
+This work addresses the cost and time barriers that limit fungal identification in environmental research. By reducing analysis costs 300-fold, routine fungal monitoring becomes feasible for resource-limited research programs.
 
 ## Demo & Reproducibility
 - **Interactive Demo**: [View live notebook](demo/notebook.ipynb) with embedded results
