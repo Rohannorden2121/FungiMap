@@ -1,21 +1,8 @@
-# FungiMap: AI-Powered Environmental Mycology Platform
+# FungiMap: Environmental Mycology Platform
 
 <div align="center">
 
-> **Automated pipeline for fungal species identification in ## Academic Information and Reproducibil### **Pipeline Architecture Overview**
-```
-FungiMap Bioinformatics Pipeline:
-├── data/                    # Database management and sample caching
-│   ├── kraken2-db/            # Taxonomic classification database (8GB)
-│   ├── reference_genomes/     # Curated fungal reference sequences
-│   └── sra-cache/            # Automated SRA sample retrieval
-├── workflow/               # Snakemake workflow management
-│   ├── Snakefile             # Main pipeline definition (500+ lines)
-│   ├── scripts/              # Custom analysis scripts (Python/R)
-│   └── rules/                # Modular workflow components
-├── config/                 # Configuration management
-│   ├── pipeline_config.json  # Runtime parameters and resource allocation
-│   └── validation_config.json # Quality control thresholdsation Information**ironmental DNA samples**
+> **Automated pipeline for fungal species identification in environmental DNA samples**
 > 
 > *Reduces weeks of laboratory analysis to minutes of computational processing*
 
@@ -24,57 +11,62 @@ FungiMap Bioinformatics Pipeline:
 [![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Pipeline-orange.svg)](workflow/Snakefile)
 [![DOI](https://img.shields.io/badge/DOI-Pending-yellow.svg)](ZENODO_METADATA_DRAFT.md)
 
-### 🎯 **[VIEW LIVE DEMO](docs/index.html)** 
+### **[VIEW LIVE DEMO](docs/index.html)** 
 *Interactive results • No installation required • Embedded visualizations*
 
 </div>
 
 ---
 
-## 📖 For Non-Technical Readers
+## Project Overview
 
-### **What This Project Does**
-FungiMap identifies different types of fungi in environmental samples using DNA sequencing data. Traditional laboratory identification takes weeks and costs hundreds of dollars per sample. This software processes the same data in minutes on a standard computer.
+### Non-Technical Summary
 
-### **Why This Matters**
-Fungi play essential roles in ecosystems and agriculture. They help plants grow, decompose organic matter, cause crop diseases, and produce pharmaceuticals. Traditional fungal identification requires expensive laboratory equipment and specialized training. This software makes fungal identification accessible to researchers with limited resources, enabling broader ecological and agricultural research.
+FungiMap is a computational tool that identifies fungal species in environmental samples such as soil, water, and plant material. The software analyzes DNA sequencing data to determine which fungi are present in a sample and their relative abundance. This approach represents a significant advancement over traditional methods, which require specialized laboratory facilities, expensive equipment, and weeks of processing time.
 
-### **The Innovation**
-This approach reduces analysis costs from $50+ per sample to $0.15 per sample while maintaining 85% accuracy. The 300x cost reduction makes routine fungal identification feasible for resource-limited research.
+The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their physical characteristics under microscopes, and conducting biochemical tests. This approach is labor-intensive, requires expert taxonomists, and costs between $50 and $200 per sample. Many environmental fungi cannot be cultured in laboratory conditions, making traditional identification incomplete or impossible.
 
----
+FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. The software compares these sequences against a comprehensive database of known fungal species, providing accurate identification within minutes. This approach can identify both culturable and non-culturable fungi, offering a more complete picture of fungal diversity in environmental samples.
 
-## Technical Overview and Performance
+The practical applications of this technology are extensive. Agricultural researchers can use FungiMap to monitor soil health and detect plant pathogens before they cause visible damage to crops. Environmental scientists can assess ecosystem health by tracking changes in fungal communities over time. Marine biologists can explore fungal diversity in ocean environments, which has been historically understudied due to technical limitations.
 
-### 📊 **Performance Metrics & Validation Results**
+### Technical Overview
 
-| **Metric** | **Result** | **Benchmark Comparison** | **Notes** |
-|------------|------------|-------------------------|------------------|
-| **Classification Accuracy** | 85.3% | Industry standard: 70-80% | Validated on environmental samples |
-| **Processing Speed** | 3.2 min/sample | Traditional: 2-4 weeks | 1000x improvement over morphological methods |
-| **Cost per Sample** | $0.15 | Laboratory: $50-200 | Includes compute and database costs |
-| **Memory Requirements** | 2GB RAM | Commercial tools: 32GB+ | Runs on standard hardware |
-| **Species Coverage** | 7+ fungal taxa | Ecologically relevant species | Environmental profiling focus |
-| **Environment Validation** | 3 ecosystem types | Forest, marine, agricultural soils | Tested across diverse conditions |
+FungiMap implements a bioinformatics pipeline that processes raw DNA sequencing data through a series of quality control, classification, and analysis steps. The core methodology combines established tools from the bioinformatics community with optimizations specific to fungal identification in environmental samples.
 
-### **Validation Results**
+The pipeline begins with quality assessment of raw sequencing reads using FastQC, followed by adapter trimming and quality filtering to remove low-quality sequences that could compromise downstream analysis. The cleaned sequences are then processed through Kraken2, a taxonomic classification tool that uses k-mer matching against a custom-curated fungal reference database. This database includes sequences from NCBI GenBank as well as specialized fungal collections, providing comprehensive coverage of environmental fungal diversity.
 
-**Forest Ecosystem Analysis:**
-- Dominant species: *Trichoderma spp.* (plant-associated fungi)
-- Function: Biocontrol agents and plant growth promoters
-- Relative abundance: 45% of classified reads in temperate forest soils
+Species abundance estimation is performed using Bracken, which corrects for biases inherent in the k-mer classification approach and provides statistically robust abundance estimates. The pipeline includes multiple quality control checkpoints to identify potential contamination, assess sequencing depth adequacy, and validate classification confidence scores.
 
-**Marine Environment Analysis:**
-- Prevalent taxa: *Cryptococcus* yeasts in marine sediments
-- Finding: Higher marine fungal diversity than previously documented
-- Relative abundance: 38% of marine fungal sequences
+The software architecture is built around Snakemake, a workflow management system that handles job scheduling, dependency resolution, and parallelization. This design enables scalable execution from single-core laptop computers to high-performance computing clusters with hundreds of cores. All components are containerized using Docker and Singularity, ensuring reproducible execution across different computing environments.
 
-**Agricultural Soil Analysis:**
-- Pathogen detection: *Fusarium* species (crop disease agents)
-- Application: Early detection for disease management
-- Economic relevance: Crop loss prevention through timely intervention
+Resource optimization is a key technical achievement of FungiMap. Traditional metagenomics tools often require 32GB or more of RAM and specialized high-memory servers. Through algorithmic optimizations and efficient data structures, FungiMap reduces memory requirements to 2GB for demonstration purposes and 16GB for production workflows, making the analysis accessible on standard hardware.
 
----
+The pipeline incorporates comprehensive error handling and logging to facilitate troubleshooting and ensure reproducible results. All intermediate files are preserved with checksums for validation, and the complete analysis environment is captured in version-controlled configuration files.
+
+## Performance Metrics and Validation
+
+### Computational Performance
+
+| Metric | Result | Benchmark Comparison | Notes |
+|--------|--------|---------------------|-------|
+| Classification Accuracy | 85.3% | Industry standard: 70-80% | Validated on environmental samples |
+| Processing Speed | 3.2 min/sample | Traditional: 2-4 weeks | 1000x improvement over morphological methods |
+| Cost per Sample | $0.15 | Laboratory: $50-200 | Includes compute and database costs |
+| Memory Requirements | 2GB RAM | Commercial tools: 32GB+ | Runs on standard hardware |
+| Species Coverage | 7+ fungal taxa | Ecologically relevant species | Environmental profiling focus |
+| Environment Validation | 3 ecosystem types | Forest, marine, agricultural soils | Tested across diverse conditions |
+
+### Validation Results
+
+**Forest Ecosystem Analysis**  
+The analysis of temperate forest soil samples revealed dominance by *Trichoderma* species, which comprised 45% of classified fungal reads. These fungi function as biocontrol agents and plant growth promoters, forming beneficial associations with plant roots. The high abundance of *Trichoderma* in forest soils is consistent with their known ecological role in nutrient cycling and plant pathogen suppression.
+
+**Marine Environment Analysis**  
+Marine sediment samples showed unexpected diversity in fungal communities, with *Cryptococcus* yeasts representing 38% of identified sequences. This finding suggests that marine fungal diversity has been historically underestimated, likely due to the limitations of culture-based identification methods. The prevalence of yeasts in marine environments indicates their potential importance in ocean carbon cycling and marine food webs.
+
+**Agricultural Soil Analysis**  
+Agricultural samples demonstrated the utility of FungiMap for pathogen detection, successfully identifying *Fusarium* species known to cause economically significant crop diseases. Early detection of these pathogens enables preventive management strategies that can prevent substantial crop losses. The ability to monitor pathogen levels in agricultural soils provides valuable information for integrated pest management programs.
 
 ## Repository Navigation
 
@@ -82,52 +74,39 @@ This approach reduces analysis costs from $50+ per sample to $0.15 per sample wh
 <tr>
 <td width="50%">
 
-### 👩‍🎓 **For Admissions & Academic Review**
-1. **[� PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Executive summary & impact statement
-2. **[🎯 Live Demo](docs/index.html)** - Interactive results browser
-3. **[� Demo Notebook](demo/notebook.ipynb)** - Complete analysis walkthrough
-4. **[👥 AUTHORS.md](AUTHORS.md)** - Contributor information & acknowledgments
+### For Academic and Administrative Review
+1. **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Executive summary and impact statement
+2. **[Live Demo](docs/index.html)** - Interactive results browser
+3. **[Demo Notebook](demo/notebook.ipynb)** - Complete analysis walkthrough
+4. **[AUTHORS.md](AUTHORS.md)** - Contributor information and acknowledgments
 
 </td>
 <td width="50%">
 
-### 🔬 **For Technical & Scientific Review**
-1. **[� DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)** - Complete inventory & checksums
-2. **[⚙️ workflow/Snakefile](workflow/Snakefile)** - Core pipeline implementation
-3. **[🚀 FUTURE_WORK.md](FUTURE_WORK.md)** - HPC scaling & development roadmap
-4. **[📚 docs/](docs/)** - Comprehensive technical documentation
+### For Technical and Scientific Review
+1. **[DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)** - Complete inventory and checksums
+2. **[workflow/Snakefile](workflow/Snakefile)** - Core pipeline implementation
+3. **[FUTURE_WORK.md](FUTURE_WORK.md)** - HPC scaling and development roadmap
+4. **[docs/](docs/)** - Comprehensive technical documentation
 
 </td>
 </tr>
 </table>
 
----
+## Technical Achievements
 
-## 🎯 **Key Innovation Achievements**
+### Methodological Innovations
+The FungiMap pipeline incorporates several methodological advances that improve upon existing approaches. The hybrid classification system combines k-mer matching with machine learning algorithms to resolve ambiguous taxonomic assignments. Dynamic memory management algorithms enable analysis on consumer-grade hardware without sacrificing accuracy or throughput. The multi-environment validation approach ensures robust performance across diverse ecological contexts, from forest soils to marine sediments.
 
-### **🧬 Methodological Breakthroughs**
-- **Hybrid Classification Approach**: Combined k-mer analysis with machine learning for enhanced accuracy
-- **Resource Optimization**: Dynamic memory management enabling laptop-scale analysis
-- **Multi-Environment Validation**: Robust performance across diverse ecosystem types
-- **Real-Time Processing**: Streaming analysis pipeline for continuous monitoring applications
+### Software Engineering Excellence
+The software architecture emphasizes reproducibility and scalability through comprehensive containerization support via Docker and Singularity. The cloud-native design enables seamless scaling from single-core laptop execution to distributed processing on high-performance computing clusters with thousands of cores. Workflow management through Snakemake provides automatic dependency resolution and parallel execution optimization. A comprehensive testing suite with 95% code coverage ensures reliability and facilitates collaborative development.
 
-### **� Technical Architecture Excellence**
-- **Containerized Deployment**: Full Docker/Singularity support for reproducibility
-- **Cloud-Native Design**: Seamless scaling from laptop to HPC clusters (1-1000+ cores)
-- **Workflow Management**: Snakemake-based pipeline with automatic dependency resolution
-- **Quality Assurance**: Comprehensive testing suite with 95% code coverage
-
-### **🌍 Societal Impact Potential**
-- **Agricultural Sustainability**: Early disease detection preventing crop losses
-- **Environmental Monitoring**: Rapid ecosystem health assessment for conservation
-- **Educational Accessibility**: Democratizing advanced genomics for developing regions  
-- **Research Acceleration**: Enabling large-scale ecological studies previously infeasible
-
----
+### Research and Educational Impact
+FungiMap addresses critical barriers in fungal ecology research by making advanced genomic analysis accessible to researchers with limited computational resources. The platform enables early pathogen detection in agricultural systems, supporting sustainable farming practices through timely intervention strategies. Environmental monitoring applications support conservation efforts through rapid ecosystem health assessment. The educational value of the platform extends bioinformatics training opportunities to institutions with limited access to expensive commercial software.
 
 ## Quick Start Guide
 
-### **Demo Installation**
+### Demo Installation
 
 ```bash
 # 1. Create lightweight demo environment (no GPU/HPC required)
@@ -142,19 +121,17 @@ python demo/view_results.py
 
 **System Requirements**: 2GB RAM, standard laptop hardware
 
-### **Alternative Access Methods**
+### Alternative Access Methods
 - View pre-computed results: [embedded demo](docs/index.html)
 - Browse analysis workflow: [demo notebook](demo/notebook.ipynb) on GitHub
 - Docker deployment: `docker run -p 8888:8888 fungimap/demo`
 
----
+## Academic Information and Reproducibility
 
-## � **Academic Information & Reproducibility**
-
-### **📖 Citation Information**
+### Citation Information
 ```bibtex
 @software{fungimap2025,
-  title={FungiMap: AI-Powered Environmental Mycology Platform},
+  title={FungiMap: Environmental Mycology Platform},
   author={FungiMap Development Team},
   year={2025},
   url={https://github.com/Rohannorden2121/FungiMap},
@@ -162,23 +139,17 @@ python demo/view_results.py
 }
 ```
 
-### **Reproducibility**
-- Complete environment specifications in `environment.yml` and `environment-demo.yml`
-- Docker and Singularity container support for system-independent execution
-- SHA-256 checksums for all critical files in [DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)
-- Tagged releases with semantic versioning
-- Automated testing with continuous integration
+### Reproducibility Standards
+The project adheres to computational reproducibility best practices through complete environment specifications in `environment.yml` and `environment-demo.yml` files. Docker and Singularity container support ensures system-independent execution across different computing platforms. SHA-256 checksums for all critical files are maintained in [DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md) to verify data integrity. Tagged releases with semantic versioning enable precise reproduction of specific analysis versions. Automated testing with continuous integration validates functionality across different execution environments.
 
-### **Authors and Collaboration**
+### Authors and Collaboration
 **Lead Development**: FungiMap Research Team  
 **Contributors**: See [AUTHORS.md](AUTHORS.md) for complete attribution  
 **Community**: Contributions welcome - see [CONTRIBUTING.md](CONTRIBUTING.md)  
 **Contact**: GitHub Issues for questions and collaboration requests
 
-### **Open Source License**
-- **License**: [MIT License](LICENSE) for academic and commercial use
-- **Code of Conduct**: [Community guidelines](CODE_OF_CONDUCT.md) for collaboration
-- **Transparency**: Complete source code, documentation, and data publicly available
+### Open Source License
+This project is released under the [MIT License](LICENSE) for unrestricted academic and commercial use. Community collaboration guidelines are outlined in the [Code of Conduct](CODE_OF_CONDUCT.md). Complete transparency is maintained through public availability of source code, documentation, and validation data.
 
 ---
 
@@ -187,29 +158,29 @@ python demo/view_results.py
 <details>
 <summary><strong>System Architecture and Implementation Details</strong></summary>
 
-### **🧬 Pipeline Architecture Overview**
+### ** Pipeline Architecture Overview**
 ```
 FungiMap Bioinformatics Pipeline:
-├── � data/                    # Database management & sample caching
+├──  data/                    # Database management & sample caching
 │   ├── kraken2-db/            # Taxonomic classification database (8GB)
 │   ├── reference_genomes/     # Curated fungal reference sequences
 │   └── sra-cache/            # Automated SRA sample retrieval
-├── ⚙️ workflow/               # Snakemake workflow management
+├──  workflow/               # Snakemake workflow management
 │   ├── Snakefile             # Main pipeline definition (500+ lines)
 │   ├── scripts/              # Custom analysis scripts (Python/R)
 │   └── rules/                # Modular workflow components
-├── 🔧 config/                 # Configuration management
+├──  config/                 # Configuration management
 │   ├── pipeline_config.json  # Runtime parameters & resource allocation
 │   └── validation_config.json # Quality control thresholds
-├── � results/                # Structured output management
+├──  results/                # Structured output management
 │   ├── assemblies/           # Sequence assembly outputs
 │   ├── gene_predictions/     # ORF calling and annotation
 │   └── protein_clusters/     # Homology-based clustering
-├── ☁️ profiles/               # Execution environment profiles
+├──  profiles/               # Execution environment profiles
 │   ├── local/               # Laptop/workstation configuration
 │   ├── hpc/                 # SLURM cluster integration
 │   └── cloud/               # AWS/GCP deployment configurations
-└── 🧪 tests/                  # Comprehensive testing suite
+└──  tests/                  # Comprehensive testing suite
     ├── unit/                # Component-level validation
     ├── integration/         # End-to-end pipeline testing
     └── data/                # Test datasets and expected outputs
@@ -223,9 +194,9 @@ FungiMap Bioinformatics Pipeline:
 - **Visualization**: Automated report generation with interactive HTML dashboards</details>
 
 <details>
-<summary><strong>🚀 Production Deployment Guide</strong></summary>
+<summary><strong> Production Deployment Guide</strong></summary>
 
-### **💻 Local Production Installation**
+### Local Production Installation
 ```bash
 # Full production environment (requires 16GB+ RAM)
 conda env create -f environment.yml && conda activate fungimap-production
@@ -237,7 +208,7 @@ snakemake --snakefile workflow/Snakefile download_databases --cores 4
 snakemake --profile profiles/local --cores 8
 ```
 
-### **🏔️ High-Performance Computing (HPC) Deployment**  
+### High-Performance Computing (HPC) Deployment
 ```bash
 # SLURM cluster submission
 sbatch scripts/slurm/full_pipeline.slurm
@@ -246,17 +217,17 @@ sbatch scripts/slurm/full_pipeline.slurm
 snakemake --jobs 50 --profile profiles/hpc --cluster-config config/cluster.yaml
 ```
 
-### **☁️ Cloud Infrastructure Deployment**
-- **AWS**: See [CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md) for CloudFormation templates
-- **Google Cloud**: Automated GCP deployment with cost optimization
-- **Estimated Costs**: $0.50-2.00 per sample depending on instance type
+### Cloud Infrastructure Deployment
+AWS deployment configurations are available in [CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md) with CloudFormation templates for automated infrastructure provisioning. Google Cloud Platform deployment includes cost optimization strategies for large-scale processing. Estimated costs range from $0.50 to $2.00 per sample depending on instance type and processing requirements.
 
 </details>
 
 <details>
-<summary><strong>⚙️ Advanced Configuration & Customization</strong></summary>
+<summary><strong>Advanced Configuration and Customization</strong></summary>
 
-### **📋 Pipeline Configuration (`config/pipeline_config.json`)**
+### Pipeline Configuration
+The main pipeline configuration file (`config/pipeline_config.json`) controls sample processing, resource allocation, and output generation:
+
 ```json
 {
   "samples": ["SRR15377549", "SRR15377550"],
@@ -271,7 +242,9 @@ snakemake --jobs 50 --profile profiles/hpc --cluster-config config/cluster.yaml
 }
 ```
 
-### **🔍 Quality Control Parameters (`config/validation_config.json`)**
+### Quality Control Parameters
+Quality control thresholds are defined in `config/validation_config.json`:
+
 ```json
 {
   "min_reads_per_sample": 50000,
@@ -282,7 +255,7 @@ snakemake --jobs 50 --profile profiles/hpc --cluster-config config/cluster.yaml
 }
 ```
 
-### **🧪 Development & Testing Framework**
+### Development and Testing Framework
 ```bash
 # Complete test suite execution
 pytest tests/ -v --cov=src/ --cov-report=html
@@ -294,59 +267,43 @@ pytest tests/test_kraken_wrapper.py tests/test_quality_control.py
 python scripts/benchmark_pipeline.py --samples 10 --iterations 3
 ```
 
-### **📊 System Resource Requirements**
+### System Resource Requirements
 
-| **Deployment** | **RAM** | **CPU** | **Storage** | **Network** |
-|---------------|---------|---------|-------------|-------------|
-| **Demo** | 2GB | 2 cores | 5GB | Minimal |
-| **Production** | 16GB+ | 8+ cores | 100GB+ | 10 Mbps+ |
-| **HPC** | 64GB+ | 32+ cores | 500GB+ | High-bandwidth |
-| **Cloud** | Scalable | Scalable | Object storage | Pay-per-use |
+| Deployment | RAM | CPU | Storage | Network |
+|-----------|-----|-----|---------|---------|
+| Demo | 2GB | 2 cores | 5GB | Minimal |
+| Production | 16GB+ | 8+ cores | 100GB+ | 10 Mbps+ |
+| HPC | 64GB+ | 32+ cores | 500GB+ | High-bandwidth |
+| Cloud | Scalable | Scalable | Object storage | Pay-per-use |
 
 </details>
 
 <details>
-<summary><strong>🔬 Scientific Methodology & Validation</strong></summary>
+<summary><strong>Scientific Methodology and Validation</strong></summary>
 
-### **📖 Methodological Framework**
-- **Taxonomic Database**: Custom-curated fungal reference database (NCBI + specialized collections)
-- **Classification Algorithm**: Kraken2 k-mer matching with Bracken abundance estimation
-- **Validation Strategy**: 10-fold cross-validation on diverse environmental samples
-- **Statistical Analysis**: Bootstrap confidence intervals, species accumulation curves
-- **Quality Metrics**: Precision, recall, F1-score, and taxonomic rank accuracy
+### Methodological Framework
+The FungiMap approach integrates established bioinformatics methods with optimizations specific to environmental fungal analysis. The taxonomic database combines sequences from NCBI GenBank with specialized fungal collections to provide comprehensive coverage. The classification algorithm uses Kraken2 k-mer matching with Bracken abundance estimation for statistical robustness. Validation employs 10-fold cross-validation on diverse environmental samples. Statistical analysis includes bootstrap confidence intervals and species accumulation curves. Quality metrics encompass precision, recall, F1-score, and taxonomic rank accuracy.
 
-### **🧬 Bioinformatics Pipeline Components**
-1. **Raw Data Processing**: FastQC quality assessment, adapter trimming
-2. **Taxonomic Classification**: Kraken2 species identification  
-3. **Abundance Estimation**: Bracken species abundance quantification
-4. **Quality Control**: Contamination detection, read depth validation
-5. **Visualization**: Interactive dashboards, phylogenetic trees, abundance plots
+### Bioinformatics Pipeline Components
+1. Raw data processing through FastQC quality assessment and adapter trimming
+2. Taxonomic classification using Kraken2 species identification algorithms
+3. Species abundance estimation via Bracken quantification methods
+4. Quality control through contamination detection and read depth validation
+5. Visualization through interactive dashboards, phylogenetic trees, and abundance plots
 
-### **📈 Performance Benchmarking Results**
-- **Sensitivity**: 85.3% ± 3.2% across diverse environmental samples
-- **Specificity**: 92.1% ± 2.8% with minimal false positive detection
-- **Processing Speed**: 3.2 ± 0.8 minutes per 100k read sample
-- **Memory Efficiency**: Linear scaling with sample complexity
-- **Reproducibility**: 99.7% identical results across independent runs
+### Performance Benchmarking Results
+Validation across diverse environmental samples demonstrates 85.3% ± 3.2% sensitivity and 92.1% ± 2.8% specificity with minimal false positive detection. Processing speed averages 3.2 ± 0.8 minutes per 100,000 read sample. Memory efficiency scales linearly with sample complexity. Reproducibility analysis shows 99.7% identical results across independent runs.
 
 </details>
 
----
+## Future Development and Scaling
 
-## 🚀 **Future Development & Scaling**
+### Planned Enhancements
+Development roadmap includes real-time processing capabilities for continuous environmental monitoring applications. Enhanced machine learning models will integrate deep learning approaches for improved classification accuracy. Multi-omics integration will incorporate proteomics and metabolomics data fusion. Global database expansion will enable community-contributed fungal reference sequences. Web interface development will provide browser-based analysis platforms for non-technical users. Complete details are available in [FUTURE_WORK.md](FUTURE_WORK.md).
 
-### **🔮 Planned Enhancements** *(see [FUTURE_WORK.md](FUTURE_WORK.md))*
-- **Real-time Processing**: Streaming analysis for continuous environmental monitoring
-- **Enhanced ML Models**: Deep learning integration for improved classification accuracy  
-- **Multi-omics Integration**: Proteomics and metabolomics data fusion
-- **Global Database**: Community-contributed fungal reference expansion
-- **Web Interface**: Browser-based analysis platform for non-technical users
-
-### **📈 Scaling Roadmap**
-- **Phase 1**: Regional environmental monitoring networks (10-100 samples/day)
-- **Phase 2**: National biodiversity assessment programs (1000+ samples/day)  
-- **Phase 3**: Global fungal surveillance network with real-time data sharing
+### Scaling Roadmap
+Phase 1 implementation targets regional environmental monitoring networks processing 10-100 samples per day. Phase 2 expansion supports national biodiversity assessment programs handling 1000+ samples daily. Phase 3 development establishes a global fungal surveillance network with real-time data sharing capabilities.
 
 ---
 
-*🌟 **Ready to explore fungal biodiversity?** Start with our [**interactive demo**](docs/index.html) or dive into the [**complete technical documentation**](docs/)*
+**Getting Started**: Begin with the [interactive demo](docs/index.html) or explore the [complete technical documentation](docs/) for detailed implementation information.
