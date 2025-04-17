@@ -22,17 +22,17 @@
 
 ### Non-Technical Summary
 
-FungiMap is a computational tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). This software analyzes DNA sequencing data to determine which fungi are present in a sample and their relative abundance. This approach is a significant advancement from traditional methods, which require specialized laboratory facilities, expensive equipment, and a significant amount of time for processing.
+FungiMap is a computational tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). This software analyzes DNA sequencing data to determine which fungi are present in a sample and, also, their relative abundance. This approach is significantly more accessable from traditional methods, which require lab facilities, expensive equipment, and a significant amount of time for processing.
 
-The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their physical characteristics under microscopes, and doing biochemical tests. This approach is labor-intensive, requires expert taxonomists, and costs around $50 and $200 per sample. Many environmental fungi cannot be cultured in laboratory conditions, and this makes traditional identification incomplete or impossible.
+The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their characteristics under microscopes, and doing biochemical tests. This approach is labor-intensive, requires taxonomists (knowledable), and costs  $50 and $200 (around) per sample. Many environmental fungi cannot be cultured in laboratory conditions, and this makes traditional identification incomplete/impossible.
 
-The predictor FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. The software compares these sequences against a database of known fungal species and provides accurate identification within minutes. This approach can identify both culturable and non-culturable fungi, which offers a more complete picture of fungal diversity in environmental samples.
+This predictor FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. This software compares these sequences against a database of known fungal species and gives accurate identification within minutes from input. This approach can identify both culturable and non-culturable fungi, which offers a better, more complete picture of fungal diversity in environmental samples.
 
-The practical applications of this technology are very extensive. Agricultural researchers can use FungiMap to monitor soil health and detect plant pathogens before they cause visible damage to crops. Environmental scientists can assess ecosystem health by tracking changes in fungal communities over time. Marine biologists can explore fungal diversity in ocean environments, which has been understudied in the past due to technical limitations.
+The practical applications of this technology are extensive. Agricultural researchers can use FungiMap to monitor soil health and detect plant pathogens before they cause damage (significant) to crops. Environmental scientists can determine ecosystem health by tracking changes in fungal communities over time. Also, marine biologists can explore fungal diversity in ocean environments, (which has been understudied in the past due to technical limitation; now we are able to do so!)
 
 ### Technical Overview
 
-FungiMap implements a bioinformatics pipeline that processes raw DNA sequencing data through a series of quality control, classification, and analysis steps. The core methodology combines established tools from the bioinformatics community with optimizations that are specific to fungal identification in environmental samples.
+FungiMap implements a bioinformatics pipeline that processes raw DNA sequencing data through a series of quality control, classification, and analysis steps. These methods combine established tools from bioinformatics group with tweaks for improvement that are specific to fungal identification in environmental samples.
 
 The pipeline begins with quality assessment of raw sequencing reads using FastQC that is followed by adapter trimming and quality filtering to remove low-quality sequences that could compromise downstream analysis. The cleaned sequences are then processed through Kraken2, which is a taxonomic classification tool that uses k-mer matching against a custom-curated fungal reference database. This database includes sequences from NCBI GenBank and specialized fungal collections, which provides comprehensive coverage of environmental fungal diversity.
 
@@ -308,4 +308,4 @@ Phase 1 implementation targets regional environmental monitoring networks proces
 
 **Getting Started**: Begin with the [interactive demo](docs/index.html) or explore the [complete technical documentation](docs/) for detailed implementation information.
 
-*Last updated: October 3, 2025*
+*Last updated: May 23, 2025*
