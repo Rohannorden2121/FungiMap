@@ -77,11 +77,11 @@ jobs:
     - name: Validate file structure
       run: |
         echo "Checking required files..."
-        test -f README_QUICKSTART.md && echo "✅ README_QUICKSTART.md" || echo "❌ README_QUICKSTART.md"
-        test -f environment.yml && echo "✅ environment.yml" || echo "❌ environment.yml"
-        test -f Dockerfile && echo "✅ Dockerfile" || echo "❌ Dockerfile"
-        test -f config/demo_config.yaml && echo "✅ demo_config.yaml" || echo "❌ demo_config.yaml"
-        test -d .github/workflows && echo "✅ CI workflows" || echo "❌ CI workflows"
+        test -f README_QUICKSTART.md && echo "FOUND README_QUICKSTART.md" || echo "MISSING README_QUICKSTART.md"
+        test -f environment.yml && echo "FOUND environment.yml" || echo "MISSING environment.yml"
+        test -f Dockerfile && echo "FOUND Dockerfile" || echo "MISSING Dockerfile"
+        test -f config/demo_config.yaml && echo "FOUND demo_config.yaml" || echo "MISSING demo_config.yaml"
+        test -d .github/workflows && echo "FOUND CI workflows" || echo "MISSING CI workflows"
         
     - name: Test Docker build (if not cached)
       run: |
