@@ -78,7 +78,6 @@ Agricultural samples demonstrated the utility of FungiMap for pathogen detection
 1. **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Executive summary and impact statement
 2. **[Live Demo](docs/index.html)** - Interactive results browser
 3. **[Demo Notebook](demo/notebook.ipynb)** - Complete analysis walkthrough
-4. **[AUTHORS.md](AUTHORS.md)** - Contributor information and acknowledgments
 
 </td>
 <td width="50%">
