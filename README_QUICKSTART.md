@@ -2,7 +2,7 @@
 
 **Lightweight fungal metagenomics pipeline for quality control and taxonomic profiling**
 
-## 🚀 Quick Demo (5 minutes)
+## Quick Demo (5 minutes)
 
 ### Prerequisites
 - MacOS/Linux with 8GB+ RAM

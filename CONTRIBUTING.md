@@ -13,25 +13,25 @@ Thank you for your interest in contributing to FungiMap! We welcome contribution
 
 ## Types of Contributions
 
-### 🐛 Bug Reports
+### Bug Reports
 - Use the issue tracker
 - Include system information (OS, Python version, environment)
 - Provide minimal reproducible example
 - Include error logs and expected vs actual behavior
 
-### 💡 Feature Requests
+### Feature Requests
 - Check existing issues first
 - Describe the use case and expected functionality
 - Consider implementation complexity and maintenance burden
 
-### 🔧 Code Contributions
+### Code Contributions
 - Follow existing code style (see `.pre-commit-config.yaml`)
 - Add tests for new functionality
 - Update documentation
 - Ensure all tests pass
 - Keep changes focused and atomic
 
-### 📚 Documentation
+### Documentation
 - Fix typos, improve clarity
 - Add examples and use cases
 - Update API documentation

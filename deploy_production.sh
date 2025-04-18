@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-echo "🚀 MycoGraph-XL Production Deployment Starting..."
+echo "MycoGraph-XL Production Deployment Starting..."
 echo "Timestamp: $(date)"
 
 # Environment setup
@@ -12,19 +12,19 @@ export SNAKEMAKE_PROFILE="profiles/hpc"
 export CONDA_ENV="mycograph-xl"
 
 # Validate HPC environment
-echo "📋 Validating HPC environment..."
+echo "Validating HPC environment..."
 if ! command -v sbatch &> /dev/null; then
-    echo "❌ ERROR: SLURM not available. This script requires HPC with SLURM."
+    echo "ERROR: SLURM not available. This script requires HPC with SLURM."
     exit 1
 fi
 
 if ! command -v mamba &> /dev/null; then
-    echo "⚠️  WARNING: mamba not found, using conda"
+    echo "WARNING: mamba not found, using conda"
     export CONDA_FRONTEND="conda"
 fi
 
 # Create necessary directories
-echo "📂 Creating HPC directory structure..."
+echo "Creating HPC directory structure..."
 mkdir -p logs/cluster
 mkdir -p results/assemblies
 mkdir -p results/gene_predictions
@@ -40,13 +40,13 @@ conda activate $CONDA_ENV
 SAMPLE_COUNT=${1:-50}  # Default to 50 samples
 STAGE=${2:-"all"}      # Default to all stages
 
-echo "🎯 Configuration:"
+echo "Configuration:"
 echo "  - Samples to process: $SAMPLE_COUNT"
 echo "  - Pipeline stage: $STAGE"
 echo "  - HPC profile: $SNAKEMAKE_PROFILE"
 
 # Launch production pipeline
-echo "🚀 Launching production pipeline..."
+echo "Launching production pipeline..."
 
 case $STAGE in
     "stage0"|"validation")
@@ -85,12 +85,12 @@ case $STAGE in
                   --rerun-incomplete
         ;;
     *)
-        echo "❌ Unknown stage: $STAGE"
+        echo "Unknown stage: $STAGE"
         echo "Available stages: stage0, stage1, stage2, stage3, all"
         exit 1
         ;;
 esac
 
-echo "✅ Production deployment launched successfully!"
-echo "📊 Monitor progress with: squeue -u $USER"
-echo "📁 Results will be in: results/"
+echo "Production deployment launched successfully!"
+echo "Monitor progress with: squeue -u $USER"
+echo "Results will be in: results/"

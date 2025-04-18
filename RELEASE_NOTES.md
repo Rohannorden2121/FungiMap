@@ -1,10 +1,10 @@
 # FungiMap v0.1-demo Release Notes
 
-## 🚀 Demo Release Overview
+## Demo Release Overview
 
 **FungiMap v0.1-demo** is a demonstration release of our comprehensive fungal metagenomics analysis pipeline, optimized for local development and academic collaboration.
 
-### ✅ Features Included in Demo
+### Features Included in Demo
 
 #### Quality Control & Validation
 - **FastQC Integration**: Comprehensive sequencing quality assessment
@@ -24,7 +24,7 @@
 - **CI/CD Ready**: GitHub Actions workflow with 5/5 smoke tests passing
 - **Docker Support**: Containerized deployment option
 
-### 🧪 Pilot Validation Results
+### Pilot Validation Results
 
 #### Demo Performance Metrics
 - **Sample Processing**: 2 demo samples (10k reads each)
@@ -34,11 +34,11 @@
 - **Success Rate**: 100% completion on M1 Mac systems
 
 #### Integration Testing
-- **CI Pipeline**: ✅ All 5 smoke tests pass
-- **Environment Setup**: ✅ Conda environment builds successfully
-- **Tool Availability**: ✅ FastQC, MultiQC, Python stack verified
-- **Demo Workflow**: ✅ 3-command quickstart functional
-- **Report Generation**: ✅ HTML and CSV outputs created
+- **CI Pipeline**: All 5 smoke tests pass
+- **Environment Setup**: Conda environment builds successfully
+- **Tool Availability**: FastQC, MultiQC, Python stack verified
+- **Demo Workflow**: 3-command quickstart functional
+- **Report Generation**: HTML and CSV outputs created
 
 ### 🚧 Resource Limitations (Demo Release)
 

@@ -6,15 +6,15 @@
 **Date**: September 2025  
 **Status**: Demo-ready with validated pilot functionality
 
-### 🎯 Demo Validation Summary
+### Demo Validation Summary
 
 **Environment Tested**: macOS M1, Linux-compatible  
-**Pipeline Status**: ✅ Stage 0 (QC/validation) fully functional  
+**Pipeline Status**: Stage 0 (QC/validation) fully functional  
 **Demo Runtime**: ~5 minutes for 2 sample analysis  
 **Resource Usage**: Peak 3GB RAM, 4 CPU cores  
 **Output Validation**: FastQC, MultiQC, and taxonomic reports generated successfully
 
-### 📊 Pilot Resource Limits
+### Pilot Resource Limits
 
 - **Memory**: 3-5 GB RAM (M1 Mac compatible)
 - **CPU**: 2-4 cores recommended  
@@ -22,7 +22,7 @@
 - **Network**: Minimal (demo uses local mock data)
 - **Dependencies**: Conda environment with bioinformatics tools
 
-### 🚀 Quick Start
+### Quick Start
 
 ```bash
 # 3-command demo
@@ -31,7 +31,7 @@ python scripts/create_demo_data.py
 bash ci_smoke_test.sh
 ```
 
-### 📦 What's Included
+### What's Included
 
 - **Core Pipeline**: Snakemake workflow for quality control and taxonomic profiling
 - **Demo Environment**: M1 Mac compatible conda setup with all dependencies  

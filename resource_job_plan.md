@@ -8,14 +8,14 @@
 
 ## Job Classification and Recommendations
 
-### SAFE FOR LOCAL EXECUTION ✅
+### SAFE FOR LOCAL EXECUTION
 **Stage 0: Validation & QC**
 - Memory: 2-4 GB peak
 - Runtime: 5-10 minutes per sample
 - Storage: <1 GB per sample
 - **Recommendation:** RUN LOCALLY
 
-### REQUIRES HPC/CLOUD 🚨
+### REQUIRES HPC/CLOUD
 **Stage 1: Assembly & Gene Prediction**
 - Memory: 16-64 GB per sample
 - Runtime: 2-8 hours per sample
@@ -28,7 +28,7 @@
 - GPU: Recommended for ESM embeddings
 - **Recommendation:** LAUNCH CLOUD INSTANCE (with GPU)
 
-### PROHIBITED ON LOCAL M1 ❌
+### PROHIBITED ON LOCAL M1
 - Large metagenome assemblies (>2GB raw data)
 - Bracken database building
 - ESM/AlphaFold protein processing

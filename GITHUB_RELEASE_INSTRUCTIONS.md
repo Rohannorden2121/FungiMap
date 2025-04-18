@@ -52,7 +52,7 @@ A comprehensive fungal metagenomics analysis pipeline optimized for demonstratio
 - **CI Validation**: 5/5 smoke tests passing
 - **Demo Dataset**: 2MB optimized synthetic FASTQ files
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 conda activate fungimap-test
@@ -114,7 +114,7 @@ This demonstration release is designed for:
 6. **Release Options:**
    - ✅ **Set as the latest release**
    - ✅ **Create a discussion for this release** (optional)
-   - ❌ **Set as a pre-release** (this is a stable demo)
+   - **Set as a pre-release** (this is a stable demo) - DO NOT check this box
 
 7. **Publish Release** - Click the green "Publish release" button
 
