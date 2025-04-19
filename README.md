@@ -13,8 +13,6 @@
 
 </div>
 
-##Last updated May 23, 2025
-
 ---
 
 ## Project Overview
@@ -137,6 +135,8 @@ python demo/view_results.py
   note={doi: pending Zenodo deposit}
 }
 ```
+
+*Last updated: May 23, 2025*
 
 ### Reproducibility
 SHA-256 checksums for critical files in [DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)
@@ -292,8 +292,5 @@ Enhanced machine learning models will allow deep learning approaches for better 
 
 ---
 
-**Getting Started**: Start with [interactive demo](docs/index.html) or explore [complete technical documentation](docs/).
+**Getting Started**: Start with [interactive demo](docs/index.html) or explore [complete technical documentation](docs/)
 
----
-### ---
-*Last updated: May 23, 2025*
