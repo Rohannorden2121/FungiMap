@@ -25,7 +25,7 @@ The traditional process of fungal identification involves growing fungi in labor
 
 The predictor FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. This software compares these sequences against a database of known fungal species and gives accurate identification after a couple of minutes from input. This approach can identify both culturable and non-culturable fungi, and this offers a more complete view of fungal diversity in environmental samples.
 
-The practical applications of this technology are very large. Agricultural researchers can use FungiMap to monitor soil health and find plant pathogens before they cause significant damage to crops. Additionally, environmental scientists can evaluate ecosystem health by tracking changes in fungal communities over time. Furthermore, marine biologists can explore fungal diversity in ocean environments, (which has been understudied in the past due to technical limitation; this predictor helps to overcome this!)
+The practical applications of this technology are very large. Agricultural researchers can use FungiMap to monitor soil health and find plant pathogens before they cause significant damage to crops. Additionally, environmental scientists can evaluate ecosystem health by tracking changes in fungal communities over time. Furthermore, marine biologists can explore fungal diversity in ocean environments, (which has been understudied in the past due to technical limitation; this predictor helps to overcome this!). When this project receives higher funding (more advanced computer(s)/HPC access), this project will receive a DOI (Zenodo), perhaps also with updated/expanded eDNA fungal samples.
 
 ### Technical Overview
 
