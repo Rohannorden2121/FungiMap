@@ -13,8 +13,6 @@
 
 </div>
 
----
-
 ## Project Overview
 
 ### Non-Technical Summary
