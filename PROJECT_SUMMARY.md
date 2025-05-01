@@ -1,12 +1,12 @@
 # FungiMap: Automated Fungal Species Identification from Environmental DNA
 
 ## Project Goal
-FungiMap identifies fungal species in environmental samples using DNA sequencing data. Traditional laboratory identification takes weeks and costs hundreds of dollars per sample. This software processes the same data in minutes on standard computer hardware.
+FungiMap identifies fungal species in environmental samples using DNA sequencing data. Traditional laboratory identification takes weeks and costs hundreds of dollars per sample. This software processes the same data in minutes on low/mid quality computers.
 
 ## Methods
-- **Sequence matching**: DNA sequences are compared against a curated database of fungal species
-- **Quality control**: Automated validation filters low-quality data and flags potential issues
-- **Efficient processing**: Optimized algorithms run on laptop computers or computing clusters
+- **Sequence matching**: DNA sequences compared against a curated database of fungal species
+- **Quality control**: Automated validation filters low-quality data/flags potential issues
+- **Efficient processing**: Optimized algorithms run on laptop computers or HPC
 - **Cross-environment validation**: Tested on forest, marine, and agricultural samples
 
 ## Results
