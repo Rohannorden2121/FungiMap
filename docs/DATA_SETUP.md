@@ -2,10 +2,10 @@
 
 ## Required Data Files
 
-This predictor requires several large data files that are not included in the repository. Here's how to obtain and set up each component:
+How to obtain and set up each component:
 
 ### 1. Kraken2 Database (Required)
-We use the MiniKraken2 v2 8GB database (April 2019 version):
+MiniKraken2 v2 8GB database (April 2019 version):
 ```bash
 # Create database directory
 mkdir -p data/kraken2-db
@@ -34,7 +34,7 @@ fasterq-dump --outdir data/sra-cache --skip-technical --split-files SRR13059548 
 ```
 
 ### 3. Directory Structure
-After setup, your data directory should look like this:
+After setup, data directory should look like this:
 ```
 data/
 ├── kraken2-db/
@@ -56,6 +56,6 @@ data/
 - Total storage needed: ~20GB including working space
 
 ## Notes
-- The Kraken2 database is updated periodically. While we use the April 2019 version for reproducibility, newer versions are available.
-- Sequence data can be downloaded on-demand using the provided accession numbers.
-- All data downloads and processing scripts will automatically create the necessary directories.
+- The Kraken2 database is updated occasionally. The April 2019 version is used for reproducibility; however, newer versions are available.
+- Sequence data can be downloaded using the provided accession numbers.
+- All data downloads and processing scripts will automatically create directories.
