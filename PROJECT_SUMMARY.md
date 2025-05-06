@@ -34,10 +34,3 @@ This work addresses the cost and time barriers that limit fungal identification 
 - **3-Command Quickstart**: Complete demo setup in under 3 minutes
 - **Open Source**: MIT license with full reproducibility documentation
 
-## Citation Suggestion
-"FungiMap: Rapid AI-powered fungal species identification for environmental DNA analysis. Available at: https://github.com/Rohannorden2121/FungiMap"
-
-## Contact
-FungiMap Development Team  
-Repository: https://github.com/Rohannorden2121/FungiMap  
-Issues: GitHub issue tracker
