@@ -81,7 +81,6 @@ Pathogen detection with *Fusarium* species known to cause crop diseases. Early d
 1. **[DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)** - Inventory and checksums
 2. **[workflow/Snakefile](workflow/Snakefile)** - Pipeline
 3. **[FUTURE_WORK.md](FUTURE_WORK.md)** - HPC scaling
-4. **[docs/](docs/)** - Technical stuff
 
 </td>
 </tr>
