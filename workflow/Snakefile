@@ -289,10 +289,6 @@ EOF
         echo "MultiQC report generated" > {log}
         """
 
-# =============================================================================
-# Target Rules for Different Stages
-# =============================================================================
-
 rule stage0_validation:
     input:
         RESULTS_DIR / "eda" / "validation" / "combined_report.csv",
