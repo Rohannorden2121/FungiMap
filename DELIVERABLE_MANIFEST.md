@@ -3,7 +3,7 @@
 ## Project Information
 - **Project Name**: FungiMap
 - **Version**: 1.0.0
-- 
+
 ## Contents Overview
 
 ### Documentation Components
