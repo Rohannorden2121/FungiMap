@@ -3,20 +3,7 @@
 ## Project Information
 - **Project Name**: FungiMap
 - **Version**: 1.0.0
-- **Generated**: 2025-10-02 (Final Release)
-- **Platform**: macOS (M1 Mac Compatible)
-- **Status**: Admissions-Ready & Production-Complete
-- **Contact**: Research Team
-
-## Deliverable Summary
-**FINAL RELEASE**: Complete FungiMap pipeline for academic and research use:
-- Professional documentation with clear navigation and performance metrics
-- Interactive demo with precomputed results (no execution required)
-- M1 Mac compatible lightweight environment for demonstration
-- Production deployment scripts with resource estimates
-- Publication-ready metadata and complete documentation
-- Automated testing and continuous integration pipeline
-
+- 
 ## Contents Overview
 
 ### Documentation Components
@@ -119,71 +106,19 @@
 
 ## Resource Requirements
 
-### M1 Mac Demo Environment
-- **Memory**: 3-5 GB RAM (monitored in real-time)
+### Low Spec Computer Demo
+- **Memory**: 3-5 GB RAM
 - **CPU**: 2-4 cores
-- **Storage**: 2-5 GB for demo data and results
+- **Storage**: 2-5 GB
 - **Runtime**: 5-15 minutes for FastQC/MultiQC analysis
 - **Dependencies**: Conda environment with FastQC, MultiQC, pandas, numpy, psutil
 
 ### Production HPC Environment
-- **Memory**: 128 GB RAM recommended
-- **CPU**: 32 cores for full pipeline
-- **GPU**: Optional A100/V100 for structure prediction
+- **Memory**: 128 GB RAM
+- **CPU**: 32 cores
 - **Storage**: 2-10 TB for large datasets
 - **Runtime**: 24-48 hours for complete analysis
-- **Cost Estimate**: $200-350 per full run on cloud platforms
-
-## Validation and Testing
-
-### M1 Mac Pilot Results
-- **Status**: SUCCESSFULLY COMPLETED
-- **Samples Processed**: 2 demo samples (10k reads each)
-- **Resource Usage**: Peak 3.0 GB RAM, 4 CPU cores
-- **Quality Control**: FastQC analysis completed without errors
-- **Outputs Generated**: HTML reports, CSV summaries, resource logs
-- **Compliance**: All processing within approved 5GB RAM limit
-
-### Integration Tests
-- **CI/CD Pipeline**: GitHub Actions workflow passes
-- **Environment Setup**: Conda environment builds successfully
-- **Demo Data Generation**: Mock FASTQ files created
-- **Resource Monitoring**: Real-time usage tracking functional
-- **Report Generation**: EDA summaries and MultiQC reports created
-
-## Production Deployment
-
-### SLURM Job Scripts
-- **Full Pipeline**: `scripts/slurm/run_production_pipeline.slurm`
-  - 32 cores, 128 GB RAM, 48 hours
-  - Complete taxonomic classification, assembly, and analysis
-  - Estimated cost: $250-350 on cloud platforms
-
-- **GPU Analysis**: `scripts/slurm/run_gpu_analysis.slurm`
-  - 16 cores, 64 GB RAM, 1x A100 GPU, 24 hours
-  - Structure prediction and large language model embeddings
-  - Estimated cost: $50-100 on cloud GPU instances
-
-### Cloud Deployment Options
-- **AWS**: c5n.8xlarge instances with EBS storage
-- **GCP**: c2-standard-30 with persistent SSD
-- **Azure**: Standard_F32s_v2 with premium storage
-- **HPC Centers**: XSEDE/ACCESS allocations for academic research
-
-## Data Management and Archival
-
-### Zenodo Integration
-- **Primary Archive**: Zenodo repository with persistent DOI
-- **Size Limit**: 50 GB per dataset (free academic tier)
-- **Large Datasets**: Split into logical chunks with cross-references
-- **Metadata**: Complete FAIR-compliant descriptions
-- **License**: CC-BY-4.0 for maximum reuse
-
-### Long-term Preservation
-- **Tier 1**: Essential results (permanent, 10+ years)
-- **Tier 2**: Intermediate data (medium-term, 5-7 years)
-- **Tier 3**: Raw data cache (short-term, 1-2 years)
-- **Backup Strategy**: 3-2-1 rule with multiple storage locations
+- **Cost Estimate**: $200-350 per full run (CLOUD)
 
 ## File Integrity
 Key files verified with SHA-256 checksums:
@@ -199,41 +134,18 @@ shasum -c checksums.sha256
 
 ## Usage Instructions
 
-### Quick Start (M1 Mac Demo)
+### Quick Start
 1. Install conda/mamba package manager
 2. Create environment: `conda env create -f environment.yml`
 3. Activate environment: `conda activate mycograph-xl-demo`
-4. Generate demo data: `python scripts/create_demo_data.py`
+4. Create demo data: `python scripts/create_demo_data.py`
 5. Run analysis: `bash src/run_eda_pipeline.sh`
 6. View results in `results/demo/`
 
-### Production Deployment
-1. Review `docs/cloud_deployment_guide.md` for platform selection
-2. Modify `scripts/slurm/run_production_pipeline.slurm` for your environment
-3. Configure sample manifest in `workflow/manifest.csv`
-4. Submit job to SLURM scheduler or cloud instance
-5. Monitor progress and resource usage
-6. Archive results using `docs/archival_plan.md` guidelines
-
-## Support and Citation
-
-### Getting Help
-- **Documentation**: Start with `README_QUICKSTART.md`
-- **Issues**: Use GitHub issue tracker for bug reports
-- **Questions**: Contact research team or create discussion thread
-
-### Citation
-If you use FungiMap in your research, please cite:
-```
-FungiMap: Comprehensive Mycological Genomics Analysis Pipeline
-Version 1.0.0, 2025
-Available at: https://github.com/[username]/mycology-predictor
-DOI: [Zenodo DOI when published]
-```
 
 ## License and Terms
-This software is released under the MIT License. See LICENSE file for details.
-Research data and results follow CC-BY-4.0 licensing for maximum reuse potential.
+This software is released under the MIT License.
+Research data and results follow CC-BY-4.0 licensing.
 
 ---
 
