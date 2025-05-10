@@ -63,7 +63,7 @@ Diversity in fungal communities with *Cryptococcus* yeasts= 38% of identified se
 **Agricultural Soil Analysis**  
 Pathogen detection with *Fusarium* species known to cause crop diseases. Early detection of them allows farmers to use preventive measures that can prevent a lot of crop loss. Monitoring pathogen levels in agricultural soils gives good information for pathogens in farms and ways to combat them.
 
-## Repository (Aiding in navigation)
+## Repository (for navigation)
 
 <table>
 <tr>
