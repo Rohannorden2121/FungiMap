@@ -15,6 +15,8 @@
 
 ## Project Overview
 
+**[SIMPLE OVERVIEW} (MODEL_TEST.md)** - Basic overview of project
+
 ### Non-Technical Summary
 
 FungiMap is a tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). This software analyzes DNA sequencing data to figure out which fungi are present in a sample and, also, their relative abundance. This approach is significantly more accessable than traditional ways of going about this that require lab facilities, expensive equipment, and a lot of processing time.
