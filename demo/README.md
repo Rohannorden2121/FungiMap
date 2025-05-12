@@ -23,27 +23,10 @@ python demo/view_results.py
 
 **Command 3:** (Optional) Prints demo results to the terminal for quick viewing without Jupyter.
 
-## System Requirements
-
-- **Memory:** 1-2 GB RAM (demo data only)
-- **Storage:** <100 MB (lightweight dependencies)
-- **Time:** <3 minutes to set up environment
-- **Internet:** Required for initial conda package downloads
-
 ## What You'll See
 
-- Complete analysis workflow from input samples to final results
-- Interactive visualizations showing species classification
-- Performance metrics and quality control statistics  
-- Plain-language interpretations of findings
-
-## Notes
-
-- ✅ **No GPU required** - demo uses precomputed outputs only
-- ✅ **No large downloads** - all heavy databases are referenced, not included
-- ✅ **Laptop friendly** - designed for standard development environments
-- ✅ **Immediate results** - all outputs embedded in notebook for instant viewing
-
----
-
-**Alternative:** If you prefer not to install anything, the notebook renders directly on GitHub with all outputs visible.
+- Complete analysis workflow
+- Species classification
+- Performance metrics/QC stats  
+- Basic interpretations of findings
+- 
