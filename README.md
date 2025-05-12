@@ -15,7 +15,7 @@
 
 ## Project Overview
 
-**[SIMPLE OVERVIEW} (MODEL_TEST.md)** - Basic overview of project
+**[SIMPLE OVERVIEW] [MODEL_TEST.md](demo/MODEL_TEST.md)** - Basic overview of project
 
 ### Non-Technical Summary
 
