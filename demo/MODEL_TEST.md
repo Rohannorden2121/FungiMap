@@ -49,7 +49,7 @@ The results provide immediate insights into:
 - **Agriculture:** Early warning system for crop diseases
 - **Environmental Science:** Biodiversity monitoring/ecosystem health assessment
 - **Marine Biology:** Fungal roles in ocean carbon cycling
-- 
+
 ## Key Metrics Summary
 
 | Metric | Result | Significance |
