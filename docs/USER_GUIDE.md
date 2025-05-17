@@ -108,7 +108,7 @@ VALIDATION SYSTEM (IMPORTANT):
 - `logs/{stage}/{sample}.log`: exec logs
 
 
-COPILOT RESOURCE RECOMMENDATION:
+### COPILOT RESOURCE RECOMMENDATION:
 
 ### Resource Requirements
 - **Minimum**: 8GB RAM, 4 cores, 100GB storage
