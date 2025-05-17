@@ -127,8 +127,8 @@ python demo/view_results.py
 ### Citation info
 ```bibtex
 @software{fungimap2025,
-  title={FungiMap: Environmental Mycology Platform},
-  author={FungiMap Development Team},
+  title={FungiMap: Environmental Mycology Tool},
+  author={FungiMap},
   year={2025},
   url={https://github.com/Rohannorden2121/FungiMap},
   note={doi: pending Zenodo deposit}
