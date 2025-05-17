@@ -17,11 +17,11 @@ python demo/view_results.py
 
 ## Command Details
 
-**Command 1:** Creates a conda environment with packages needed for the demo (pandas, matplotlib, jupyter). No bioinformatics tools or databases required.
+**Command 1:** Creates a conda environment with packages needed for demo (pandas, matplotlib, jupyter). No bioinformatics tools or databases are needed.
 
-**Command 2:** Opens the demo notebook in Jupyter. The notebook contains precomputed outputs and displays results without executing computations.
+**Command 2:** Opens the demo notebook in Jupyter. The notebook has precomputed outputs and displays results without doing any computations.
 
-**Command 3:** (Optional) Prints demo results to the terminal for quick viewing without Jupyter.
+**Command 3:** (Optional) Prints demo results to terminal for quick viewing without needing Jupyter.
 
 ## What You'll See
 
@@ -29,4 +29,3 @@ python demo/view_results.py
 - Species classification
 - Performance metrics/QC stats  
 - Basic interpretations of findings
-- 
