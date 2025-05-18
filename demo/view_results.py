@@ -26,22 +26,22 @@ def main():
         print("\n Input Samples:")
         for _, row in metadata.iterrows():
             env = row['environment'].replace('_', ' ').title()
-            print(f"  • {env}: {row['read_count']:,} reads")
+            print(f"  {env}: {row['read_count']:,} reads")
         
         print("\n Classification Results:")
         for _, row in results.iterrows():
             sample_env = metadata[metadata['sample_id'] == row['sample_id']]['environment'].iloc[0]
             env = sample_env.replace('_', ' ').title()
-            print(f"  • {env}: {row['classification_rate']}% success, {row['fungal_reads']:,} fungal reads")
+            print(f"  {env}: {row['classification_rate']}% success, {row['fungal_reads']:,} fungal reads")
             print(f"    └─ Dominant species: {row['dominant_genus']}")
         
         print("\n Performance Summary:")
         avg_time = metrics['runtime_minutes'].mean()
         avg_memory = metrics['peak_memory_gb'].mean()
         total_cost = metrics['total_cost_usd'].sum()
-        print(f"  • Average processing time: {avg_time:.1f} minutes")
-        print(f"  • Average memory usage: {avg_memory:.1f} GB")
-        print(f"  • Total analysis cost: ${total_cost:.2f}")
+        print(f"  Average processing time: {avg_time:.1f} minutes")
+        print(f"  Average memory usage: {avg_memory:.1f} GB")
+        print(f"  Total analysis cost: ${total_cost:.2f}")
         
         print("\n All samples passed quality control!")
         print("\n For detailed visualizations, run: jupyter notebook notebook.ipynb")
