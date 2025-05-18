@@ -74,7 +74,6 @@ Pathogen detection with *Fusarium* species known to cause crop diseases. Early d
 ### Review
 1. **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Summary and impact
 2. **[Live Demo](docs/index.html)** - Interactive results
-3. **[Demo Notebook](demo/notebook.ipynb)** -  Analysis overview
 
 </td>
 <td width="50%">
