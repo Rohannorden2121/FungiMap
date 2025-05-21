@@ -4,11 +4,11 @@
 
 FungiMap's ability to identify and classify fungal species in environmental DNA samples from three different ecosystems:
 
-1. **Forest Soil** - DNA extracted from temperate forest floor
+1. **Forest Soil** - DNA from temperate forest floor
 2. **Marine Sediment** - Coastal water and sediment samples  
 3. **Agricultural Soil** - Farmland soil samples
 
-Each sample contained thousands of DNA sequences from various microorganisms. Goal: specifically identify the fungal species present.
+Each sample had thousands of DNA sequences from various microorganisms. Goal: specifically identify the fungal species present.
 
 ## How the Test Works
 
@@ -49,17 +49,17 @@ The results provide immediate insights into:
 - **Agriculture:** Early warning system for crop diseases
 - **Environmental Science:** Biodiversity monitoring/ecosystem health assessment
 - **Marine Biology:** Fungal roles in ocean carbon cycling
-- 
+
 ## Key Metrics Summary
 
 | Metric | Result | Significance |
 |--------|--------|--------------|
-| Classification Rate | 85% | High accuracy for research applications |
-| Processing Time | 3.2 min avg | Rapid results for time-sensitive decisions |
-| Memory Usage | 2.1 GB avg | Runs on modest hardware |
-| Cost per Sample | $0.12 avg | Affordable for routine monitoring |
-| Species Identified | 7 major taxa | Comprehensive fungal profiling |
-| Quality Control | 100% pass rate | Reliable, reproducible results |
+| Classification Rate | 85% | Very good accuracy for research applications |
+| Processing Time | 3.2 min avg | Fast results for decisions |
+| Memory Usage | 2.1 GB avg | Runs on low/mid hardware |
+| Cost per Sample | $0.12 avg | Affordable for monitoring |
+| Species Identified | 7 major taxa | Fungal profiling |
+| Quality Control | 100% pass rate | Reproducible and dependable (100%) results |
 
 ## Plain Language Summary for Admissions Officers
 
