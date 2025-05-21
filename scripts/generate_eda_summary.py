@@ -109,7 +109,7 @@ def generate_eda_summary():
     df.to_csv(output_file, index=False)
     
     print(f"✅ EDA summary saved to {output_file}")
-    print(f"📊 Processed {len(df)} samples")
+    print(f"Processed {len(df)} samples")
     
     return df
 
@@ -207,7 +207,7 @@ should use HPC/cloud infrastructure as planned.
     print(f"✅ EDA report saved to {output_file}")
 
 if __name__ == "__main__":
-    print("🔍 Generating EDA summary and report...")
+    print("Generating EDA summary and report...")
     
     # Generate summary
     summary_df = generate_eda_summary()
@@ -215,4 +215,4 @@ if __name__ == "__main__":
     # Generate report
     generate_eda_report(summary_df)
     
-    print("🎉 EDA analysis complete!")
+    print("EDA analysis complete!")

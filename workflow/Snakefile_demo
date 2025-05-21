@@ -495,11 +495,11 @@ System: M1 Mac (5GB RAM limit, 4 CPU cores)
 === PIPELINE SUMMARY ===
 Samples processed: {len(summary_df)}
 Pipeline stages completed:
-  ✅ Data download and subsampling (500k reads/sample)
-  ✅ FastQC quality assessment
-  ✅ fastp quality control and trimming
-  ✅ Kraken2 taxonomic classification (MiniKraken2 DB)
-  ✅ MultiQC aggregated reporting
+  Data download and subsampling (500k reads/sample)
+  FastQC quality assessment
+  fastp quality control and trimming
+  Kraken2 taxonomic classification (MiniKraken2 DB)
+  MultiQC aggregated reporting
 
 === SAMPLE STATISTICS ===
 """
@@ -549,10 +549,10 @@ on M1 Mac hardware with resource constraints. For production analysis:
 4. Include ML analysis (ESM embeddings)
 
 === NOTES ===
-- Pipeline stayed within 5GB RAM limit ✅
-- MiniKraken2 database provides fungal classification ✅
-- Demo data (500k reads) processed successfully ✅
-- All output files generated as expected ✅
+- Pipeline stayed within 5GB RAM limit
+- MiniKraken2 database provides fungal classification
+- Demo data (500k reads) processed successfully
+- All output files generated as expected
         """
         
         with open(output.report, 'w') as f:

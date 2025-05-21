@@ -50,4 +50,4 @@ if __name__ == "__main__":
     for sample in samples:
         generate_mock_fastq(sample, num_reads=10000)
     
-    print("🎉 Demo data generation complete!")
+    print("Demo data generation complete!")

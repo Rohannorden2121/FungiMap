@@ -37,9 +37,9 @@ docker run -v $(pwd):/mycograph mycograph-xl:v0.1.0 snakemake stage0_validation 
 ```
 
 ## Reproducibility Status
-- ✅ Environment reproducible via environment.yml
-- ✅ Workflow reproducible via Snakemake
-- ✅ Results consistent across runs
+- Environment reproducible via environment.yml
+- Workflow reproducible via Snakemake
+- Results consistent across runs
 - ⚠️  Mock data used for pilot (real data processing not yet tested)
 
 ## Production Command (after approval)

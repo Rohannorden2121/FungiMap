@@ -40,7 +40,7 @@
 - **Demo Workflow**: 3-command quickstart functional
 - **Report Generation**: HTML and CSV outputs created
 
-### 🚧 Resource Limitations (Demo Release)
+### Resource Limitations (Demo Release)
 
 #### Included in Demo
 - Quality control analysis (FastQC/MultiQC)
@@ -64,7 +64,7 @@
 - **Stage 3 (ML Analysis)**: 8 cores, 32GB RAM, 1x GPU, 4-8 hours
 - **Full Pipeline**: $200-400 per 50 samples on cloud platforms
 
-### 📊 Repository Statistics
+### Repository Statistics
 
 #### Size Optimization
 - **Before**: 19GB (large databases and raw data)
@@ -78,7 +78,7 @@
 - **Testing**: Automated CI with environment validation
 - **Governance**: MIT License, CITATION.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md
 
-### 🔬 Academic Integration
+### Academic Integration
 
 #### Citation and Attribution
 - **DOI Assignment**: Prepared for Zenodo deposit (pending approval)
@@ -92,7 +92,7 @@
 - **Cloud Support**: AWS/GCP/Azure deployment guides
 - **Education Ready**: Comprehensive tutorials and quickstart guides
 
-### 🚨 Important Usage Notes
+### Important Usage Notes
 
 #### Demo Scope
 This release is specifically designed for:
@@ -108,7 +108,7 @@ For research-grade analysis with real datasets:
 3. **Scale resources** according to sample size and analysis complexity
 4. **Follow data management** protocols in ARCHIVAL_PLAN.md
 
-### 🛠️ Technical Specifications
+### Technical Specifications
 
 #### System Requirements
 - **Operating System**: macOS (M1/Intel), Linux x86_64
@@ -123,7 +123,7 @@ For research-grade analysis with real datasets:
 - **HPC Systems**: SLURM-based clusters (deployment scripts)
 - **Cloud Platforms**: AWS EC2, GCP Compute, Azure VMs
 
-### 📝 Known Issues and Limitations
+### Known Issues and Limitations
 
 #### Current Limitations
 - **Database Size**: Demo uses MiniKraken2 (reduced sensitivity)
@@ -155,6 +155,6 @@ For research-grade analysis with real datasets:
 
 ---
 
-**Ready for academic collaboration and educational use!** 🧬🔬
+**Ready for academic collaboration and educational use!**
 
 *For production analysis, please see FUTURE_WORK.md for HPC deployment guidance.*
