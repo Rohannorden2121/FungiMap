@@ -130,4 +130,4 @@ This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). By participating
 
 ---
 
-Thank you for helping make FungiMap better! 🍄
+Thank you for helping make FungiMap better!

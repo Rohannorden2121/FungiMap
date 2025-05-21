@@ -40,7 +40,7 @@ bash ci_smoke_test.sh
 - **CI/CD**: Automated testing and validation workflows
 - **Governance**: LICENSE, contributing guidelines, and code of conduct
 
-### 🔬 Analysis Capabilities
+### Analysis Capabilities
 
 **Stage 0 (Demo-Ready)**:
 - FastQC quality assessment
@@ -54,7 +54,7 @@ bash ci_smoke_test.sh
 - Functional annotation (HMMER, InterProScan)
 - ML-based analysis and embedding generation
 
-### 🏗️ Production Deployment
+### Production Deployment
 
 For production runs with real data:
 - See `scripts/slurm/` for HPC job scripts
@@ -62,7 +62,7 @@ For production runs with real data:
 - Check `ARCHIVAL_PLAN.md` for data management strategy
 - Estimated cost: $200-350 per full analysis run
 
-### 📈 Validation Results
+### Validation Results
 
 - **CI Tests**: 5/5 passed (environment, config, workflow, demo data, structure)
 - **Demo Generation**: Mock data created successfully  
@@ -80,7 +80,7 @@ python scripts/create_demo_data.py
 ls -la data/demo/  # Verify demo files created
 ```
 
-### 🗂️ Repository Structure
+### Repository Structure
 
 - `src/`: Core analysis scripts and pipeline orchestration
 - `workflow/`: Snakemake workflow definitions and configuration
@@ -89,14 +89,14 @@ ls -la data/demo/  # Verify demo files created
 - `docs/`: Comprehensive documentation and deployment guides
 - `results/demo/`: Sample outputs and validation reports
 
-### ⚠️ Important Notes
+### Important Notes
 
 - **Demo Mode**: Uses mock data for immediate testing
 - **Production**: Requires HPC/cloud resources for real datasets
 - **Data Policy**: Large files excluded from repository (see .gitignore)
 - **Dependencies**: All tools available via conda/bioconda
 
-### 🔗 Related Resources
+### Related Resources
 
 - **Documentation**: Complete user guides in `docs/`
 - **Examples**: Demo outputs in `results/demo/`

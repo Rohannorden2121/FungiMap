@@ -82,7 +82,7 @@ docker build -t mycograph-xl .
 docker run -v $(pwd):/workspace mycograph-xl snakemake demo_pipeline
 ```
 
-## 🔬 Running Analysis
+## Running Analysis
 
 ### Demo (Local)
 ```bash
@@ -105,7 +105,7 @@ snakemake --cores 2 stage0_validation --config samples="YOUR_SRR_ID"
 sbatch scripts/submit_production.sh
 ```
 
-## 📊 Interpreting Results
+## Interpreting Results
 
 ### Quality Control
 - **MultiQC Report:** `results/demo/multiqc_report.html`
@@ -175,4 +175,4 @@ FungiMap: Scalable fungal metagenomics predictor
 
 ---
 
-**⚡ Get started with the demo in under 5 minutes!**
+**Get started with the demo in under 5 minutes!**
