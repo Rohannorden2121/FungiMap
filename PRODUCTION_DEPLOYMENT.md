@@ -97,7 +97,7 @@ python workflow/scripts/production_monitor.py --mode continuous --interval 15
 
 ---
 
-## 📊 EXPECTED PRODUCTION PERFORMANCE
+## EXPECTED PRODUCTION PERFORMANCE
 
 ### Resource Utilization (50 samples)
 - **Stage 0:** 2-4 hours, 8GB RAM per sample
@@ -118,7 +118,7 @@ python workflow/scripts/production_monitor.py --mode continuous --interval 15
 
 ---
 
-## ⚡ PRODUCTION READINESS STATUS
+## PRODUCTION READINESS STATUS
 
 | Component | Status | Notes |
 |-----------|--------|-------|
@@ -133,7 +133,7 @@ python workflow/scripts/production_monitor.py --mode continuous --interval 15
 
 ---
 
-## 🎯 NEXT STEPS
+## NEXT STEPS
 
 ### Immediate Actions Available:
 1. **Launch validation pipeline:** `./deploy_production.sh 50 stage0`
@@ -155,6 +155,6 @@ python workflow/scripts/production_monitor.py --mode continuous --interval 15
 
 ---
 
-**🎉 PRODUCTION DEPLOYMENT COMPLETE - READY FOR EXECUTION**
+**PRODUCTION DEPLOYMENT COMPLETE - READY FOR EXECUTION**
 
 The FungiMap pipeline has been successfully scaled from pilot (2 samples) to production (50+ samples) with full HPC integration, real data processing, and comprehensive monitoring. All requested production components are deployed and ready for immediate use.
