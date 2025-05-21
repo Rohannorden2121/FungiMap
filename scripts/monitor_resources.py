@@ -24,8 +24,8 @@ def monitor_resources(output_file="results/demo/resource_usage.csv",
         writer.writerow(['timestamp', 'memory_gb', 'memory_percent', 
                         'cpu_percent', 'disk_free_gb', 'warning'])
     
-    print(f"🔍 Monitoring resources for {duration/60:.1f} minutes...")
-    print(f"📊 Logging to: {output_file}")
+    print(f"Monitoring resources for {duration/60:.1f} minutes...")
+    print(f"Logging to: {output_file}")
     
     start_time = time.time()
     

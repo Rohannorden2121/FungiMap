@@ -220,7 +220,7 @@ snakemake --profile profiles/cluster stage2_analysis --cores 32
 
 ## FINAL RECOMMENDATION
 
-### **PRIMARY: Submit to HPC** 🎯
+### **PRIMARY: Submit to HPC**
 - **Cost:** Lowest for academic users
 - **Timeline:** 2-4 weeks for 50-100 samples
 - **Risk:** Low, institutional support available

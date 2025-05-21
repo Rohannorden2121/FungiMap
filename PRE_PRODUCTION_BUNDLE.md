@@ -24,7 +24,7 @@
 **Content:**
 - **SRR13059548:** **KEEP** ✅ (100% metadata, all criteria met)
 - **SRR15377549:** **REPROCESS** ⚠️ (90% metadata, geo_loc_name needs fix)
-- 📊 Supporting numbers and 15-minute remediation plan provided
+- Supporting numbers and 15-minute remediation plan provided
 
 ### (4) CI/Demo Reproducibility Confirmation ✅
 **File:** `REPRODUCIBILITY_CONFIRMATION.md`  
@@ -36,10 +36,10 @@
 ### (5) HPC/Cloud Plan with Cost Estimates ✅
 **File:** `HPC_CLOUD_PLAN.md`  
 **Content:**
-- 🎯 **Recommendation:** HPC first ($200-400 for 50 samples)
+- **Recommendation:** HPC first ($200-400 for 50 samples)
 - ☁️ Cloud alternative: AWS/GCP ($1,000-2,000 for 50 samples)  
 - 💻 Local limit: Stage 0 only (current scope OK)
-- 📊 Detailed instance types, timelines, and scaling strategy
+- Detailed instance types, timelines, and scaling strategy
 
 ---
 
@@ -80,7 +80,7 @@ docker run -v $(pwd):/mycograph mycograph-xl:v0.1.0-pilot snakemake stage0_valid
 
 ---
 
-## 🎯 DECISION POINT
+## DECISION POINT
 
 **PILOT PHASE: COMPLETE** ✅  
 **TECHNICAL VALIDATION: SUCCESSFUL** ✅  
