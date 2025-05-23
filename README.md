@@ -4,10 +4,8 @@
 
 > **Automated pipeline for fungal species identification in environmental DNA samples**
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.9+-brightgreen.svg)](https://python.org)
 [![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Pipeline-orange.svg)](workflow/Snakefile)
-[![DOI](https://img.shields.io/badge/DOI-Pending-yellow.svg)](ZENODO_METADATA_DRAFT.md)
+
 
 ### **[VIEW LIVE DEMO](docs/index.html)** 
 
