@@ -109,19 +109,6 @@ python demo/view_results.py
 - Analysis workflow: [demo notebook](demo/notebook.ipynb) on GitHub
 - Docker deployment: `docker run -p 8888:8888 fungimap/demo`
 
-## Academic Info
-
-### Citation info
-```bibtex
-@software{fungimap2025,
-  title={FungiMap: Environmental Mycology Tool},
-  author={FungiMap},
-  year={2025},
-  url={https://github.com/Rohannorden2121/FungiMap},
-  note={doi: pending Zenodo deposit}
-}
-```
-
 ### Reproducibility
 SHA-256 checksums for critical files in [DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)
 
@@ -274,9 +261,9 @@ FungiMap approach uses bioinformatics methods with environmental fungal analysis
 ## Future Development
 
 ### Planned improvements
-Better machine learning models allows deep learning approaches for better classification accuracy. Multi-omics integration can also use proteomics and metabolomics data fusion.  Complete details are available in [FUTURE_WORK.md](FUTURE_WORK.md) (also increased database/better one will improve predictor).
+[FUTURE_WORK.md](FUTURE_WORK.md) (increased database/better one will improve predictor).
 
 ---
 
-**Getting Started**: Start with [interactive demo](docs/index.html) or explore [complete technical documentation](docs/)
+**Getting Started**: [interactive demo](docs/index.html) or explore [complete technical documentation](docs/)
 
