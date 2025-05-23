@@ -15,27 +15,17 @@
 
 **[SIMPLE OVERVIEW] [MODEL_TEST.md](demo/MODEL_TEST.md)** - Basic overview of project
 
-### Non-Technical Summary
+### Summary
 
-FungiMap is a tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). This software analyzes DNA sequencing data to figure out which fungi are present in a sample and, also, their relative abundance. This approach is significantly more accessable than traditional ways of going about this that require lab facilities, expensive equipment, and a lot of processing time.
+FungiMap is a tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). It is a bioinformatics pipeline, and this software analyzes DNA sequencing data (raw through QC through FastQC, classification, and analysis) to figure out which fungi are present in a sample and, also, their relative abundance. This approach is significantly more accessable than traditional ways of going about this that require lab facilities, expensive equipment, and a lot of processing time. It uses QC mainly to get rid of low-quality sequences that make analysis worsed (downstream analysis specifically). The sequences are processed through Kraken2 (whcih is a classification tool using a technique called k-mer matching where you break sequences into groups called k-mers of a set length k). This database uses sequences from NCBI GenBank and other fungal collections to provide a good coverage of environmental fungal diversity.
+
+More technically, the abudance guessing is done by Braken (method to get abundance) and there is QC checkpoints periodically to check for any contamination. This project is built with Snakemake and it allows low resource laptops/low-end hardware to run well. This allows analysis accessible on more basic hardware (not every researcher/scientist has access to a HPC/mid-high to high tier computing environment).
 
 The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their characteristics under microscopes, and doing biochemical tests. This approach is difficult and expensive, as it requires taxonomists (knowledable experts) and costs  $50 and $200 (around-this is an estimate) per sample. Many environmental fungi cannot be cultured in laboratory conditions, and this makes traditional identification incomplete/even impossible.
 
 The predictor FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. This software compares these sequences against a database of known fungal species and gives accurate identification after a couple of minutes from input. This approach can identify both culturable and non-culturable fungi, and this offers a more complete view of fungal diversity in environmental samples.
 
 The practical applications of this technology are very large. Agricultural researchers can use FungiMap to monitor soil health and find plant pathogens before they cause significant damage to crops. Additionally, environmental scientists can evaluate ecosystem health by tracking changes in fungal communities over time. Furthermore, marine biologists can explore fungal diversity in ocean environments, (which has been understudied in the past due to technical limitation; this predictor helps to overcome this!). When this project receives higher funding (more advanced computer(s)/HPC access), this project will receive a DOI (Zenodo), perhaps also with updated/expanded eDNA fungal samples.
-
-### Technical Overview
-
-FungiMap uses a bioinformatics pipeline processing raw DNA sequencing data through QC, classification, and analysis. These methods combine tools from bioinformatics group with tweaks for improvement that are specific to fungal identification in environmental samples.
-
-The pipeline uses QC of raw sequencing reads using FastQC and then adapter trimming and quality filtering to get rid of low-quality sequences that could make downstream analysis worse. Then, the sequences are processed through Kraken2 (a taxonomic classification tool that uses k-mer matching against a fungal reference database). This database has sequences from NCBI GenBank and other fungal collections; this provides a good coverage of environmental fungal diversity.
-
-Species abundance estimation is done by Bracken (corrects for biases in the k-mer classification approach and provides good abundance estimates). The pipeline has a lot of QC checkpoints to find any contamination/determine sequencing depth adequacy, and to get confidence scores.
-
-The software is built around Snakemake (a workflow management system). The design allows execution from low resource laptops (personal project completed on a M1 Mac 2020 8GB) to high-performance computing groups (HPC) that have hundreds of cores. All components are containerized with Docker and Singularity, and this ensures reproducible execution from most computing environments (low-mid tier to high tier (HPC)).
-
-Resource optimization is one accomplishment of FungiMap. Metagenomics tools usually require 32GB+ of RAM and high-memory servers. Algorithmic optimizations and efficient data structures allowed FungiMap to have memory requirements of merely 2GB (demonstration) and 16GB (production workflow). This allows the analysis accessible on more basic hardware (not every researcher/scientist has access to a HPC/mid-high to high tier computing environment).
 
 The pipeline has error handling and logging to make troubleshooting easier as well (NOTE: All files are preserved with checksums with analysis environment put in config files).
 
@@ -88,7 +78,7 @@ Pathogen detection with *Fusarium* species known to cause crop diseases. Early d
 ## Technical Achievements
 
 ### Methodological
-Improves existing approaches. Uses k-mer matching with machine learning algorithms to find a solutiton to taxonomic assignments. Using memory management algorithms allows analysis on basic computers. Validation approach also allows strong performance through diverse ecological environments (forest soils to marine).
+Improves existing approaches. Uses k-mer matching with machine learning algorithms to find a solutiton to taxonomic assignments. Using them allows analysis on basic computers. Validation approach also allows strong performance through different ecological environments (forest soils to marine).
 
 ### Software
 -reducibility/scalability (docker/singularity)
