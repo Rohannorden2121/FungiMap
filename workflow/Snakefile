@@ -1,9 +1,3 @@
-"""
-MycoGraph-XL: Fungal community analysis pipeline
-Author: MycoGraph-XL Team
-Version: 0.1.0
-"""
-
 import pandas as pd
 from pathlib import Path
 import json
@@ -43,9 +37,6 @@ rule all:
         RESULTS_DIR / "eda" / "validation" / "combined_report.csv",
         RESULTS_DIR / "eda" / "multiqc_report.html"
 
-# =============================================================================
-# Stage 0: Data Download and Initial Validation
-# =============================================================================
 
 rule download_sample:
     output:
@@ -84,7 +75,7 @@ rule download_sample:
             --outdir . \
             2>> {log}
         
-        # Compress the output
+        # Compress  output
         if [ -f {wildcards.sample}.fastq ]; then
             gzip {wildcards.sample}.fastq
             mv {wildcards.sample}.fastq.gz {output.fastq}
