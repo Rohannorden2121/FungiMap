@@ -205,3 +205,22 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project-specific large files
+# Database files
+data/kraken2-db/
+data/human-db/
+
+# Sequencing data
+data/sra-cache/
+*.fastq
+*.fastq.gz
+*.sra
+
+# Other large files
+*.tgz
+*.tar.gz
+
+# Results
+results/eda/fastqc/*.zip
+results/eda/fastqc/*.html

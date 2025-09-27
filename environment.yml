@@ -1,0 +1,28 @@
+name: mycograph-xl
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - sra-tools
+  - kraken2
+  - megahit
+  - eukrep
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - jupyterlab
+  - requests
+  - biopython
+  - pysradb
+  - fastqc
+  - multiqc
+  - pip:
+    - mg-toolkit  # For MGnify API access
+    - ete3  # For taxonomy handling
+    - tqdm  # For progress bars
+    - plotly  # For interactive visualizations
+    - dash  # For QC report generation
