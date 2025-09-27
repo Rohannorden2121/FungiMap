@@ -1,0 +1,13 @@
+{
+  "accession": "TEST002",
+  "collection_date": "2025-09-26",
+  "geo_loc_name": "Unknown",
+  "host": "Unknown",
+  "isolation_source": "environmental sample",
+  "env_broad_scale": null,
+  "env_local_scale": null,
+  "env_medium": null,
+  "sequencing_method": null,
+  "investigation_type": null,
+  "target_gene": null
+}

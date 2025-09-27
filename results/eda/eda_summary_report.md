@@ -1,4 +1,4 @@
-# MycoGraph-XL EDA Summary Report
+# FungiMap EDA Summary Report
 
 ## Sample Overview
 Total samples analyzed: 3

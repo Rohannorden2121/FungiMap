@@ -1,0 +1,80 @@
+# HPC Cluster Resource Allocation
+# Resource specifications for each pipeline stage
+
+__default__:
+  nodes: 1
+  ntasks: 1
+  cpus: 4
+  memory: "8GB"
+  time: "2:00:00"
+  partition: "compute"
+
+# Stage 0: Validation and QC (current pilot scope)
+validate_samples:
+  cpus: 2
+  memory: "4GB"
+  time: "1:00:00"
+
+fastqc:
+  cpus: 4
+  memory: "8GB"
+  time: "1:00:00"
+
+kraken2_classify:
+  cpus: 8
+  memory: "32GB"
+  time: "4:00:00"
+
+bracken_abundance:
+  cpus: 4
+  memory: "16GB"
+  time: "2:00:00"
+
+multiqc:
+  cpus: 2
+  memory: "4GB"
+  time: "30:00"
+
+# Stage 1: Assembly (NEW - Production)
+megahit_assembly:
+  cpus: 16
+  memory: "64GB"
+  time: "8:00:00"
+  partition: "highmem"
+
+quast_assessment:
+  cpus: 8
+  memory: "16GB"
+  time: "2:00:00"
+
+# Stage 2: Gene Prediction (NEW - Production)
+prodigal_predict:
+  cpus: 8
+  memory: "32GB"
+  time: "4:00:00"
+
+hmmer_annotation:
+  cpus: 16
+  memory: "32GB"
+  time: "6:00:00"
+
+# Stage 3: ML Analysis (NEW - Production)
+generate_embeddings:
+  cpus: 8
+  memory: "64GB"
+  time: "12:00:00"
+  partition: "gpu"
+  gres: "gpu:1"
+
+protein_clustering:
+  cpus: 32
+  memory: "128GB"
+  time: "24:00:00"
+  partition: "highmem"
+
+train_classification_model:
+  cpus: 16
+  memory: "64GB"
+  time: "48:00:00"
+  partition: "gpu"
+  gres: "gpu:2"

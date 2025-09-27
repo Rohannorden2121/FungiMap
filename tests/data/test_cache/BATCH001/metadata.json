@@ -1,0 +1,13 @@
+{
+  "accession": "BATCH001",
+  "collection_date": "2025-09-26",
+  "geo_loc_name": "Test Location",
+  "host": "soil",
+  "isolation_source": "environmental sample",
+  "env_broad_scale": "terrestrial biome",
+  "env_local_scale": "soil",
+  "env_medium": "soil",
+  "sequencing_method": "Illumina",
+  "investigation_type": "metagenome",
+  "target_gene": "ITS"
+}

@@ -1,28 +1,33 @@
-name: mycograph-xl
+# FungiMap Demo Environment
+# Minimal working configuration for M1 Mac demonstration
+
+name: mycograph-xl-demo
 channels:
   - conda-forge
   - bioconda
   - defaults
+
 dependencies:
+  # Core Python
   - python=3.9
   - pip
-  - sra-tools
-  - kraken2
-  - megahit
-  - eukrep
+  
+  # Basic tools that are available
   - pandas
   - numpy
-  - matplotlib
-  - seaborn
-  - jupyterlab
-  - requests
   - biopython
-  - pysradb
+  - psutil
+  - wget
+  
+  # Try to get these if available
+  - snakemake-minimal
   - fastqc
   - multiqc
-  - pip:
-    - mg-toolkit  # For MGnify API access
-    - ete3  # For taxonomy handling
-    - tqdm  # For progress bars
-    - plotly  # For interactive visualizations
-    - dash  # For QC report generation
+  
+  # Pip dependencies (none for now)
+
+# Resource limits for M1 Mac
+variables:
+  MALLOC_ARENA_MAX: 2
+  OMP_NUM_THREADS: 4
+  OPENBLAS_NUM_THREADS: 4

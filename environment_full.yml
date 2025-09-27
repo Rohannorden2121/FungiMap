@@ -1,0 +1,77 @@
+name: mycograph-xl
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Core dependencies
+  - python=3.9
+  - pip
+  - snakemake=7.32.4
+  - mamba
+  
+  # Sequence Processing & QC
+  - fastp=0.23.4
+  - fastqc=0.12.1
+  - multiqc=1.14
+  - kraken2=2.1.2
+  - megahit=1.2.9
+  - eukrep=0.2
+  - sra-tools=3.0.7
+  - biopython=1.81
+  - pysradb=3.0.1
+  
+  # Data handling & Analysis
+  - pandas=2.0.3
+  - numpy=1.24.3
+  - pyarrow=12.0.1
+  - dask=2023.9.2
+  - vaex=4.16.0
+  - requests=2.31.0
+  
+  # Visualization & Reporting
+  - plotly=5.16.1
+  - seaborn=0.12.2
+  - matplotlib=3.7.2
+  - jupyterlab=4.0.5
+  
+  # Machine Learning & Analysis
+  - scikit-learn=1.3.0
+  - tensorflow-macos
+  - tensorflow-deps
+  
+  # Development & Testing
+  - pytest=7.4.2
+  - black=23.7.0
+  - flake8=6.1.0
+  - pre-commit=3.4.0
+  
+  # Monitoring & Performance
+  - psutil=5.9.5
+  - rich=13.5.2
+  
+  # Cloud Integration
+  - boto3=1.28.36
+  - google-cloud-storage=2.10.0
+  
+  - pip:
+    # ML & GPU Support
+    - tensorflow-metal
+    
+    # Monitoring & Progress
+    - resource_monitor>=0.4
+    - py-cpuinfo>=9.0.0
+    - tqdm>=4.66.1
+    
+    # Analysis Tools
+    - mg-toolkit>=0.10.1
+    - ete3>=3.1.3
+    
+    # Visualization & Reporting
+    - dash>=2.13.0
+    - plotly-resampler>=0.9.1
+    
+    # Cloud & Distributed Computing
+    - dask-cloudprovider>=2023.9.0
+    - redis>=5.0.0
+    - python-redis-lock>=4.0.0

@@ -1,0 +1,35 @@
+{
+    "storage": {
+        "type": "local",
+        "local_path": "data/sra-cache",
+        "s3_bucket": "mycograph-xl-data",
+        "s3_prefix": "raw-data"
+    },
+    "validation": {
+        "required_metadata_fields": [
+            "collection_date",
+            "geo_loc_name",
+            "host",
+            "isolation_source",
+            "env_broad_scale",
+            "env_local_scale",
+            "env_medium",
+            "sequencing_method",
+            "investigation_type",
+            "target_gene"
+        ]
+    },
+    "processing": {
+        "chunk_size": 4096000,
+        "max_workers": 10,
+        "temp_dir": "/tmp/mycograph-validation"
+    },
+    "cloud_logging": false,
+    "criteria": {
+        "min_fungal_signal": 0.5,
+        "min_read_pairs": 5000000,
+        "min_metadata_completeness": 70.0,
+        "max_host_contamination": 10.0,
+        "min_base_quality": 20.0
+    }
+}

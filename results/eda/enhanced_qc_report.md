@@ -1,8 +1,8 @@
-# MycoGraph-XL Enhanced Quality Control Report
+# FungiMap Enhanced Quality Control Report
 
 ## Executive Summary
 
-This enhanced quality control report provides a comprehensive analysis of sequencing data quality, taxonomic composition, and metadata completeness for the MycoGraph-XL project samples. The analysis incorporates multiple quality metrics and advanced visualization techniques to ensure robust quality assessment.
+This enhanced quality control report provides a comprehensive analysis of sequencing data quality, taxonomic composition, and metadata completeness for the FungiMap predictor samples. The analysis incorporates multiple quality metrics and advanced visualization techniques to ensure robust quality assessment.
 
 ## Dataset Overview
 

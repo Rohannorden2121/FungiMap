@@ -1,0 +1,31 @@
+# FungiMap Pipeline Configuration
+
+# Output directory configuration
+output_dir: "results"
+
+# Resource limits
+max_threads: 8
+max_memory: "32G"
+
+# Tool configurations
+assembler: "metaspades"  # or "megahit"
+gene_predictor: "funannotate"  # or "augustus"
+
+# Quality control parameters
+min_read_length: 75
+min_quality_score: 20
+
+# Clustering parameters
+mmseqs_sensitivity: 7.5
+min_cluster_size: 3
+
+# Model parameters
+protein_embedder: "esm2_t33_650M_UR50D"
+
+# Paths
+paths:
+  kraken2_db: "data/kraken2-db/minikraken2_v2_8GB_201904_UPDATE"
+  human_db: "data/human-db"
+  reference_genomes: "data/reference_genomes"
+  results: "results"
+  temp: "/tmp/mycograph-xl"

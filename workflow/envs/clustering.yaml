@@ -1,0 +1,9 @@
+name: clustering
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - mmseqs2=14.7e284
+  - python=3.9
+  - biopython=1.81

@@ -1,0 +1,120 @@
+name: FungiMap Demo CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Miniconda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        auto-update-conda: true
+        auto-activate-base: false
+        
+    - name: Cache conda environment
+      uses: actions/cache@v3
+      with:
+        path: /usr/share/miniconda/envs/mycograph-xl-demo
+        key: ${{ runner.os }}-conda-${{ hashFiles('environment.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-conda-
+    
+    - name: Create conda environment
+      shell: bash -l {0}
+      run: |
+        conda env create -f environment.yml
+        
+    - name: Test environment activation
+      shell: bash -l {0}
+      run: |
+        conda activate mycograph-xl-demo
+        python --version
+        snakemake --version
+        fastqc --version
+        kraken2 --version
+        
+    - name: Run pipeline dry-run
+      shell: bash -l {0}
+      run: |
+        conda activate mycograph-xl-demo
+        snakemake --cores 2 demo_pipeline --dry-run
+        
+    - name: Test configuration parsing
+      shell: bash -l {0}
+      run: |
+        conda activate mycograph-xl-demo
+        python -c "
+        import yaml
+        with open('config/demo_config.yaml') as f:
+            config = yaml.safe_load(f)
+        print('Demo config loaded successfully')
+        print(f'Samples: {config[\"samples\"]}')
+        print(f'Max memory: {config[\"resources\"][\"max_memory_gb\"]}GB')
+        "
+        
+    - name: Check resource limits
+      shell: bash -l {0}
+      run: |
+        conda activate mycograph-xl-demo
+        python -c "
+        import psutil
+        import os
+        print(f'Available CPU cores: {psutil.cpu_count()}')
+        print(f'Available memory: {psutil.virtual_memory().total / (1024**3):.1f}GB')
+        print(f'MALLOC_ARENA_MAX: {os.getenv(\"MALLOC_ARENA_MAX\", \"not set\")}')
+        print(f'OMP_NUM_THREADS: {os.getenv(\"OMP_NUM_THREADS\", \"not set\")}')
+        "
+        
+    - name: Validate file structure
+      run: |
+        echo "Checking required files..."
+        test -f README_QUICKSTART.md && echo "✅ README_QUICKSTART.md" || echo "❌ README_QUICKSTART.md"
+        test -f environment.yml && echo "✅ environment.yml" || echo "❌ environment.yml"
+        test -f Dockerfile && echo "✅ Dockerfile" || echo "❌ Dockerfile"
+        test -f config/demo_config.yaml && echo "✅ demo_config.yaml" || echo "❌ demo_config.yaml"
+        test -d .github/workflows && echo "✅ CI workflows" || echo "❌ CI workflows"
+        
+    - name: Test Docker build (if not cached)
+      run: |
+        docker build -t mycograph-xl-demo:test .
+        echo "Docker build successful"
+        
+    - name: Quick Docker test
+      run: |
+        docker run --rm mycograph-xl-demo:test conda --version
+        echo "Docker container test successful"
+
+  lint-and-format:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+        
+    - name: Install linting tools
+      run: |
+        pip install flake8 black yamllint
+        
+    - name: Lint Python files
+      run: |
+        flake8 workflow/scripts/ --max-line-length=100 --ignore=E203,W503
+        
+    - name: Check Python formatting
+      run: |
+        black --check workflow/scripts/
+        
+    - name: Lint YAML files
+      run: |
+        yamllint config/ workflow/envs/ .github/workflows/

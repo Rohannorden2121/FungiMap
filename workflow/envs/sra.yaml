@@ -1,0 +1,9 @@
+name: sra
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - sra-tools=3.0.7
+  - pigz=2.6
+  - python=3.9

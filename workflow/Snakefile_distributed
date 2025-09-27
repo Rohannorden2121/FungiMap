@@ -1,0 +1,144 @@
+from snakemake.utils import min_version
+from snakemake.remote.S3 import RemoteProvider as S3RemoteProvider
+import json
+import os
+
+min_version("7.32.4")
+configfile: "config/pipeline_config.json"
+s3 = S3RemoteProvider()
+
+# Load compute environment configuration
+with open("config/compute_config.json") as f:
+    compute_config = json.load(f)
+
+def get_compute_env(wildcards, attempt, task_type):
+    """
+    Determine optimal compute environment based on task requirements.
+    Returns appropriate resource allocation and execution location.
+    """
+    resource_tiers = {
+        "light": {
+            "local": {"mem_mb": 6000, "threads": 4},
+            "cloud": {"instance": "t4g.xlarge", "threads": 4}
+        },
+        "medium": {
+            "local": {"mem_mb": 16000, "threads": 8},
+            "cloud": {"instance": "m6g.2xlarge", "threads": 8}
+        },
+        "heavy": {
+            "local": {"mem_mb": 32000, "threads": 16},
+            "cloud": {"instance": "m6g.4xlarge", "threads": 16}
+        },
+        "gpu": {
+            "local": {"mem_mb": 16000, "threads": 8, "gpu": 1},
+            "cloud": {"instance": "g5.xlarge", "threads": 8, "gpu": 1}
+        }
+    }
+
+    task_requirements = {
+        "qc": "light",
+        "kraken": "medium",
+        "assembly": "heavy",
+        "gene_prediction": "heavy",
+        "embedding": "gpu",
+        "clustering": "heavy"
+    }
+
+    tier = task_requirements.get(task_type, "medium")
+    env = "local" if resource_tiers[tier]["local"]["mem_mb"] <= 6000 else "cloud"
+    return resource_tiers[tier][env]
+
+# Stage 0: Sample Pre-filtering
+rule subsample_fastq:
+    input:
+        fastq="data/sra-cache/{sample}.fastq.gz"
+    output:
+        subsampled="results/subsamples/{sample}_500k.fastq.gz"
+    params:
+        nreads=500000
+    resources:
+        **get_compute_env(wildcards, attempt, "qc")
+    script:
+        "workflow/scripts/subsample_fastq.py"
+
+# Stage 1: Assembly and Gene Prediction
+rule metaspades:
+    input:
+        r1="results/filtered/{sample}_R1.fastq.gz",
+        r2="results/filtered/{sample}_R2.fastq.gz"
+    output:
+        assembly="results/assemblies/{sample}/contigs.fasta"
+    resources:
+        **get_compute_env(wildcards, attempt, "assembly")
+    container:
+        "docker://metaspades:latest"
+    script:
+        "workflow/scripts/run_metaspades.py"
+
+rule funannotate_predict:
+    input:
+        assembly="results/assemblies/{sample}/contigs.fasta"
+    output:
+        proteins="results/annotations/{sample}/predict_results/predicted_proteins.fa"
+    resources:
+        **get_compute_env(wildcards, attempt, "gene_prediction")
+    container:
+        "docker://funannotate:latest"
+    script:
+        "workflow/scripts/run_funannotate.py"
+
+# Stage 2: Protein Analysis
+rule mmseqs_clustering:
+    input:
+        expand("results/annotations/{sample}/predict_results/predicted_proteins.fa",
+               sample=config["samples"])
+    output:
+        clusters="results/clustering/mmseqs_clusters.tsv",
+        representatives="results/clustering/cluster_representatives.fasta"
+    resources:
+        **get_compute_env(wildcards, attempt, "clustering")
+    container:
+        "docker://mmseqs2:latest"
+    script:
+        "workflow/scripts/run_mmseqs.py"
+
+# Stage 3: Feature Extraction
+rule compute_embeddings:
+    input:
+        proteins="results/clustering/cluster_representatives.fasta"
+    output:
+        embeddings="results/embeddings/protein_embeddings.h5"
+    resources:
+        **get_compute_env(wildcards, attempt, "embedding")
+    container:
+        "docker://esm:latest"
+    script:
+        "workflow/scripts/compute_embeddings.py"
+
+# Stage 4: Model Training and Evaluation
+rule train_model:
+    input:
+        embeddings="results/embeddings/protein_embeddings.h5",
+        clusters="results/clustering/mmseqs_clusters.tsv"
+    output:
+        model="results/models/final_model.pkl",
+        evaluation="results/evaluation/model_metrics.json"
+    resources:
+        **get_compute_env(wildcards, attempt, "gpu")
+    script:
+        "workflow/scripts/train_model.py"
+
+# Workflow orchestration
+rule all:
+    input:
+        "results/models/final_model.pkl",
+        "results/evaluation/model_metrics.json"
+
+# Cloud job management
+rule prepare_cloud_batch:
+    input:
+        "results/evaluation/model_metrics.json"
+    output:
+        "cloud_batch/job_manifest.json"
+    script:
+        "workflow/scripts/prepare_cloud_batch.py"

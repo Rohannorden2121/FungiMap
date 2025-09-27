@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  pipeline:
+    build: .
+    image: mycograph-xl:latest
+    volumes:
+      - .:/mycograph
+      - ./data:/mycograph/data
+      - ./results:/mycograph/results
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["snakemake", "--cores", "all", "--use-conda"]
+
+  # Add support for distributed execution
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

@@ -1,6 +1,17 @@
 {
+    "pipeline": {
+        "version": "0.1.0",
+        "name": "FungiMap",
+        "project_display_name": "FungiMap",
+        "description": "Large-scale fungal metagenomic predictor pipeline"
+    },
+    
+    "terminology": {
+        "project": "predictor"
+    },
+    
     "sra_toolkit": {
-        "cache_dir": "/Users/rohannorden/My Code/mycology-project/data/sra-cache",
+        "cache_dir": "/Users/rohannorden/My Code/mycology-predictor/data/sra-cache",
         "subsample_size": 500000,
         "threads": 6,
         "fasterq_dump_options": {
@@ -9,10 +20,85 @@
             "skip-technical": true
         }
     },
+    
+    "storage": {
+        "local_path": "data/sra-cache",
+        "cloud": {
+            "enabled": false,
+            "provider": "aws",
+            "bucket": "mycograph-data",
+            "region": "us-west-2"
+        }
+    },
+    
+    "compute": {
+        "local": {
+            "max_cores": 8,
+            "max_memory": "16GB",
+            "temp_dir": "/tmp/mycograph"
+        },
+        "distributed": {
+            "enabled": false,
+            "redis_host": "localhost",
+            "redis_port": 6379,
+            "worker_nodes": 4
+        }
+    },
+    
+    "validation": {
+        "required_metadata_fields": [
+            "collection_date",
+            "geo_loc_name",
+            "host",
+            "isolation_source",
+            "env_broad_scale",
+            "env_local_scale",
+            "env_medium",
+            "sequencing_method",
+            "investigation_type",
+            "target_gene"
+        ],
+        "criteria": {
+            "min_metadata_completeness": 70.0,
+            "min_read_pairs": 1000000,
+            "min_fungal_signal": 10.0,
+            "max_host_contamination": 50.0
+        }
+    },
+    
+    "processing": {
+        "chunk_size": 1048576,
+        "compression_level": 5,
+        "streaming": {
+            "enabled": true,
+            "buffer_size": "512MB"
+        }
+    },
+    
     "kraken2": {
-        "db_path": "/Users/rohannorden/My Code/mycology-project/data/kraken2-db/minikraken2_v2_8GB",
+        "db_path": "/Users/rohannorden/My Code/mycology-predictor/data/kraken2-db/minikraken2_v2_8GB",
         "threads": 6,
         "confidence": 0.05,
-        "minimum_hit_groups": 2
+        "minimum_hit_groups": 2,
+        "min_base_quality": 20
+    },
+    
+    "qc": {
+        "min_length": 75,
+        "min_quality": 20,
+        "adapter_file": "config/adapters.fa"
+    },
+    
+    "assembly": {
+        "min_contig_length": 1000,
+        "threads": 8,
+        "memory": "32GB"
+    },
+    
+    "monitoring": {
+        "log_level": "INFO",
+        "resource_tracking": true,
+        "tracking_interval": 60,
+        "cloud_logging": false
     }
 }

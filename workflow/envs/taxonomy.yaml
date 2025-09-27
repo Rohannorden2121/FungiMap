@@ -1,0 +1,9 @@
+name: taxonomy
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - kraken2=2.1.2
+  - bracken=2.8
+  - python=3.9

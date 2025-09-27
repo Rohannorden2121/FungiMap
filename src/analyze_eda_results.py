@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Enhanced EDA Analysis Script for MycoGraph-XL
+Enhanced EDA Analysis Script for FungiMap
 This script analyzes FastQC, Kraken2, and MultiQC outputs to generate comprehensive QC reports.
 """
 
@@ -43,6 +43,59 @@ class EDAAnalyzer:
             'min_fungal_percent': 0.5,
             'max_human_percent': 5.0,
             'min_qc_pass_rate': 0.8
+        }
+
+    def calculate_metadata_completeness(self, data: pd.DataFrame) -> pd.Series:
+        """Calculate metadata completeness for each sample."""
+        required_fields = ['collection_date', 'geo_loc_name', 'host', 'isolation_source']
+        completeness = data[required_fields].notna().mean(axis=1) * 100
+        return pd.Series(completeness.values, index=data['accession'], name='metadata_completeness')
+
+    def analyze_fungal_content(self, data: pd.DataFrame) -> pd.Series:
+        """Analyze fungal content percentage."""
+        fungal_content = (data['fungal_reads'] / data['total_reads']) * 100
+        return pd.Series(fungal_content.values, index=data['accession'], name='fungal_content')
+
+    def filter_candidates(self, data: pd.DataFrame, criteria: Dict) -> pd.DataFrame:
+        """Filter samples based on defined criteria."""
+        mask = (
+            (data['metadata_completeness'] >= criteria['min_metadata_completeness']) &
+            (data['fungal_content'] >= criteria['min_fungal_signal']) &
+            (data['read_pairs'] >= criteria['min_read_pairs'])
+        )
+        return data[mask]
+
+    def estimate_resources(self, data: pd.DataFrame) -> Dict[str, float]:
+        """Estimate computational resources needed."""
+        total_reads = data['read_pairs'].sum() * 2  # Convert pairs to total reads
+        total_bases = total_reads * data['avg_read_length'].mean()
+        
+        # Rough estimates
+        storage_gb = total_bases / (1024 * 1024 * 1024)  # Assuming 1 byte per base
+        memory_gb = max(8, storage_gb * 0.5)  # At least 8GB, or 50% of storage
+        cpu_hours = total_reads / 1_000_000  # Rough estimate
+        
+        return {
+            'storage_gb': storage_gb,
+            'memory_gb': memory_gb,
+            'cpu_hours': cpu_hours
+        }
+
+    def generate_summary_report(self, data: pd.DataFrame) -> Dict:
+        """Generate summary report of EDA results."""
+        # Apply quality thresholds
+        passing_samples = data[
+            (data['metadata_completeness'] >= self.thresholds['min_reads']) &
+            (data['fungal_content'] >= self.thresholds['min_fungal_percent'])
+        ]
+        
+        return {
+            'total_samples': len(data),
+            'passing_samples': len(passing_samples),
+            'avg_metadata_completeness': data['metadata_completeness'].mean(),
+            'avg_fungal_content': data['fungal_content'].mean(),
+            'total_read_pairs': data['read_pairs'].sum(),
+            'avg_quality': data['avg_quality'].mean()
         }
     
     def _validate_directories(self) -> None:

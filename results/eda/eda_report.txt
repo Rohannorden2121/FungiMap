@@ -1,4 +1,4 @@
-# MycoGraph-XL EDA Quality Control Report
+# FungiMap EDA Quality Control Report
 ======================
 Generated: Tue Sep 23 22:21:02 EDT 2025
 

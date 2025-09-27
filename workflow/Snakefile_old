@@ -1,0 +1,217 @@
+"""
+MycoGraph-XL: Fungal community analysis pipeline
+Author: MycoGraph-XL Team
+Version: 0.1.0
+"""
+
+import pandas as pd
+from pathlib import Path
+import json
+
+# Load configurations
+configfile: "workflow/config.yaml"
+
+# Load validation config
+with open("config/validation_config.json") as f:
+    validation_config = json.load(f)
+
+# Load sample manifest
+manifest = pd.read_csv("workflow/manifest.csv")
+PILOT_SAMPLES = manifest[manifest['use_type'].str.contains('pilot')]['accession'].tolist()
+
+# Global parameters
+MIN_FUNGAL_SIGNAL = validation_config["criteria"]["min_fungal_signal"]
+RESULTS_DIR = Path(config["output_dir"])
+
+# Get samples from config or use pilot samples
+SAMPLES = config.get('samples', PILOT_SAMPLES)
+if isinstance(SAMPLES, str):
+    SAMPLES = SAMPLES.split(',')
+
+# Global wildcards
+wildcard_constraints:
+    sample = "|".join(SAMPLES)
+
+# Rule all - define concrete targets
+rule all:
+    input:
+        # Sample validation reports
+        expand(RESULTS_DIR / "eda" / "validation" / "{sample}_report.csv", sample=SAMPLES),
+        # Combined validation report
+        RESULTS_DIR / "eda" / "validation" / "combined_report.csv"
+
+# Stage 0: Pre-filtering and Validation
+rule validate_samples:
+    input:
+        fastq="data/raw/{sample}.fastq.gz",
+        kraken_report="results/eda/kraken2/{sample}_report.txt",
+        bracken_report="results/eda/bracken/{sample}_bracken.txt",
+        fastqc_zip="results/eda/fastqc/{sample}_fastqc.zip",
+        validation_config="config/validation_config.json"
+    output:
+        report=RESULTS_DIR / "eda" / "validation" / "{sample}_report.csv",
+        resources=RESULTS_DIR / "eda" / "validation" / "{sample}_resources.json"
+    conda:
+        "envs/validation.yaml"
+    resources:
+        mem_mb=lambda wildcards, attempt: 4000 * attempt
+    log:
+        RESULTS_DIR / "logs" / "validation" / "{sample}.log"
+    shell:
+        """
+        python workflow/scripts/sample_validator.py \
+            --fastq {input.fastq} \
+            --kraken-report {input.kraken_report} \
+            --bracken-report {input.bracken_report} \
+            --fastqc-zip {input.fastqc_zip} \
+            --config {input.validation_config} \
+            --output-report {output.report} \
+            --output-resources {output.resources} \
+            --log-file {log}
+        """
+
+rule combine_validation_reports:
+    input:
+        reports=expand(RESULTS_DIR / "eda" / "validation" / "{sample}_report.csv", sample=PILOT_SAMPLES)
+    output:
+        combined=RESULTS_DIR / "eda" / "validation" / "combined_report.csv"
+    run:
+        import pandas as pd
+        
+        # Combine all reports
+        reports = [pd.read_csv(report) for report in input.reports]
+        combined = pd.concat(reports, ignore_index=True)
+        
+        # Save combined report
+        combined.to_csv(output.combined, index=False)
+
+rule filter_samples:
+    input:
+        validation_report=RESULTS_DIR / "eda" / "validation" / "combined_report.csv"
+    output:
+        filtered_samples=RESULTS_DIR / "eda" / "validation" / "filtered_samples.txt"
+    run:
+        import pandas as pd
+        
+        # Read validation report
+        report = pd.read_csv(input.validation_report)
+        
+        # Filter samples based on criteria
+        passed_samples = report[
+            (report["fungal_signal"] >= MIN_FUNGAL_SIGNAL) &
+            (report["Status"] == "PASS")
+        ]["Accession"].tolist()
+        
+        # Write filtered samples
+        with open(output.filtered_samples, "w") as f:
+            for sample in passed_samples:
+                f.write(f"{sample}\n")
+
+rule download_sample:
+    output:
+        fastq = "data/raw/{sample}.fastq.gz"
+    params:
+        cmd = lambda wildcards: manifest[manifest['accession'] == wildcards.sample]['command'].iloc[0]
+    shell:
+        "{params.cmd}"
+
+rule qc_filter:
+    input:
+        "data/raw/{sample}.fastq.gz"
+    output:
+        "results/qc/{sample}_filtered.fastq.gz"
+    params:
+        min_length = config["min_read_length"],
+        min_quality = config["min_quality_score"]
+    threads: config["max_threads"]
+    conda:
+        "envs/qc.yaml"
+    shell:
+        """
+        fastp -i {input} -o {output} \
+            --length_required {params.min_length} \
+            --qualified_quality_phred {params.min_quality} \
+            --thread {threads}
+        """
+
+# Stage 1: Assembly & Gene Calling
+rule assemble:
+    input:
+        "results/qc/{sample}_filtered.fastq.gz"
+    output:
+        directory("results/assemblies/{sample}")
+    params:
+        memory = config["max_memory"],
+        assembler = config["assembler"]
+    threads: config["max_threads"]
+    conda:
+        "envs/assembly.yaml"
+    shell:
+        """
+        if [ "{params.assembler}" = "metaspades" ]; then
+            metaspades.py -s {input} -o {output} --memory {params.memory} -t {threads}
+        else
+            megahit -r {input} -o {output} -t {threads}
+        fi
+        """
+
+rule predict_genes:
+    input:
+        "results/assemblies/{sample}"
+    output:
+        proteins = "results/gene_predictions/{sample}/proteins.faa",
+        genes = "results/gene_predictions/{sample}/genes.gff"
+    params:
+        predictor = config["gene_predictor"]
+    conda:
+        "envs/annotation.yaml"
+    shell:
+        """
+        if [ "{params.predictor}" = "funannotate" ]; then
+            funannotate predict -i {input}/contigs.fasta -o {output.proteins} --cpus {threads}
+        else
+            augustus --species=fungus {input}/contigs.fasta > {output.genes}
+        fi
+        """
+
+# Stage 2: Protein Clustering
+rule cluster_proteins:
+    input:
+        expand("results/gene_predictions/{sample}/proteins.faa", sample=PILOT_SAMPLES)
+    output:
+        clusters = "results/protein_clusters/clusters.tsv",
+        representatives = "results/protein_clusters/representatives.faa"
+    params:
+        sensitivity = config["mmseqs_sensitivity"],
+        min_size = config["min_cluster_size"]
+    conda:
+        "envs/clustering.yaml"
+    shell:
+        """
+        mmseqs easy-cluster {input} {output.clusters} tmp/ \
+            --min-seq-id {params.sensitivity} \
+            -c {params.min_size} \
+            --cov-mode 0
+        """
+
+# Stage 3: Feature Extraction
+rule compute_embeddings:
+    input:
+        "results/protein_clusters/representatives.faa"
+    output:
+        "results/embeddings/esm_embeddings.h5"
+    params:
+        model = config["protein_embedder"]
+    conda:
+        "envs/ml.yaml"
+    shell:
+        "python scripts/compute_embeddings.py --input {input} --output {output} --model {params.model}"
+
+# Target rules
+rule pilot_all:
+    input:
+        validation=RESULTS_DIR / "eda" / "validation" / "combined_report.csv",
+        filtered=RESULTS_DIR / "eda" / "validation" / "filtered_samples.txt",
+        embeddings="results/embeddings/esm_embeddings.h5",
+        clusters="results/protein_clusters/clusters.tsv",
+        proteins=expand("results/gene_predictions/{sample}/proteins.faa", sample=PILOT_SAMPLES)
