@@ -1,0 +1,6 @@
+*.fastq filter=lfs diff=lfs merge=lfs -text
+*.fastq.gz filter=lfs diff=lfs merge=lfs -text
+*.sra filter=lfs diff=lfs merge=lfs -text
+*.tgz filter=lfs diff=lfs merge=lfs -text
+*.k2d filter=lfs diff=lfs merge=lfs -text
+*output.txt filter=lfs diff=lfs merge=lfs -text

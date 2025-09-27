@@ -1,0 +1,127 @@
+"""
+MycoGraph-XL: Fungal community analysis pipeline
+Author: MycoGraph-XL Team
+Version: 0.1.0
+"""
+
+import pandas as pd
+from pathlib import Path
+
+# Load configuration
+configfile: "workflow/config.yaml"
+
+# Load sample manifest
+manifest = pd.read_csv("workflow/manifest.csv")
+PILOT_SAMPLES = manifest[manifest['use_type'].str.contains('pilot')]['accession'].tolist()
+
+# Global wildcards
+wildcard_constraints:
+    sample = "|".join(PILOT_SAMPLES)
+
+# Stage 0: Pre-filtering
+rule download_sample:
+    output:
+        fastq = "data/raw/{sample}.fastq.gz"
+    params:
+        cmd = lambda wildcards: manifest[manifest['accession'] == wildcards.sample]['command'].iloc[0]
+    shell:
+        "{params.cmd}"
+
+rule qc_filter:
+    input:
+        "data/raw/{sample}.fastq.gz"
+    output:
+        "results/qc/{sample}_filtered.fastq.gz"
+    params:
+        min_length = config["min_read_length"],
+        min_quality = config["min_quality_score"]
+    threads: config["max_threads"]
+    conda:
+        "envs/qc.yaml"
+    shell:
+        """
+        fastp -i {input} -o {output} \
+            --length_required {params.min_length} \
+            --qualified_quality_phred {params.min_quality} \
+            --thread {threads}
+        """
+
+# Stage 1: Assembly & Gene Calling
+rule assemble:
+    input:
+        "results/qc/{sample}_filtered.fastq.gz"
+    output:
+        directory("results/assemblies/{sample}")
+    params:
+        memory = config["max_memory"],
+        assembler = config["assembler"]
+    threads: config["max_threads"]
+    conda:
+        "envs/assembly.yaml"
+    shell:
+        """
+        if [ "{params.assembler}" = "metaspades" ]; then
+            metaspades.py -s {input} -o {output} --memory {params.memory} -t {threads}
+        else
+            megahit -r {input} -o {output} -t {threads}
+        fi
+        """
+
+rule predict_genes:
+    input:
+        "results/assemblies/{sample}"
+    output:
+        proteins = "results/gene_predictions/{sample}/proteins.faa",
+        genes = "results/gene_predictions/{sample}/genes.gff"
+    params:
+        predictor = config["gene_predictor"]
+    conda:
+        "envs/annotation.yaml"
+    shell:
+        """
+        if [ "{params.predictor}" = "funannotate" ]; then
+            funannotate predict -i {input}/contigs.fasta -o {output.proteins} --cpus {threads}
+        else
+            augustus --species=fungus {input}/contigs.fasta > {output.genes}
+        fi
+        """
+
+# Stage 2: Protein Clustering
+rule cluster_proteins:
+    input:
+        expand("results/gene_predictions/{sample}/proteins.faa", sample=PILOT_SAMPLES)
+    output:
+        clusters = "results/protein_clusters/clusters.tsv",
+        representatives = "results/protein_clusters/representatives.faa"
+    params:
+        sensitivity = config["mmseqs_sensitivity"],
+        min_size = config["min_cluster_size"]
+    conda:
+        "envs/clustering.yaml"
+    shell:
+        """
+        mmseqs easy-cluster {input} {output.clusters} tmp/ \
+            --min-seq-id {params.sensitivity} \
+            -c {params.min_size} \
+            --cov-mode 0
+        """
+
+# Stage 3: Feature Extraction
+rule compute_embeddings:
+    input:
+        "results/protein_clusters/representatives.faa"
+    output:
+        "results/embeddings/esm_embeddings.h5"
+    params:
+        model = config["protein_embedder"]
+    conda:
+        "envs/ml.yaml"
+    shell:
+        "python scripts/compute_embeddings.py --input {input} --output {output} --model {params.model}"
+
+# Target rules
+rule pilot_all:
+    input:
+        "results/embeddings/esm_embeddings.h5",
+        "results/protein_clusters/clusters.tsv",
+        expand("results/gene_predictions/{sample}/proteins.faa", sample=PILOT_SAMPLES)
