@@ -1,0 +1,41 @@
+# YAML 1.2
+---
+cff-version: "1.2.0"
+title: "FungiMap: Comprehensive Fungal Metagenomics Analysis Pipeline"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "FungiMap Development Team"
+    affiliation: "Academic Research Collaboration"
+repository-code: "https://github.com/[repository-url]"
+url: "https://github.com/[repository-url]"
+abstract: >
+  FungiMap is a comprehensive computational pipeline for fungal metagenomics
+  analysis, featuring quality control, taxonomic profiling, metagenomic assembly,
+  gene prediction, and machine learning-based classification. Optimized for both
+  local demonstration and high-performance computing environments.
+keywords:
+  - "fungal metagenomics"
+  - "mycology"
+  - "bioinformatics"
+  - "taxonomic profiling"
+  - "quality control"
+  - "pipeline"
+  - "HPC"
+license: "MIT"
+version: "0.1-demo"
+date-released: "2025-09-28"
+preferred-citation:
+  type: software
+  title: "FungiMap: Comprehensive Fungal Metagenomics Analysis Pipeline"
+  authors:
+    - family-names: "FungiMap Development Team"
+      affiliation: "Academic Research Collaboration"
+  version: "0.1-demo"
+  date-released: "2025-09-28"
+  repository-code: "https://github.com/[repository-url]"
+  license: "MIT"
+  abstract: >
+    A demonstration release of FungiMap featuring M1 Mac compatible quality control,
+    taxonomic profiling, and educational workflows for mycological genomics research.
+    Includes comprehensive HPC deployment scripts and academic collaboration tools.

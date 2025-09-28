@@ -160,10 +160,15 @@ This predictor is licensed under the Apache License 2.0 - see LICENSE for detail
 If you use FungiMap in your research, please cite:
 
 ```bibtex
-@software{fungimap,
-  title={FungiMap: Large-scale fungal metagenomics analysis predictor},
-  url={https://github.com/rohannorden/fungimap},
-  author={FungiMap Team},
+@software{fungimap2025,
+  title = {FungiMap: Comprehensive Fungal Metagenomics Analysis Pipeline},
+  author = {{FungiMap Development Team}},
+  year = {2025},
+  version = {0.1-demo},
+  url = {https://github.com/[repository-url]},
+  doi = {[DOI pending Zenodo publication]},
+  note = {M1 Mac compatible demo with HPC deployment scripts}
+}
 ```
 
 ## Support
