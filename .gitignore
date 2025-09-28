@@ -206,21 +206,61 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Project-specific large files
+# Project-specific large files and caches
 # Database files
 data/kraken2-db/
 data/human-db/
+data/reference_genomes/
+data/raw/
 
 # Sequencing data
 data/sra-cache/
 *.fastq
 *.fastq.gz
+*.fasta
+*.fasta.gz
 *.sra
+*.sam
+*.bam
+*.cram
 
-# Other large files
+# Archives and compressed files
 *.tgz
 *.tar.gz
+*.zip
+*.7z
+*.rar
 
-# Results
+# Large results and outputs
+results/assemblies/
+results/gene_predictions/
+results/protein_clusters/
+results/embeddings/
+results/models/
 results/eda/fastqc/*.zip
 results/eda/fastqc/*.html
+results/eda/kraken2/*.txt
+results/eda/multiqc_report_data/
+
+# Workflow artifacts
+.snakemake/
+logs/
+checkpoints/
+benchmarks/
+
+# Environment files
+.conda/
+.mamba/
+conda-meta/
+
+# Temporary and cache directories
+tmp/
+temp/
+.cache/
+.tmp/
+*.tmp
+*.temp
+
+# Docker artifacts
+.dockerignore
+*.dockerignore

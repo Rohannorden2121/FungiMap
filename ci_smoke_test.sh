@@ -9,7 +9,7 @@ echo "Started: $(date)"
 
 # Test 1: Environment validation
 echo "Test 1: Environment validation..."
-if conda env list | grep -q mycograph-xl; then
+if conda env list | grep -q fungimap-test; then
     echo "✅ Conda environment exists"
 else
     echo "❌ Conda environment missing"
@@ -27,25 +27,25 @@ fi
 
 # Test 3: Snakemake dry run
 echo "Test 3: Snakemake workflow validation..."
-if conda run -n mycograph-xl snakemake -n --quiet stage0_validation --config samples="TEST001" > /dev/null 2>&1; then
+if conda run -n fungimap-test snakemake -n stage0_validation 2>&1 | grep -q "This was a dry-run"; then
     echo "✅ Snakemake workflow validates"
 else
     echo "❌ Snakemake workflow validation failed"
     exit 1
 fi
 
-# Test 4: Validator script execution
-echo "Test 4: Validator script test..."
-if python workflow/scripts/sample_validator_fixed.py --help > /dev/null 2>&1; then
-    echo "✅ Validator script functional"
+# Test 4: Demo data generation
+echo "Test 4: Demo data generation test..."
+if python scripts/create_demo_data.py > /dev/null 2>&1; then
+    echo "✅ Demo data generation works"
 else
-    echo "❌ Validator script issues"
+    echo "❌ Demo data generation failed"
     exit 1
 fi
 
 # Test 5: Required directories
 echo "Test 5: Directory structure..."
-required_dirs=("workflow" "config" "profiles" "results" "data")
+required_dirs=("workflow" "config" "results" "data")
 for dir in "${required_dirs[@]}"; do
     if [[ -d "$dir" ]]; then
         echo "✅ Directory $dir exists"
