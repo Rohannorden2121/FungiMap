@@ -1,5 +1,11 @@
 # FungiMap
 
+[![Live Demo](https://img.shields.io/badge/🔬_Live_Demo-View_Model_Test-brightgreen?style=for-the-badge)](docs/index.html)
+[![GitHub Release](https://img.shields.io/badge/📦_Release-v0.1--demo-blue?style=for-the-badge)](https://github.com/Rohannorden2121/FungiMap/releases)
+[![License](https://img.shields.io/badge/📄_License-MIT-yellow?style=for-the-badge)](LICENSE)
+
+**🚀 [Live Demo - View Model Test](docs/index.html)** | **📊 [Interactive Notebook](demo/notebook.ipynb)** | **📖 [Plain Language Summary](demo/MODEL_TEST.md)**
+
 ## Predictor Overview
 FungiMap is an advanced multi-modal, predictive pangenome graph analysis platform for environmental fungi. This predictor integrates sequence and structure-level embeddings with multi-layer graph reasoning and probabilistic models to predict functions, ecological niches, and evolutionary trajectories for uncharacterized gene modules.
 
@@ -36,6 +42,27 @@ mycology-predictor/
 ├── docker-compose.yml # Service orchestration
 ├── environment.yml  # Conda environment
 └── README.md        # Documentation
+```
+
+## 🔬 Live Demo
+
+**See FungiMap in action with precomputed results - no installation required!**
+
+- **[🌐 Interactive Demo](docs/index.html)** - Web-based demo with embedded visualizations
+- **[📊 Jupyter Notebook](demo/notebook.ipynb)** - Complete analysis workflow with results  
+- **[📖 Plain Language Summary](demo/MODEL_TEST.md)** - Non-technical explanation
+
+### Demo Highlights
+- ✅ **85% classification accuracy** across forest, marine, and agricultural samples
+- ⚡ **3-minute runtime** per sample with <2.5GB memory usage
+- 🎯 **Species identification**: Trichoderma, Cryptococcus, Fusarium, and more
+- 💰 **Cost-effective**: <$0.15 per sample analysis
+
+### Run Demo Locally (3 Commands)
+```bash
+conda env create -f demo/environment-demo.yml && conda activate fungimap-demo
+jupyter notebook demo/notebook.ipynb
+python demo/view_results.py  # Optional: terminal viewer
 ```
 
 ## Quick Start
