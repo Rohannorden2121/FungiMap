@@ -18,12 +18,29 @@ This package contains the complete FungiMap mycological genomics analysis pipeli
 
 ### Core Pipeline Components
 ```
-├── README.md                          # Primary project documentation
+├── README.md                          # Primary project documentation (with demo links)
 ├── README_QUICKSTART.md               # Quick start guide for demo
 ├── environment.yml                    # M1 Mac compatible conda environment
 ├── Dockerfile                         # Demo containerization
 ├── .github/workflows/ci.yml          # CI/CD pipeline
 └── checksums.sha256                   # File integrity verification
+```
+
+### 🔬 Interactive Demo Components (NEW)
+```
+├── demo/                              # Live model test demonstration
+│   ├── notebook.ipynb                 # Interactive Jupyter notebook with embedded outputs
+│   ├── MODEL_TEST.md                  # Plain-language explanation for non-technical reviewers
+│   ├── README.md                      # 3-command reproduction instructions
+│   ├── environment-demo.yml           # Lightweight demo environment
+│   ├── view_results.py                # Terminal results viewer
+│   └── data/                          # Precomputed demo results (<2KB total)
+│       ├── sample_metadata.csv        # Input sample information
+│       ├── analysis_results.csv       # Model classification outputs
+│       ├── taxonomic_profile.csv      # Species abundance data
+│       └── pipeline_metrics.csv       # Performance and quality metrics
+├── docs/
+│   └── index.html                     # Demo landing page with visualizations
 ```
 
 ### Configuration Files
