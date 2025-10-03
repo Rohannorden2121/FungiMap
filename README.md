@@ -22,27 +22,27 @@
 
 ### Non-Technical Summary
 
-FungiMap is a computational tool that identifies fungal species in environmental samples such as soil, water, and plant material. The software analyzes DNA sequencing data to determine which fungi are present in a sample and their relative abundance. This approach represents a significant advancement over traditional methods, which require specialized laboratory facilities, expensive equipment, and weeks of processing time.
+FungiMap is a computational tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). This software analyzes DNA sequencing data to determine which fungi are present in a sample and their relative abundance. This approach is a significant advancement from traditional methods, which require specialized laboratory facilities, expensive equipment, and a significant amount of time for processing.
 
-The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their physical characteristics under microscopes, and conducting biochemical tests. This approach is labor-intensive, requires expert taxonomists, and costs between $50 and $200 per sample. Many environmental fungi cannot be cultured in laboratory conditions, making traditional identification incomplete or impossible.
+The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their physical characteristics under microscopes, and doing biochemical tests. This approach is labor-intensive, requires expert taxonomists, and costs around $50 and $200 per sample. Many environmental fungi cannot be cultured in laboratory conditions, and this makes traditional identification incomplete or impossible.
 
-FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. The software compares these sequences against a comprehensive database of known fungal species, providing accurate identification within minutes. This approach can identify both culturable and non-culturable fungi, offering a more complete picture of fungal diversity in environmental samples.
+The predictor FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. The software compares these sequences against a database of known fungal species and provides accurate identification within minutes. This approach can identify both culturable and non-culturable fungi, which offers a more complete picture of fungal diversity in environmental samples.
 
-The practical applications of this technology are extensive. Agricultural researchers can use FungiMap to monitor soil health and detect plant pathogens before they cause visible damage to crops. Environmental scientists can assess ecosystem health by tracking changes in fungal communities over time. Marine biologists can explore fungal diversity in ocean environments, which has been historically understudied due to technical limitations.
+The practical applications of this technology are very extensive. Agricultural researchers can use FungiMap to monitor soil health and detect plant pathogens before they cause visible damage to crops. Environmental scientists can assess ecosystem health by tracking changes in fungal communities over time. Marine biologists can explore fungal diversity in ocean environments, which has been understudied in the past due to technical limitations.
 
 ### Technical Overview
 
-FungiMap implements a bioinformatics pipeline that processes raw DNA sequencing data through a series of quality control, classification, and analysis steps. The core methodology combines established tools from the bioinformatics community with optimizations specific to fungal identification in environmental samples.
+FungiMap implements a bioinformatics pipeline that processes raw DNA sequencing data through a series of quality control, classification, and analysis steps. The core methodology combines established tools from the bioinformatics community with optimizations that are specific to fungal identification in environmental samples.
 
-The pipeline begins with quality assessment of raw sequencing reads using FastQC, followed by adapter trimming and quality filtering to remove low-quality sequences that could compromise downstream analysis. The cleaned sequences are then processed through Kraken2, a taxonomic classification tool that uses k-mer matching against a custom-curated fungal reference database. This database includes sequences from NCBI GenBank as well as specialized fungal collections, providing comprehensive coverage of environmental fungal diversity.
+The pipeline begins with quality assessment of raw sequencing reads using FastQC that is followed by adapter trimming and quality filtering to remove low-quality sequences that could compromise downstream analysis. The cleaned sequences are then processed through Kraken2, which is a taxonomic classification tool that uses k-mer matching against a custom-curated fungal reference database. This database includes sequences from NCBI GenBank and specialized fungal collections, which provides comprehensive coverage of environmental fungal diversity.
 
-Species abundance estimation is performed using Bracken, which corrects for biases inherent in the k-mer classification approach and provides statistically robust abundance estimates. The pipeline includes multiple quality control checkpoints to identify potential contamination, assess sequencing depth adequacy, and validate classification confidence scores.
+Species abundance estimation is performed by Bracken, which corrects for biases in the k-mer classification approach and provides reliable abundance estimates. The pipeline includes many quality control checkpoints to identify any contamination, assess sequencing depth adequacy, and get classification confidence scores.
 
-The software architecture is built around Snakemake, a workflow management system that handles job scheduling, dependency resolution, and parallelization. This design enables scalable execution from single-core laptop computers to high-performance computing clusters with hundreds of cores. All components are containerized using Docker and Singularity, ensuring reproducible execution across different computing environments.
+The software architecture is built around Snakemake, which is a workflow management system. This design enables scalable execution from low resource laptop computers to high-performance computing groups with hundreds of cores. All components are containerized using Docker and Singularity, which ensures reproducible execution across different (resource level) computing environments.
 
-Resource optimization is a key technical achievement of FungiMap. Traditional metagenomics tools often require 32GB or more of RAM and specialized high-memory servers. Through algorithmic optimizations and efficient data structures, FungiMap reduces memory requirements to 2GB for demonstration purposes and 16GB for production workflows, making the analysis accessible on standard hardware.
+Resource optimization is an important technical achievement of FungiMap. Traditional metagenomics tools often require 32GB or more of RAM and specialized high-memory servers. Through algorithmic optimizations and very efficient data structures, FungiMap reduces memory requirements to a mere 2GB for demonstration purposes and 16GB for production workflows. This makes the analysis accessible on more basic types of hardware.
 
-The pipeline incorporates comprehensive error handling and logging to facilitate troubleshooting and ensure reproducible results. All intermediate files are preserved with checksums for validation, and the complete analysis environment is captured in version-controlled configuration files.
+The pipeline incorporates comprehensive error handling and logging to make troubleshooting easier and ensure reproducible results. All intermediate files are preserved with checksums for validation, and the complete analysis environment is placed in configuration files.
 
 ## Performance Metrics and Validation
 
@@ -307,3 +307,5 @@ Phase 1 implementation targets regional environmental monitoring networks proces
 ---
 
 **Getting Started**: Begin with the [interactive demo](docs/index.html) or explore the [complete technical documentation](docs/) for detailed implementation information.
+
+*Last updated: October 3, 2025*
