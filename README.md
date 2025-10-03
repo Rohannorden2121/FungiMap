@@ -2,9 +2,22 @@
 
 <div align="center">
 
-> **Revolutionary AI pipeline for rapid fungal species identification in environmental DNA samples**
+> **Automated pipeline for fungal species identification in ## Academic Information and Reproducibil### **Pipeline Architecture Overview**
+```
+FungiMap Bioinformatics Pipeline:
+├── data/                    # Database management and sample caching
+│   ├── kraken2-db/            # Taxonomic classification database (8GB)
+│   ├── reference_genomes/     # Curated fungal reference sequences
+│   └── sra-cache/            # Automated SRA sample retrieval
+├── workflow/               # Snakemake workflow management
+│   ├── Snakefile             # Main pipeline definition (500+ lines)
+│   ├── scripts/              # Custom analysis scripts (Python/R)
+│   └── rules/                # Modular workflow components
+├── config/                 # Configuration management
+│   ├── pipeline_config.json  # Runtime parameters and resource allocation
+│   └── validation_config.json # Quality control thresholdsation Information**ironmental DNA samples**
 > 
-> *Transforming weeks of expensive laboratory analysis into minutes of accessible computation*
+> *Reduces weeks of laboratory analysis to minutes of computational processing*
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9+-brightgreen.svg)](https://python.org)
@@ -20,54 +33,50 @@
 
 ## 📖 For Non-Technical Readers
 
-### 🎯 **What This Project Does** *(Simple Explanation)*
-FungiMap is like having a microscopic detective that can instantly identify different types of fungi (mushrooms, yeasts, molds) in soil, water, or plant samples. Instead of sending samples to expensive laboratories and waiting weeks for results, researchers can now get answers in just 4 minutes using a regular laptop.
+### **What This Project Does**
+FungiMap identifies different types of fungi in environmental samples using DNA sequencing data. Traditional laboratory identification takes weeks and costs hundreds of dollars per sample. This software processes the same data in minutes on a standard computer.
 
-### 🌟 **Why This Matters** *(Global Significance)*
-Fungi are everywhere and critically important—they help plants grow, decompose organic matter, can cause crop diseases, and some produce life-saving medicines. Until now, identifying which fungi are present in environmental samples required expensive equipment ($50,000+ machines) and expert technicians. FungiMap democratizes this capability, making it accessible to:
-- **Farmers** monitoring crop health in developing countries
-- **Environmental scientists** tracking ecosystem changes
-- **Researchers** studying biodiversity on limited budgets
-- **Students** learning bioinformatics and environmental science
+### **Why This Matters**
+Fungi play essential roles in ecosystems and agriculture. They help plants grow, decompose organic matter, cause crop diseases, and produce pharmaceuticals. Traditional fungal identification requires expensive laboratory equipment and specialized training. This software makes fungal identification accessible to researchers with limited resources, enabling broader ecological and agricultural research.
 
-### 💡 **The Innovation**
-We reduced analysis costs from **$50+ per sample** to **$0.15 per sample** while maintaining research-grade accuracy (85% success rate). This 300x cost reduction makes fungal identification accessible globally.
+### **The Innovation**
+This approach reduces analysis costs from $50+ per sample to $0.15 per sample while maintaining 85% accuracy. The 300x cost reduction makes routine fungal identification feasible for resource-limited research.
 
 ---
 
-## 🚀 Technical Overview & Performance
+## Technical Overview and Performance
 
 ### 📊 **Performance Metrics & Validation Results**
 
-| **Metric** | **Result** | **Benchmark Comparison** | **Significance** |
+| **Metric** | **Result** | **Benchmark Comparison** | **Notes** |
 |------------|------------|-------------------------|------------------|
-| **Classification Accuracy** | **85.3%** | Industry standard: 70-80% | Research-grade reliability for environmental samples |
-| **Processing Speed** | **3.2 min/sample** | Traditional: 2-4 weeks | **1000x faster** than conventional morphological ID |
-| **Cost per Sample** | **$0.15** | Laboratory: $50-200 | **300x cost reduction** enabling routine monitoring |
-| **Memory Requirements** | **2GB RAM** | Commercial tools: 32GB+ | Accessible on standard laptops |
-| **Species Coverage** | **7+ fungal taxa** | Focus on ecologically relevant species | Comprehensive environmental profiling |
-| **Environment Validation** | **3 ecosystem types** | Forest, marine, agricultural soils | Broad applicability demonstrated |
+| **Classification Accuracy** | 85.3% | Industry standard: 70-80% | Validated on environmental samples |
+| **Processing Speed** | 3.2 min/sample | Traditional: 2-4 weeks | 1000x improvement over morphological methods |
+| **Cost per Sample** | $0.15 | Laboratory: $50-200 | Includes compute and database costs |
+| **Memory Requirements** | 2GB RAM | Commercial tools: 32GB+ | Runs on standard hardware |
+| **Species Coverage** | 7+ fungal taxa | Ecologically relevant species | Environmental profiling focus |
+| **Environment Validation** | 3 ecosystem types | Forest, marine, agricultural soils | Tested across diverse conditions |
 
-### 🔬 **Scientific Discoveries & Ecological Insights**
+### **Validation Results**
 
 **Forest Ecosystem Analysis:**
-- **Dominant Species**: *Trichoderma spp.* (beneficial plant symbionts)
-- **Ecological Role**: Plant pathogen biocontrol and root health promotion
-- **Abundance**: 45% of classified reads in temperate forest soils
+- Dominant species: *Trichoderma spp.* (plant-associated fungi)
+- Function: Biocontrol agents and plant growth promoters
+- Relative abundance: 45% of classified reads in temperate forest soils
 
-**Marine Environment Profiling:**
-- **Key Finding**: *Cryptococcus* yeasts prevalent in marine sediments
-- **Significance**: Previously underestimated marine fungal diversity
-- **Abundance**: 38% of marine fungal communities
+**Marine Environment Analysis:**
+- Prevalent taxa: *Cryptococcus* yeasts in marine sediments
+- Finding: Higher marine fungal diversity than previously documented
+- Relative abundance: 38% of marine fungal sequences
 
-**Agricultural Soil Monitoring:**
-- **Disease Indicator**: *Fusarium* species detection (crop pathogen)
-- **Management Impact**: Early detection enables preventive treatment
-- **Economic Value**: Potential crop loss prevention worth $1000+/hectare
+**Agricultural Soil Analysis:**
+- Pathogen detection: *Fusarium* species (crop disease agents)
+- Application: Early detection for disease management
+- Economic relevance: Crop loss prevention through timely intervention
 
 ---
 
-## 🧭 **Repository Navigation Guide**
+## Repository Navigation
 
 <table>
 <tr>
@@ -116,9 +125,9 @@ We reduced analysis costs from **$50+ per sample** to **$0.15 per sample** while
 
 ---
 
-## ⚡ **Quick Start Guide**
+## Quick Start Guide
 
-### **🚀 Try the Demo (3 Commands, 3 Minutes)**
+### **Demo Installation**
 
 ```bash
 # 1. Create lightweight demo environment (no GPU/HPC required)
@@ -131,12 +140,12 @@ jupyter notebook demo/notebook.ipynb
 python demo/view_results.py
 ```
 
-**💻 System Requirements**: Standard laptop • 2GB RAM • 5 minutes total setup time
+**System Requirements**: 2GB RAM, standard laptop hardware
 
-### **🔬 Alternative Access Methods**
-- **Browser-Only**: View [embedded demo results](docs/index.html) with no installation
-- **GitHub Preview**: Browse the [demo notebook](demo/notebook.ipynb) directly on GitHub
-- **Docker**: `docker run -p 8888:8888 fungimap/demo` (if Docker preferred)
+### **Alternative Access Methods**
+- View pre-computed results: [embedded demo](docs/index.html)
+- Browse analysis workflow: [demo notebook](demo/notebook.ipynb) on GitHub
+- Docker deployment: `docker run -p 8888:8888 fungimap/demo`
 
 ---
 
@@ -153,30 +162,30 @@ python demo/view_results.py
 }
 ```
 
-### **🔄 Reproducibility Guarantee**
-- **Complete Environment**: Locked dependencies with `environment.yml` and `environment-demo.yml`
-- **Container Support**: Full Docker and Singularity compatibility for system-independent execution
-- **Checksum Verification**: SHA-256 hashes for all critical files in [DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)
-- **Version Control**: Tagged releases with semantic versioning for exact reproduction
-- **Test Coverage**: 95% code coverage with automated CI/CD validation
+### **Reproducibility**
+- Complete environment specifications in `environment.yml` and `environment-demo.yml`
+- Docker and Singularity container support for system-independent execution
+- SHA-256 checksums for all critical files in [DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)
+- Tagged releases with semantic versioning
+- Automated testing with continuous integration
 
-### **👥 Authors & Collaboration**
+### **Authors and Collaboration**
 **Lead Development**: FungiMap Research Team  
 **Contributors**: See [AUTHORS.md](AUTHORS.md) for complete attribution  
 **Community**: Contributions welcome - see [CONTRIBUTING.md](CONTRIBUTING.md)  
-**Contact**: GitHub Issues for questions, collaborations, and feature requests
+**Contact**: GitHub Issues for questions and collaboration requests
 
-### **📄 Open Source Commitment**
-- **License**: [MIT License](LICENSE) - unrestricted academic and commercial use
-- **Ethics**: [Code of Conduct](CODE_OF_CONDUCT.md) ensuring inclusive scientific collaboration
-- **Transparency**: Complete source code, documentation, and validation data publicly available
+### **Open Source License**
+- **License**: [MIT License](LICENSE) for academic and commercial use
+- **Code of Conduct**: [Community guidelines](CODE_OF_CONDUCT.md) for collaboration
+- **Transparency**: Complete source code, documentation, and data publicly available
 
 ---
 
-## 🔧 **Advanced Technical Documentation**
+## Advanced Technical Documentation
 
 <details>
-<summary><strong>🏗️ System Architecture & Implementation Details</strong></summary>
+<summary><strong>System Architecture and Implementation Details</strong></summary>
 
 ### **🧬 Pipeline Architecture Overview**
 ```
@@ -206,10 +215,10 @@ FungiMap Bioinformatics Pipeline:
     └── data/                # Test datasets and expected outputs
 ```
 
-### **🔬 Core Algorithm Implementation**
-- **Taxonomic Classification**: Kraken2-based k-mer matching with custom fungal database
+### **Core Algorithm Implementation**
+- **Taxonomic Classification**: Kraken2 k-mer matching with custom fungal database
 - **Quality Filtering**: Multi-stage read quality assessment and contamination removal  
-- **Species Abundance**: Bracken-based abundance estimation with statistical validation
+- **Species Abundance**: Bracken abundance estimation with statistical validation
 - **Machine Learning**: Random Forest classifier for ambiguous taxonomic assignments
 - **Visualization**: Automated report generation with interactive HTML dashboards</details>
 

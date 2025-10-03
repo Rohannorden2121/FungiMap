@@ -1,27 +1,27 @@
-# FungiMap Demo - 3-Command Reproduction
+# FungiMap Demo
 
-## Quick Start (No Heavy Compute)
+## Quick Start
 
-These commands allow you to reproduce the demo locally using precomputed outputs:
+Run the demo locally using precomputed results:
 
 ```bash
-# 1. Set up minimal demo environment
+# 1. Set up demo environment
 conda env create -f demo/environment-demo.yml && conda activate fungimap-demo
 
-# 2. Launch interactive demo notebook  
+# 2. Launch demo notebook  
 jupyter notebook demo/notebook.ipynb
 
-# 3. Run lightweight output viewer (optional)
+# 3. View results summary (optional)
 python demo/view_results.py
 ```
 
-## What Each Command Does
+## Command Details
 
-**Command 1:** Creates a lightweight conda environment with only the packages needed for the demo (pandas, matplotlib, jupyter). No bioinformatics tools or large databases required.
+**Command 1:** Creates a conda environment with packages needed for the demo (pandas, matplotlib, jupyter). No bioinformatics tools or databases required.
 
-**Command 2:** Opens the demo notebook in Jupyter. The notebook contains all precomputed outputs and will display results immediately without needing to execute heavy computations.
+**Command 2:** Opens the demo notebook in Jupyter. The notebook contains precomputed outputs and displays results without executing computations.
 
-**Command 3:** (Optional) Runs a simple Python script that prints the demo results to the terminal for quick viewing without opening Jupyter.
+**Command 3:** (Optional) Prints demo results to the terminal for quick viewing without Jupyter.
 
 ## System Requirements
 
