@@ -12,7 +12,6 @@
 [![DOI](https://img.shields.io/badge/DOI-Pending-yellow.svg)](ZENODO_METADATA_DRAFT.md)
 
 ### **[VIEW LIVE DEMO](docs/index.html)** 
-*Interactive results • No installation required • Embedded visualizations*
 
 </div>
 
@@ -42,7 +41,7 @@ The software architecture is built around Snakemake, which is a workflow managem
 
 Resource optimization is an important technical achievement of FungiMap. Traditional metagenomics tools often require 32GB or more of RAM and specialized high-memory servers. Through algorithmic optimizations and very efficient data structures, FungiMap reduces memory requirements to a mere 2GB for demonstration purposes and 16GB for production workflows. This makes the analysis accessible on more basic types of hardware.
 
-The pipeline incorporates comprehensive error handling and logging to make troubleshooting easier and ensure reproducible results. All intermediate files are preserved with checksums for validation, and the complete analysis environment is placed in configuration files.
+The pipeline incorporates comprehensive error handling and logging to make troubleshooting easier and ensure reproducible results. All intermediate files are preserved with checksums for validation with the complete analysis environment is placed in configuration files.
 
 ## Performance Metrics and Validation
 
@@ -68,13 +67,13 @@ Marine sediment samples showed unexpected diversity in fungal communities, with 
 **Agricultural Soil Analysis**  
 Agricultural samples demonstrated the utility of FungiMap for pathogen detection, successfully identifying *Fusarium* species known to cause economically significant crop diseases. Early detection of these pathogens enables preventive management strategies that can prevent substantial crop losses. The ability to monitor pathogen levels in agricultural soils provides valuable information for integrated pest management programs.
 
-## Repository Navigation
+## Repository (helping people navigate it)
 
 <table>
 <tr>
 <td width="50%">
 
-### For Academic and Administrative Review
+### for Academic Review
 1. **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Executive summary and impact statement
 2. **[Live Demo](docs/index.html)** - Interactive results browser
 3. **[Demo Notebook](demo/notebook.ipynb)** - Complete analysis walkthrough
@@ -83,7 +82,7 @@ Agricultural samples demonstrated the utility of FungiMap for pathogen detection
 </td>
 <td width="50%">
 
-### For Technical and Scientific Review
+### Scientific Review
 1. **[DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md)** - Complete inventory and checksums
 2. **[workflow/Snakefile](workflow/Snakefile)** - Core pipeline implementation
 3. **[FUTURE_WORK.md](FUTURE_WORK.md)** - HPC scaling and development roadmap
@@ -95,16 +94,16 @@ Agricultural samples demonstrated the utility of FungiMap for pathogen detection
 
 ## Technical Achievements
 
-### Methodological Innovations
+### Methodological
 The FungiMap pipeline incorporates several methodological advances that improve upon existing approaches. The hybrid classification system combines k-mer matching with machine learning algorithms to resolve ambiguous taxonomic assignments. Dynamic memory management algorithms enable analysis on consumer-grade hardware without sacrificing accuracy or throughput. The multi-environment validation approach ensures robust performance across diverse ecological contexts, from forest soils to marine sediments.
 
-### Software Engineering Excellence
+### Software Engineering
 The software architecture emphasizes reproducibility and scalability through comprehensive containerization support via Docker and Singularity. The cloud-native design enables seamless scaling from single-core laptop execution to distributed processing on high-performance computing clusters with thousands of cores. Workflow management through Snakemake provides automatic dependency resolution and parallel execution optimization. A comprehensive testing suite with 95% code coverage ensures reliability and facilitates collaborative development.
 
-### Research and Educational Impact
+### Research Impact
 FungiMap addresses critical barriers in fungal ecology research by making advanced genomic analysis accessible to researchers with limited computational resources. The platform enables early pathogen detection in agricultural systems, supporting sustainable farming practices through timely intervention strategies. Environmental monitoring applications support conservation efforts through rapid ecosystem health assessment. The educational value of the platform extends bioinformatics training opportunities to institutions with limited access to expensive commercial software.
 
-## Quick Start Guide
+## Start for demo
 
 ### Demo Installation
 
@@ -121,14 +120,14 @@ python demo/view_results.py
 
 **System Requirements**: 2GB RAM, standard laptop hardware
 
-### Alternative Access Methods
+### Alternative Methods to access
 - View pre-computed results: [embedded demo](docs/index.html)
 - Browse analysis workflow: [demo notebook](demo/notebook.ipynb) on GitHub
 - Docker deployment: `docker run -p 8888:8888 fungimap/demo`
 
-## Academic Information and Reproducibility
+## Academic info
 
-### Citation Information
+### Citation info
 ```bibtex
 @software{fungimap2025,
   title={FungiMap: Environmental Mycology Platform},
@@ -139,21 +138,15 @@ python demo/view_results.py
 }
 ```
 
-### Reproducibility Standards
+### Reproducibility
 The project adheres to computational reproducibility best practices through complete environment specifications in `environment.yml` and `environment-demo.yml` files. Docker and Singularity container support ensures system-independent execution across different computing platforms. SHA-256 checksums for all critical files are maintained in [DELIVERABLE_MANIFEST.md](DELIVERABLE_MANIFEST.md) to verify data integrity. Tagged releases with semantic versioning enable precise reproduction of specific analysis versions. Automated testing with continuous integration validates functionality across different execution environments.
 
-### Authors and Collaboration
-**Lead Development**: FungiMap Research Team  
-**Contributors**: See [AUTHORS.md](AUTHORS.md) for complete attribution  
-**Community**: Contributions welcome - see [CONTRIBUTING.md](CONTRIBUTING.md)  
-**Contact**: GitHub Issues for questions and collaboration requests
-
 ### Open Source License
-This project is released under the [MIT License](LICENSE) for unrestricted academic and commercial use. Community collaboration guidelines are outlined in the [Code of Conduct](CODE_OF_CONDUCT.md). Complete transparency is maintained through public availability of source code, documentation, and validation data.
+"This project is released under the [MIT License](LICENSE) for unrestricted academic and commercial use. Community collaboration guidelines are outlined in the [Code of Conduct](CODE_OF_CONDUCT.md). Complete transparency is maintained through public availability of source code, documentation, and validation data."
 
 ---
 
-## Advanced Technical Documentation
+## Code Technical Documentation
 
 <details>
 <summary><strong>System Architecture and Implementation Details</strong></summary>
@@ -196,7 +189,7 @@ FungiMap Bioinformatics Pipeline:
 <details>
 <summary><strong> Production Deployment Guide</strong></summary>
 
-### Local Production Installation
+### Local Installation
 ```bash
 # Full production environment (requires 16GB+ RAM)
 conda env create -f environment.yml && conda activate fungimap-production
@@ -208,7 +201,7 @@ snakemake --snakefile workflow/Snakefile download_databases --cores 4
 snakemake --profile profiles/local --cores 8
 ```
 
-### High-Performance Computing (HPC) Deployment
+### (HPC) advanced computers Deployment
 ```bash
 # SLURM cluster submission
 sbatch scripts/slurm/full_pipeline.slurm
@@ -217,7 +210,7 @@ sbatch scripts/slurm/full_pipeline.slurm
 snakemake --jobs 50 --profile profiles/hpc --cluster-config config/cluster.yaml
 ```
 
-### Cloud Infrastructure Deployment
+### Cloud infastructure use
 AWS deployment configurations are available in [CLOUD_DEPLOYMENT.md](CLOUD_DEPLOYMENT.md) with CloudFormation templates for automated infrastructure provisioning. Google Cloud Platform deployment includes cost optimization strategies for large-scale processing. Estimated costs range from $0.50 to $2.00 per sample depending on instance type and processing requirements.
 
 </details>
@@ -225,7 +218,7 @@ AWS deployment configurations are available in [CLOUD_DEPLOYMENT.md](CLOUD_DEPLO
 <details>
 <summary><strong>Advanced Configuration and Customization</strong></summary>
 
-### Pipeline Configuration
+### Pipeline
 The main pipeline configuration file (`config/pipeline_config.json`) controls sample processing, resource allocation, and output generation:
 
 ```json
@@ -242,7 +235,7 @@ The main pipeline configuration file (`config/pipeline_config.json`) controls sa
 }
 ```
 
-### Quality Control Parameters
+### Quality Control (parameters)
 Quality control thresholds are defined in `config/validation_config.json`:
 
 ```json
@@ -255,7 +248,7 @@ Quality control thresholds are defined in `config/validation_config.json`:
 }
 ```
 
-### Development and Testing Framework
+### Testing Framework
 ```bash
 # Complete test suite execution
 pytest tests/ -v --cov=src/ --cov-report=html
@@ -267,7 +260,7 @@ pytest tests/test_kraken_wrapper.py tests/test_quality_control.py
 python scripts/benchmark_pipeline.py --samples 10 --iterations 3
 ```
 
-### System Resource Requirements
+### System Requirements (based on my computer)
 
 | Deployment | RAM | CPU | Storage | Network |
 |-----------|-----|-----|---------|---------|
