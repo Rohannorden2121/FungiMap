@@ -292,4 +292,6 @@ Enhanced machine learning models will allow deep learning approaches for better 
 
 **Getting Started**: Start with [interactive demo](docs/index.html) or explore [complete technical documentation](docs/).
 
+---
+### ---
 *Last updated: May 23, 2025*
