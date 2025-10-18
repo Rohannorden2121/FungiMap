@@ -29,7 +29,7 @@ The practical applications of this technology are very large. Agricultural resea
 
 The pipeline has error handling and logging to make troubleshooting easier as well (NOTE: All files are preserved with checksums with analysis environment put in config files).
 
-## Performance Metrics and Validation
+## Performance Metrics+Validation
 
 ### Computational Performance
 
