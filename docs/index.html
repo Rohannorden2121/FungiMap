@@ -1,172 +1,340 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FungiMap Live Demo - Model Test</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .container {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            margin: 20px 0;
-        }
+<!DOCTYPE html><!DOCTYPE html>
+
+<html lang="en"><html lang="en">
+
+<head><head>
+
+    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="FungiMap - A bioinformatics pipeline that identifies which fungi are present in environmental samples and gives a view of their communities.">    <title>FungiMap Live Demo - Model Test</title>
+
+    <title>FungiMap - Turning eDNA into clear maps of fungal life</title>    <style>
+
+    <link rel="stylesheet" href="style.css">        body {
+
+</head>            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+<body>            line-height: 1.6;
+
+    <!-- Hero Section with Particles Animation -->            color: #333;
+
+    <section id="hero">            max-width: 1200px;
+
+        <div id="particles-js"></div>            margin: 0 auto;
+
+        <div class="hero-content">            padding: 20px;
+
+            <h1 class="hero-title">FungiMap</h1>            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            <p class="hero-tagline">Turning eDNA into clear maps of fungal life</p>            min-height: 100vh;
+
+            <p class="hero-description">A bioinformatics pipeline that identifies which fungi are present in environmental samples and gives a view of their communities.</p>        }
+
+            <div class="hero-buttons">        .container {
+
+                <a href="https://github.com/Rohannorden2121/FungiMap/blob/main/README.md" class="btn btn-primary" target="_blank">View Full README</a>            background: white;
+
+                <a href="https://github.com/Rohannorden2121/FungiMap" class="btn btn-secondary" target="_blank">GitHub Repository</a>            border-radius: 15px;
+
+                <a href="#" class="btn btn-secondary" target="_blank">Medium Post</a>            padding: 40px;
+
+            </div>            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+
+        </div>            margin: 20px 0;
+
+    </section>        }
+
         .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .header h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .header .subtitle {
-            color: #7f8c8d;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        .demo-badge {
+
+    <!-- Overview Section -->            text-align: center;
+
+    <section id="overview" class="section">            margin-bottom: 40px;
+
+        <div class="container">        }
+
+            <h2 class="section-title">What is FungiMap?</h2>        .header h1 {
+
+            <div class="overview-content">            color: #2c3e50;
+
+                <div class="overview-text">            font-size: 2.5em;
+
+                    <p>FungiMap is a tool that analyzes environmental DNA (eDNA) to identify and map fungal communities. Inspired by mycelial networks and the way Google Maps shows locations, I created a pipeline that takes messy eDNA, cleans it, matches sequences to reference libraries using ITS "barcoding," and displays results on an interactive map. The goal of this project is to help researchers and scientists see how alive and diverse environments (soil is one of them) using accessible sequencing/open data rather than specialized labs. Special acknowledgement to my mentors at Gilead Sciences for aiding in technical aspects of project creation.</p>            margin-bottom: 10px;
+
+                </div>        }
+
+                <div class="overview-image">        .header .subtitle {
+
+                    <img src="images/mycelium-network.jpg" alt="White fungal mycelium network in dark soil">            color: #7f8c8d;
+
+                </div>            font-size: 1.2em;
+
+            </div>            margin-bottom: 20px;
+
+        </div>        }
+
+    </section>        .demo-badge {
+
             display: inline-block;
-            background: #27ae60;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        .demo-badge:hover {
-            background: #2ecc71;
-        }
-        .summary {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            margin: 30px 0;
-            border-left: 5px solid #3498db;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        .feature-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-            transition: transform 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #3498db;
-        }
+
+    <!-- Key Features Section -->            background: #27ae60;
+
+    <section id="features" class="section section-dark">            color: white;
+
+        <div class="container">            padding: 8px 16px;
+
+            <h2 class="section-title">Key Features</h2>            border-radius: 20px;
+
+            <div class="features-grid">            font-weight: bold;
+
+                <div class="feature-card">            text-decoration: none;
+
+                    <div class="feature-icon">            margin: 0 10px;
+
+                        <img src="images/dna-sequencing.jpg" alt="DNA sequencing visualization with fungal species labels">        }
+
+                    </div>        .demo-badge:hover {
+
+                    <h3>From Soil to Species</h3>            background: #2ecc71;
+
+                    <p>Processes mixed environmental DNA to identify fungal species using ITS region barcoding and reference database matching (Kraken2 + Bracken).</p>        }
+
+                </div>        .summary {
+
+                <div class="feature-card">            background: #f8f9fa;
+
+                    <div class="feature-icon">            padding: 30px;
+
+                        <img src="images/quality-control.jpg" alt="Quality control dashboard showing data filtering pipeline">            border-radius: 10px;
+
+                    </div>            margin: 30px 0;
+
+                    <h3>Quality-Controlled Pipeline</h3>            border-left: 5px solid #3498db;
+
+                    <p>Cleans data, removes contaminants, runs quality checks, and applies thresholds treating each sample like an assay.</p>        }
+
+                </div>        .features {
+
+                <div class="feature-card">            display: grid;
+
+                    <div class="feature-icon">            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+                        <img src="images/abundance-chart.jpg" alt="Relative abundance bar chart of fungal species">            gap: 30px;
+
+                    </div>            margin: 40px 0;
+
+                    <h3>What's There & How Much</h3>        }
+
+                    <p>Estimates relative abundance of each fungal taxon, which reveals dominant species and rare members of community.</p>        .feature-card {
+
+                </div>            background: #f8f9fa;
+
+                <div class="feature-card">            padding: 25px;
+
+                    <div class="feature-icon">            border-radius: 10px;
+
+                        <img src="images/biodiversity-map.jpg" alt="Geographic map with biodiversity hotspot markers">            text-align: center;
+
+                    </div>            border: 2px solid #e9ecef;
+
+                    <h3>Mapping</h3>            transition: transform 0.3s ease;
+
+                    <p>Displays results on an interactive map, which shows where different fungal communities were found and how they vary across locations.</p>        }
+
+                </div>        .feature-card:hover {
+
+            </div>            transform: translateY(-5px);
+
+        </div>            border-color: #3498db;
+
+    </section>        }
+
         .feature-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .metric {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 10px;
-        }
-        .metric-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .metric-label {
-            font-size: 0.9em;
+
+    <!-- How It Works Section -->            font-size: 3em;
+
+    <section id="how-it-works" class="section">            margin-bottom: 15px;
+
+        <div class="container">        }
+
+            <h2 class="section-title">How It Works</h2>        .metrics {
+
+            <div class="workflow-content">            display: grid;
+
+                <div class="workflow-image">            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+                    <img src="images/fungal-microscopy.jpg" alt="Microscopy image of fungal structures and spores">            gap: 20px;
+
+                </div>            margin: 30px 0;
+
+                <div class="workflow-steps">        }
+
+                    <p class="workflow-intro">FungiMap uses a Kraken2/Bracken-based pipeline to transform raw sequencing reads into species-level identifications:</p>        .metric {
+
+                    <ol class="steps-list">            text-align: center;
+
+                        <li><strong>Sample Preparation:</strong> Extract DNA from soil samples and prepare for sequencing (ITS amplicon/shotgun metagenomics).</li>            padding: 20px;
+
+                        <li><strong>Quality Control:</strong> Trim adapters, remove low-quality bases, filter contaminants, and check read quality.</li>            background: linear-gradient(135deg, #667eea, #764ba2);
+
+                        <li><strong>Taxonomic Classification:</strong> Use Kraken2 to assign reads to taxa by matching k-mers against a fungal reference database (UNITE/NCBI).</li>            color: white;
+
+                        <li><strong>Abundance Estimation:</strong> Use Bracken w/ reads from higher taxonomic levels down to species. This generates relative abundance estimates.</li>            border-radius: 10px;
+
+                        <li><strong>Visualization:</strong> Export clean abundance tables with sample data (GPS coordinates and habitat) and render on a map.</li>        }
+
+                    </ol>        .metric-value {
+
+                    <p class="workflow-note">The workflow is reproducible with parameters, automated QC reports, and validation with dummy communities.</p>            font-size: 2.5em;
+
+                    <p class="technical-link"><a href="https://github.com/Rohannorden2121/FungiMap/blob/main/README.md" target="_blank">For full pipeline details, parameters, and installation instructions, see the Complete README →</a></p>            font-weight: bold;
+
+                </div>            margin-bottom: 5px;
+
+            </div>        }
+
+        </div>        .metric-label {
+
+    </section>            font-size: 0.9em;
+
             opacity: 0.9;
-        }
-        .cta-section {
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 15px;
-        }
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 15px 30px;
-            border-radius: 25px;
+
+    <!-- Technical Specs Section -->        }
+
+    <section id="tech-specs" class="section section-dark">        .cta-section {
+
+        <div class="container">            text-align: center;
+
+            <h2 class="section-title">Tools & Technologies</h2>            margin: 40px 0;
+
+            <ul class="tech-list">            padding: 30px;
+
+                <li>Kraken2 & Bracken for taxonomic classification and abundance estimation</li>            background: linear-gradient(135deg, #667eea, #764ba2);
+
+                <li>ITS region targeting (fungal DNA barcode)</li>            color: white;
+
+                <li>UNITE & NCBI fungal reference databases</li>            border-radius: 15px;
+
+                <li>Quality control with fastp/cutadapt and contamination filtering</li>        }
+
+                <li>Reproducible workflow (containerized)</li>        .cta-button {
+
+                <li>Interactive mapping with metadata</li>            display: inline-block;
+
+                <li>Built with Python, Snakemake, and bioinformatics tools (open-source)</li>            background: white;
+
+            </ul>            color: #667eea;
+
+        </div>            padding: 15px 30px;
+
+    </section>            border-radius: 25px;
+
             text-decoration: none;
-            font-weight: bold;
-            margin: 10px;
-            font-size: 1.1em;
-            transition: transform 0.3s ease;
-        }
-        .cta-button:hover {
-            transform: scale(1.05);
-        }
-        .screenshot {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .screenshot img {
-            max-width: 100%;
+
+    <!-- Acknowledgements Section -->            font-weight: bold;
+
+    <section id="acknowledgements" class="section">            margin: 10px;
+
+        <div class="container">            font-size: 1.1em;
+
+            <h2 class="section-title">Acknowledgements</h2>            transition: transform 0.3s ease;
+
+            <div class="acknowledgements-content">        }
+
+                <div class="acknowledgements-text">        .cta-button:hover {
+
+                    <p>I'm grateful to my preceptors at Gilead Sciences for guiding the bioinformatics side of FungiMap. They helped me turn fragmented environmental DNA into reliable results with cleaning data, running QC, and more. With their help, I built FungiMap as a reproducible, expandable project in VS Code and GitHub.</p>            transform: scale(1.05);
+
+                </div>        }
+
+                <div class="acknowledgements-image">        .screenshot {
+
+                    <img src="images/lab-setup.jpg" alt="Laboratory DNA extraction and analysis setup">            text-align: center;
+
+                </div>            margin: 30px 0;
+
+            </div>        }
+
+        </div>        .screenshot img {
+
+    </section>            max-width: 100%;
+
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .demo-preview {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            margin: 20px 0;
-            overflow-x: auto;
-        }
-    </style>
+
+    <!-- Call to Action Section -->            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    <section id="cta" class="section section-dark">        }
+
+        <div class="container">        .demo-preview {
+
+            <h2 class="section-title">Explore FungiMap</h2>            background: #2c3e50;
+
+            <p class="cta-text">Ready to dive deeper? Check out the complete documentation or browse the README</p>            color: #ecf0f1;
+
+            <div class="cta-buttons">            padding: 20px;
+
+                <a href="https://github.com/Rohannorden2121/FungiMap/blob/main/README.md" class="btn btn-primary" target="_blank">Read Full README</a>            border-radius: 10px;
+
+                <a href="https://github.com/Rohannorden2121/FungiMap" class="btn btn-secondary" target="_blank">View on GitHub</a>            font-family: 'Courier New', monospace;
+
+                <a href="#" class="btn btn-secondary" target="_blank">Medium Blog Post</a>            margin: 20px 0;
+
+            </div>            overflow-x: auto;
+
+        </div>        }
+
+    </section>    </style>
+
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1> FungiMap Live Demo</h1>
-            <div class="subtitle">
-                Interactive model test demonstrating fungal species classification from environmental DNA
-            </div>
-            <div>
-                <a href="#notebook" class="demo-badge"> View Demo Notebook</a>
-                <a href="#reproduce" class="demo-badge"> Run Locally</a>
-                <a href="https://github.com/Rohannorden2121/FungiMap" class="demo-badge">� GitHub Repository</a>
-            </div>
-        </div>
 
-        <div class="summary">
-            <h2> What This Demo Shows</h2>
-            <p><strong>FungiMap analyzes environmental DNA samples to identify fungal species and predict their ecological functions.</strong> This interactive demonstration processes samples from three different environments (forest, marine, agricultural) and successfully classifies fungal species with 85% accuracy in under 4 minutes per sample.</p>
-            
+    <!-- Footer --><body>
+
+    <footer>    <div class="container">
+
+        <div class="container">        <div class="header">
+
+            <div class="footer-content">            <h1> FungiMap Live Demo</h1>
+
+                <div class="footer-left">            <div class="subtitle">
+
+                    <p>&copy; 2025 FungiMap Project</p>                Interactive model test demonstrating fungal species classification from environmental DNA
+
+                    <p>Built by Rohan Norden</p>            </div>
+
+                </div>            <div>
+
+                <div class="footer-right">                <a href="#notebook" class="demo-badge"> View Demo Notebook</a>
+
+                    <a href="https://github.com/Rohannorden2121/FungiMap" target="_blank">GitHub</a>                <a href="#reproduce" class="demo-badge"> Run Locally</a>
+
+                    <span>•</span>                <a href="https://github.com/Rohannorden2121/FungiMap" class="demo-badge">� GitHub Repository</a>
+
+                    <a href="#" target="_blank">Medium</a>            </div>
+
+                    <span>•</span>        </div>
+
+                    <a href="mailto:your.email@example.com">Contact</a>
+
+                </div>        <div class="summary">
+
+            </div>            <h2> What This Demo Shows</h2>
+
+        </div>            <p><strong>FungiMap analyzes environmental DNA samples to identify fungal species and predict their ecological functions.</strong> This interactive demonstration processes samples from three different environments (forest, marine, agricultural) and successfully classifies fungal species with 85% accuracy in under 4 minutes per sample.</p>
+
+    </footer>            
+
             <p><strong>Perfect for non-technical reviewers:</strong> All computations are precomputed and embedded, so you can see the complete analysis workflow and results immediately without running any code.</p>
-        </div>
 
-        <div class="metrics">
-            <div class="metric">
-                <div class="metric-value">85%</div>
+    <!-- Scripts -->        </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script src="script.js"></script>        <div class="metrics">
+
+</body>            <div class="metric">
+
+</html>                <div class="metric-value">85%</div>
                 <div class="metric-label">Classification Accuracy</div>
             </div>
             <div class="metric">
