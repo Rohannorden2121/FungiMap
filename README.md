@@ -6,9 +6,6 @@
 
 [![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Pipeline-orange.svg)](workflow/Snakefile)
 
-
-### **[VIEW LIVE DEMO](docs/index.html)** 
-
 </div>
 
 ## Project Overview
