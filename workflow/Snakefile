@@ -2,34 +2,34 @@ import pandas as pd
 from pathlib import Path
 import json
 
-# Load configurations
+# Load config
 configfile: "workflow/config.yaml"
 
-# Load pipeline config
+# Load pipeline
 with open("config/pipeline_config.json") as f:
     pipeline_config = json.load(f)
 
-# Load sample manifest or use default samples
+# Load sample manifest/use df sm
 try:
     manifest = pd.read_csv("workflow/manifest.csv")
     PILOT_SAMPLES = manifest[manifest['use_type'].str.contains('pilot', na=False)]['accession'].tolist()
 except FileNotFoundError:
     PILOT_SAMPLES = ["SRR13059548", "SRR15377549"]
 
-# Get samples from config or use pilot samples
+# Get samples from config/use pilt sm
 SAMPLES = config.get('samples', PILOT_SAMPLES)
 if isinstance(SAMPLES, str):
     SAMPLES = SAMPLES.split(',')
 
-# Global parameters
+# Global param
 RESULTS_DIR = Path(config.get("output_dir", "results"))
 MIN_FUNGAL_SIGNAL = pipeline_config.get("validation", {}).get("min_fungal_signal", 0.5)
 
-# Global wildcards
+# Global wildc
 wildcard_constraints:
     sample = "|".join(SAMPLES)
 
-# Rule all - define concrete targets
+# targets
 rule all:
     input:
         # Stage 0: Validation reports
