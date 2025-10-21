@@ -2,7 +2,7 @@
 
 <div align="center">
 
-> **Automated pipeline for fungal species identification in environmental DNA samples**
+> **Automated pipeline for fungal species identification in eDNA samples**
 
 [![Bioinformatics](https://img.shields.io/badge/Bioinformatics-Pipeline-orange.svg)](workflow/Snakefile)
 
@@ -10,21 +10,21 @@
 
 ## Project Overview
 
-**[SIMPLE OVERVIEW] [MODEL_TEST.md](demo/MODEL_TEST.md)** - Basic overview of project
+**[SIMPLE OVERVIEW] [MODEL_TEST.md](demo/MODEL_TEST.md)** - Basic overview of project **(VIEW THIS FIRST)**
 
 ### Summary
 
-FungiMap is a tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). It is a bioinformatics pipeline, and this software analyzes DNA sequencing data (raw through QC through FastQC, classification, and analysis) to figure out which fungi are present in a sample and, also, their relative abundance. This approach is significantly more accessable than traditional ways of going about this that require lab facilities, expensive equipment, and a lot of processing time. It uses QC mainly to get rid of low-quality sequences that make analysis worsed (downstream analysis specifically). The sequences are processed through Kraken2 (whcih is a classification tool using a technique called k-mer matching where you break sequences into groups called k-mers of a set length k). This database uses sequences from NCBI GenBank and other fungal collections to provide a good coverage of environmental fungal diversity.
+FungiMap is a tool that identifies fungal species in environmental samples (soil, water, and plant material are some examples). This bioinformatics pipeline analyzes DNA sequencing data to figure out which fungi are present in a sample and their relative abundance. This approach is significantly more accessable than traditional ways that require lab facilities, expensive equipment, and a lot of processing time. This pipeline uses QC to get rid of low-quality sequences that worsen analysis (downstream analysis specifically). The sequences are processed through Kraken2 (a classification tool using a technique called k-mer matching where you break sequences into groups called k-mers of a set length k). This database uses sequences from NCBI GenBank and other fungal collections to provide a good coverage of environmental fungal diversity.
 
-More technically, the abudance guessing is done by Braken (method to get abundance) and there is QC checkpoints periodically to check for any contamination. This project is built with Snakemake and it allows low resource laptops/low-end hardware to run well. This allows analysis accessible on more basic hardware (not every researcher/scientist has access to a HPC/mid-high to high tier computing environment).
+More technically, the abudance guessing is done by Braken (to get abundance) and QC checkpoints are periodically set to check for any contamination. This project is built with Snakemake; it also can run well on low resource laptops/low-end hardware. This allows analysis accessible on more basic hardware, as not every researcher has access to HPC.
 
-The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their characteristics under microscopes, and doing biochemical tests. This approach is difficult and expensive, as it requires taxonomists (knowledable experts) and costs  $50 and $200 (around-this is an estimate) per sample. Many environmental fungi cannot be cultured in laboratory conditions, and this makes traditional identification incomplete/even impossible.
+The traditional process of fungal identification involves growing fungi in laboratory cultures, examining their characteristics under microscopes, and doing biochemical tests. This approach is difficult and expensive, and it requires taxonomists and costs  $50 and $200 (estimate) per sample. Moreover, many environmental fungi cannot be cultured in laboratory conditions, and this makes traditional identification incomplete/even impossible.
 
-The predictor FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. This software compares these sequences against a database of known fungal species and gives accurate identification after a couple of minutes from input. This approach can identify both culturable and non-culturable fungi, and this offers a more complete view of fungal diversity in environmental samples.
+FungiMap addresses these limitations by analyzing DNA sequences directly from environmental samples. This software compares these sequences against a database of known fungal species and gives accurate identification after a couple of minutes from input. This approach can identify both culturable and non-culturable fungi, offering a more complete view of fungal diversity in environmental samples.
 
-The practical applications of this technology are very large. Agricultural researchers can use FungiMap to monitor soil health and find plant pathogens before they cause significant damage to crops. Additionally, environmental scientists can evaluate ecosystem health by tracking changes in fungal communities over time. Furthermore, marine biologists can explore fungal diversity in ocean environments, (which has been understudied in the past due to technical limitation; this predictor helps to overcome this!). When this project receives higher funding (more advanced computer(s)/HPC access), this project will receive a DOI (Zenodo), perhaps also with updated/expanded eDNA fungal samples.
+The practical applications of this technology are extensive. Agricultural researchers can use FungiMap to monitor soil health and find plant pathogens before they cause significant damage to crops. Additionally, environmental scientists can evaluate ecosystem health by tracking changes in fungal communities over time. Furthermore, marine biologists can explore fungal diversity in ocean environments, which has been understudied in the past due to technical limitations (this predictor helps to overcome this). When this project receives higher funding (more advanced ccomputing power or HPC access), this project will receive a Zenodo DOI, most likely including updated/expanded eDNA fungal samples.
 
-The pipeline has error handling and logging to make troubleshooting easier as well (NOTE: All files are preserved with checksums with analysis environment put in config files).
+This pipeline includes error handling and logging to make troubleshooting easier as well (NOTE: All files are preserved with checksums with analysis environment put in config files).
 
 ## Performance Metrics+Validation
 
@@ -42,13 +42,13 @@ The pipeline has error handling and logging to make troubleshooting easier as we
 ### Validation Results
 
 **Forest Ecosystem Analysis**  
-Dominance by *Trichoderma* species including 45% of classified fungal reads (fungi are biocontrol agents and promote plant growth) and form good associations with plant roots. High abundance of *Trichoderma* in forest soils consistent with its known ecological role (nutrient cycling and lowering pathogen rate in plants).
+Most are *Trichoderma* species including 45% of classified fungal reads (fungi are biocontrol agents and promote plant growth and form good associations with plant roots). High abundance of *Trichoderma* in forest soils consistent with its known ecological role (nutrient cycling and lowering pathogen rate in plants).
 
 **Marine Environment Analysis**  
-Diversity in fungal communities with *Cryptococcus* yeasts= 38% of identified sequences. We can see that through this the fungal diversity (marine) has been underestimated (perhaps due to limitations of identification methods that are culture-based). Yeasts in marine environments shows their importance in carbon cycling for ocean and food webs.
+More diversity in fungal communities with *Cryptococcus* yeasts= 38% of identified sequences. We can see that through this the fungal diversity (marine) has been underestimated (perhaps due to limitations of identification methods that are culture-based). Yeast in marine environments shows their importance in carbon cycling for ocean and food webs.
 
 **Agricultural Soil Analysis**  
-Pathogen detection with *Fusarium* species known to cause crop diseases. Early detection of them allows farmers to use preventive measures that can prevent a lot of crop loss. Monitoring pathogen levels in agricultural soils gives good information for pathogens in farms and ways to combat them.
+Pathogen detection with *Fusarium* species known to cause crop diseases. Early detection of them allows farmers to use preventive measures that can prevent crop loss. Monitoring pathogen levels in agricultural soils allows us to have more info of pathogens in farms and ways to combat them.
 
 ## Repository (for navigation)
 
@@ -75,14 +75,14 @@ Pathogen detection with *Fusarium* species known to cause crop diseases. Early d
 ## Technical Achievements
 
 ### Methodological
-Improves existing approaches. Uses k-mer matching with machine learning algorithms to find a solutiton to taxonomic assignments. Using them allows analysis on basic computers. Validation approach also allows strong performance through different ecological environments (forest soils to marine).
+Improves existing approaches. Uses k-mer matching with machine learning algorithms to find solutiton to taxonomic assignments. Using them allows analysis on basic computers. Validation approach allows strong performance through different ecological environments (forest soils to marine).
 
 ### Software
--reducibility/scalability (docker/singularity)
--Snakemake (increase efficiency of complex tasks- compilation and processing)
+Docker/singularity: Reducibility/scalability 
+Snakemake: increase efficiency of complex tasks (compilation and processing)
 
 ### Research Impact
-FungiMap takes a stab at solving barriers in fungal ecology research by allowing advanced genomic analysis easily reachable by researchers and scientists (also generally this study being unrepresented). The platform allows early pathogen detection in agricultural systems. Environmental monitoring also supports conservation efforts through quick ecosystem health assessments.
+FungiMap tries to break underexplored areas in fungal ecology research by making genomic analysis easily reachable by researchers and scientists. The project allows early pathogen detection in agricultural systems, and environmental monitoring supports conservation efforts through ecosystem health assessments.
 
 ## Start for demo
 
@@ -99,11 +99,9 @@ jupyter notebook demo/notebook.ipynb
 python demo/view_results.py
 ```
 
-**System Requirements**: 2GB RAM, basic laptop hardware
+**System Requirements**: 2GB RAM (basic laptop hardware)
 
-### Alternative Methods to access
-- View pre-computed results: [embedded demo](docs/index.html)
-- Analysis workflow: [demo notebook](demo/notebook.ipynb) on GitHub
+### Alternative methods to access
 - Docker deployment: `docker run -p 8888:8888 fungimap/demo`
 
 ### Reproducibility
@@ -234,7 +232,7 @@ python scripts/benchmark_pipeline.py --samples 10 --iterations 3
 | Demo | 2GB | 2 cores | 5GB | Minimal |
 | Production | 16GB+ | 8+ cores | 100GB+ | 10 Mbps+ |
 | HPC | 64GB+ | 32+ cores | 500GB+ | High-bandwidth |
-| Cloud | Scalable | Scalable | Object storage | Pay-per-use |
+| Cloud | Scalable | Scalable | Object storage | Pay per use |
 
 </details>
 
