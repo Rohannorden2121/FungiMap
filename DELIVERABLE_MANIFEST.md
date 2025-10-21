@@ -150,6 +150,6 @@ Research data and results follow CC-BY-4.0 licensing.
 ---
 
 **Total Package Size**: ~50 MB (excluding large databases)
-**Verification Date**: 2025-09-27
+**Verification Date**: 2025-05-17
 **Package Integrity**: Verified with SHA-256 checksums
 **Compatibility**: Tested on macOS (M1), Linux (x86_64), Docker containers
