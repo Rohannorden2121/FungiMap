@@ -100,5 +100,13 @@
         "resource_tracking": true,
         "tracking_interval": 60,
         "cloud_logging": false
+    },
+    
+    "mapping": {
+        "enabled": true,
+        "output_path": "results/fungal_diversity_map.html",
+        "metadata_file": "workflow/manifest.csv",
+        "min_abundance_threshold": 0.1,
+        "max_taxa_display": 10
     }
 }

@@ -18,6 +18,7 @@ dependencies:
   - biopython
   - psutil
   - wget
+  - folium
   
   # Try to get these if available
   - snakemake-minimal

@@ -35,7 +35,9 @@ rule all:
         # Stage 0: Validation reports
         expand(RESULTS_DIR / "eda" / "validation" / "{sample}_report.csv", sample=SAMPLES),
         RESULTS_DIR / "eda" / "validation" / "combined_report.csv",
-        RESULTS_DIR / "eda" / "multiqc_report.html"
+        RESULTS_DIR / "eda" / "multiqc_report.html",
+        # Geographic mapping (optional)
+        RESULTS_DIR / "fungal_diversity_map.html" if pipeline_config.get("mapping", {}).get("enabled", False) else []
 
 
 rule download_sample:
@@ -278,6 +280,34 @@ rule multiqc:
 EOF
         
         echo "MultiQC report generated" > {log}
+        """
+
+rule generate_diversity_map:
+    input:
+        metadata = pipeline_config.get("mapping", {}).get("metadata_file", "workflow/manifest.csv"),
+        kraken = expand(RESULTS_DIR / "eda" / "kraken2" / "{sample}_report.txt", sample=SAMPLES),
+        bracken = expand(RESULTS_DIR / "eda" / "bracken" / "{sample}_bracken.txt", sample=SAMPLES)
+    output:
+        map_html = RESULTS_DIR / "fungal_diversity_map.html"
+    params:
+        taxonomy_dir = RESULTS_DIR / "eda",
+        config = "config/pipeline_config.json"
+    conda:
+        "envs/validation.yaml"
+    log:
+        "logs/mapping/generate_map.log"
+    shell:
+        """
+        mkdir -p logs/mapping
+        
+        python src/generate_map.py \
+            {input.metadata} \
+            {params.taxonomy_dir} \
+            -o {output.map_html} \
+            -c {params.config} \
+            2> {log}
+        
+        echo "Map generation completed" >> {log}
         """
 
 rule stage0_validation:
