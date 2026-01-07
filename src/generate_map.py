@@ -279,12 +279,13 @@ class FungalMapGenerator:
         """
         environment_lower = environment.lower() if environment else ""
         
-        if 'forest' in environment_lower or 'soil' in environment_lower:
-            return 'green'
+        # Check more specific terms first
+        if 'agricultural' in environment_lower or 'farm' in environment_lower:
+            return 'orange'
         elif 'marine' in environment_lower or 'sediment' in environment_lower:
             return 'blue'
-        elif 'agricultural' in environment_lower or 'farm' in environment_lower:
-            return 'orange'
+        elif 'forest' in environment_lower or 'soil' in environment_lower:
+            return 'green'
         else:
             return 'gray'
     

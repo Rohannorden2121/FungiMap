@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4454d2c864a7b86393c298801b0f4cf4 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    bottom: 50px; right: 50px; width: 200px; 
+                    background-color: white; z-index:9999; font-size:14px;
+                    border:2px solid grey; border-radius: 5px; padding: 10px">
+            <h4 style="margin-top:0">Sample Types</h4>
+            <p><i class="fa fa-map-marker fa-2x" style="color:green"></i> Forest/Soil</p>
+            <p><i class="fa fa-map-marker fa-2x" style="color:blue"></i> Marine/Sediment</p>
+            <p><i class="fa fa-map-marker fa-2x" style="color:orange"></i> Agricultural</p>
+            <p><i class="fa fa-map-marker fa-2x" style="color:gray"></i> Other</p>
+        </div>
+        
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 400px;
+                    background-color: white; z-index:9999; font-size:16px;
+                    border:2px solid grey; border-radius: 5px; padding: 10px">
+            <h3 style="margin-top:0">FungiMap - Fungal Diversity Map</h3>
+            <p style="margin-bottom:0">Geographic distribution of fungal taxa across sampling locations</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_4454d2c864a7b86393c298801b0f4cf4" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4454d2c864a7b86393c298801b0f4cf4 = L.map(
+                "map_4454d2c864a7b86393c298801b0f4cf4",
+                {
+                    center: [42.037625000000006, -70.001825],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 4,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b57a45f3c9b097bad62bf51ece2970b3 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b57a45f3c9b097bad62bf51ece2970b3.addTo(map_4454d2c864a7b86393c298801b0f4cf4);
+        
+    
+            var marker_ebd891bb42914780b5d5c4f41744edf7 = L.marker(
+                [40.7128, -74.006],
+                {
+}
+            ).addTo(map_4454d2c864a7b86393c298801b0f4cf4);
+        
+    
+            var icon_ca768401c3fd7bc0250610c2fc00013b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f41687ec517251d4277dbdf49a7d3ef5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_412b96c192a666101b6041f0eb24b87c = $(`<div id="html_412b96c192a666101b6041f0eb24b87c" style="width: 100.0%; height: 100.0%;">         <div style='width: 300px;'>             <h4 style='margin-bottom: 10px;'>Sample1</h4>             <p><b>Environment:</b> forest_soil</p>             <p><b>Location:</b> 40.7128, -74.0060</p>             <h5>Fungal Taxa:</h5>             <p>No fungal taxa detected</p>         </div>         </div>`)[0];
+                popup_f41687ec517251d4277dbdf49a7d3ef5.setContent(html_412b96c192a666101b6041f0eb24b87c);
+            
+        
+
+        marker_ebd891bb42914780b5d5c4f41744edf7.bindPopup(popup_f41687ec517251d4277dbdf49a7d3ef5)
+        ;
+
+        
+    
+    
+            marker_ebd891bb42914780b5d5c4f41744edf7.bindTooltip(
+                `<div>
+                     Sample1 - forest_soil
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ebd891bb42914780b5d5c4f41744edf7.setIcon(icon_ca768401c3fd7bc0250610c2fc00013b);
+            
+    
+            var marker_b50c7432abed70cc8573d0c07615d896 = L.marker(
+                [51.5074, -0.1278],
+                {
+}
+            ).addTo(map_4454d2c864a7b86393c298801b0f4cf4);
+        
+    
+            var icon_87e7df642863cb63989a04b4e47dd465 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d2b77182983b94958fad24f724508a15 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b775cccdb6c82bc714be1bbeeac2f39d = $(`<div id="html_b775cccdb6c82bc714be1bbeeac2f39d" style="width: 100.0%; height: 100.0%;">         <div style='width: 300px;'>             <h4 style='margin-bottom: 10px;'>Sample2</h4>             <p><b>Environment:</b> forest_soil</p>             <p><b>Location:</b> 51.5074, -0.1278</p>             <h5>Fungal Taxa:</h5>             <p>No fungal taxa detected</p>         </div>         </div>`)[0];
+                popup_d2b77182983b94958fad24f724508a15.setContent(html_b775cccdb6c82bc714be1bbeeac2f39d);
+            
+        
+
+        marker_b50c7432abed70cc8573d0c07615d896.bindPopup(popup_d2b77182983b94958fad24f724508a15)
+        ;
+
+        
+    
+    
+            marker_b50c7432abed70cc8573d0c07615d896.bindTooltip(
+                `<div>
+                     Sample2 - forest_soil
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b50c7432abed70cc8573d0c07615d896.setIcon(icon_87e7df642863cb63989a04b4e47dd465);
+            
+    
+            var marker_a56ed5ddc21085ed63b64aafe7471220 = L.marker(
+                [34.0522, -118.2437],
+                {
+}
+            ).addTo(map_4454d2c864a7b86393c298801b0f4cf4);
+        
+    
+            var icon_02eb560687412e556d2fa6a38ca2d0ac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5dec196648e948d187355de18c1f6615 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_681680bcfd943f264911dfeb09432dfd = $(`<div id="html_681680bcfd943f264911dfeb09432dfd" style="width: 100.0%; height: 100.0%;">         <div style='width: 300px;'>             <h4 style='margin-bottom: 10px;'>Sample3</h4>             <p><b>Environment:</b> marine_sediment</p>             <p><b>Location:</b> 34.0522, -118.2437</p>             <h5>Fungal Taxa:</h5>             <p>No fungal taxa detected</p>         </div>         </div>`)[0];
+                popup_5dec196648e948d187355de18c1f6615.setContent(html_681680bcfd943f264911dfeb09432dfd);
+            
+        
+
+        marker_a56ed5ddc21085ed63b64aafe7471220.bindPopup(popup_5dec196648e948d187355de18c1f6615)
+        ;
+
+        
+    
+    
+            marker_a56ed5ddc21085ed63b64aafe7471220.bindTooltip(
+                `<div>
+                     Sample3 - marine_sediment
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a56ed5ddc21085ed63b64aafe7471220.setIcon(icon_02eb560687412e556d2fa6a38ca2d0ac);
+            
+    
+            var marker_ab1da2d4a7bd4f8dfcfcf325a70f066c = L.marker(
+                [41.8781, -87.6298],
+                {
+}
+            ).addTo(map_4454d2c864a7b86393c298801b0f4cf4);
+        
+    
+            var icon_c7c020c79a37ed3a2fcf6528ff023aab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7b984e8bd76a0543246e03f431b406e6 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1423719d0c544206e639d13fb97834c9 = $(`<div id="html_1423719d0c544206e639d13fb97834c9" style="width: 100.0%; height: 100.0%;">         <div style='width: 300px;'>             <h4 style='margin-bottom: 10px;'>Sample4</h4>             <p><b>Environment:</b> agricultural_soil</p>             <p><b>Location:</b> 41.8781, -87.6298</p>             <h5>Fungal Taxa:</h5>             <p>No fungal taxa detected</p>         </div>         </div>`)[0];
+                popup_7b984e8bd76a0543246e03f431b406e6.setContent(html_1423719d0c544206e639d13fb97834c9);
+            
+        
+
+        marker_ab1da2d4a7bd4f8dfcfcf325a70f066c.bindPopup(popup_7b984e8bd76a0543246e03f431b406e6)
+        ;
+
+        
+    
+    
+            marker_ab1da2d4a7bd4f8dfcfcf325a70f066c.bindTooltip(
+                `<div>
+                     Sample4 - agricultural_soil
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ab1da2d4a7bd4f8dfcfcf325a70f066c.setIcon(icon_c7c020c79a37ed3a2fcf6528ff023aab);
+            
+</script>
+</html>
