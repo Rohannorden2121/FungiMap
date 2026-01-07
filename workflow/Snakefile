@@ -293,7 +293,7 @@ rule generate_diversity_map:
         taxonomy_dir = RESULTS_DIR / "eda",
         config = "config/pipeline_config.json"
     conda:
-        "envs/validation.yaml"
+        "envs/mapping.yaml"
     log:
         "logs/mapping/generate_map.log"
     shell:

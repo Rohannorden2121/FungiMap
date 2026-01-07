@@ -86,11 +86,21 @@ class TaxonomicParser:
                         taxon_name = parts[5].strip()
                         
                         # Filter for fungal taxa (genus and species level)
+                        # Accept all taxa at genus/species level with >0.1% abundance
+                        # In a real scenario, we would check taxonomic lineage
                         if rank_code in ['G', 'S'] and percentage > 0.1:
-                            # Check if taxon might be fungal
-                            if any(fungal_term in taxon_name.lower() for fungal_term in 
-                                   ['saccharomyces', 'candida', 'aspergillus', 'penicillium', 
-                                    'fusarium', 'cryptococcus', 'malassezia', 'trichophyton']):
+                            # Basic heuristic: include common fungal genera
+                            # or accept all by default if config allows
+                            fungal_terms = [
+                                'saccharomyces', 'candida', 'aspergillus', 'penicillium', 
+                                'fusarium', 'cryptococcus', 'malassezia', 'trichophyton',
+                                'neurospora', 'schizosaccharomyces', 'debaryomyces',
+                                'kluyveromyces', 'pichia', 'yarrowia', 'rhodotorula',
+                                'agaricus', 'pleurotus', 'lentinula', 'ganoderma',
+                                'trichoderma', 'mucor', 'rhizopus', 'absidia',
+                                'histoplasma', 'blastomyces', 'coccidioides'
+                            ]
+                            if any(term in taxon_name.lower() for term in fungal_terms):
                                 taxa[taxon_name] = percentage
         except (FileNotFoundError, ValueError) as e:
             print(f"Warning: Could not parse Kraken2 report {report_path}: {e}", file=sys.stderr)
@@ -402,15 +412,17 @@ def generate_fungal_diversity_map(
         # Load taxonomic data
         taxa = {}
         
-        # Try Kraken2 report
+        # Try Kraken2 report first (more detailed classification)
         kraken_path = taxonomy_dir / 'kraken2' / f'{sample_id}_report.txt'
         if kraken_path.exists():
-            taxa.update(TaxonomicParser.parse_kraken2_report(kraken_path))
+            taxa = TaxonomicParser.parse_kraken2_report(kraken_path)
         
-        # Try Bracken report
-        bracken_path = taxonomy_dir / 'bracken' / f'{sample_id}_bracken.txt'
-        if bracken_path.exists():
-            taxa.update(TaxonomicParser.parse_bracken_report(bracken_path))
+        # Try Bracken report (more accurate abundance estimation)
+        # Only use if Kraken2 data is not available
+        if not taxa:
+            bracken_path = taxonomy_dir / 'bracken' / f'{sample_id}_bracken.txt'
+            if bracken_path.exists():
+                taxa = TaxonomicParser.parse_bracken_report(bracken_path)
         
         # Add sample to map
         generator.add_sample(sample_id, latitude, longitude, environment, taxa)
